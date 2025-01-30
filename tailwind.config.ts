@@ -15,6 +15,16 @@ export default {
 			'lightradial': 'radial-gradient(50% 50% at 50% 50%, #BBDAFD 0%, transparent 85.84%)',
 			'darkradial':'radial-gradient(50% 50% at 50% 50%, #036FE9 0%, transparent 85.84%)'
 		},
+		screens:{
+			'smx':'440px',
+			'xs': '480px',   // Extra small devices
+			'sm': '640px',   // Small devices
+			'md': '768px',   // Medium devices
+			'custom-lg': '900px', // Custom large
+			'lg': '1024px',  // Default large
+			'xl': '1280px',  // Extra large
+			'2xl': '1536px'  // 2x extra large
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

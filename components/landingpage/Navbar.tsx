@@ -20,8 +20,8 @@ const Navbar = (props: Props) => {
   const [showNav, setShowNav] = useState<boolean>(false)
   console.log(showNav)
   return (
-    <div className="z-100 bg-white/80 dark:bg-background/50">
-        <nav className='border border-b-slate-200 h-[56px] w-full flex items-center px-4 justify-between dark:border-b-gray-800'>
+    <div className="z-100 bg-white/80 dark:bg-background/50 w-full ">
+        <nav className=' fixed bg-white/80 dark:bg-background/50 border border-b-slate-200 h-[56px] w-full flex items-center px-4 justify-between dark:border-b-gray-800 z-[1000]'>
               <div className="flex space-x-2">
                 <div className="md:hidden" onClick={()=>setShowNav(!showNav)}>
                   {showNav ? (
@@ -80,9 +80,9 @@ const Navbar = (props: Props) => {
                 </div>
               </div>
         </nav>
-        <div className={`${showNav ? 'left-[0px]':'left-[-500px]'} flex w-[250px] border-[1px] dark:border-r-slate-800 border-r-slate-300 absolute top-0 h-screen bg-white dark:bg-background/90 transition-all duration-300 ease-in-out md:hidden flex-col z-[200]`}>
+        <div className={`${showNav ? 'translate-x-[0%]':'translate-x-[-100%]'} flex w-[250px] border-[1px] dark:border-r-slate-800 border-r-slate-300 transform top-0 h-screen bg-white dark:bg-background/90 transition-all duration-300 ease-in-out md:hidden flex-col z-[200] fixed`}>
           <div className="w-full p-8 flex justify-end" onClick={()=>setShowNav(!showNav)}>
-            <X className='w-[24px] h-[24px] text-gray-700 dark:text-gray-300'></X>
+            <X className='hidden w-[24px] h-[24px] text-gray-700 dark:text-gray-300'></X>
           </div>
           <div className="">
                 <ul className='flex space-y-8 flex-col items-start p-8'>

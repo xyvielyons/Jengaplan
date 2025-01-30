@@ -6,10 +6,10 @@ type Props = {}
 
 const HomeSection = (props: Props) => {
   return (
-  <section className="overflow-hidden w-full h-full z-100">
+  <div className="w-full h-full relative">
 
-    <div className="bg-lightradial dark:bg-darkradial w-[1000px] h-[1000px] absolute top-[-400px] right-0 transform translate-x-[50%] z-[-100]"></div>
-    <div className="absolute top-[80px] left-[80px]">
+    {/* <div className="bg-lightradial dark:bg-darkradial w-[1000px] h-[1000px] absolute top-[150px] left-0 transform translate-x-[-50%] z-[-100] border border-green-500"></div> */}
+    <div className="absolute top-[-5px] left-[80px]">
             <Image src={star1} alt='line' width={32} height={32}  className='dark:brightness-150'></Image>
     </div>
     <div className="absolute right-8 bottom-[200px] md:bottom-[300px] lg:bottom-[350px] ">
@@ -17,9 +17,9 @@ const HomeSection = (props: Props) => {
     </div>
     <div className="flex w-full flex-col md:items-center items-start justify-center p-4 md:mt-[80px] mt-[58px]">
         <h1 className='text-5xl font-bold text text-gray-800 dark:text-gray-50'>What If You Could Plan a Whole</h1>
-        <div className="relative">
-          <h1 className='text-5xl font-bold text text-gray-800 dark:text-gray-50'>Term in Minutes?</h1>
-          <div className="absolute right-[15px] bottom-[-8px]">
+        <div className="">
+          <h1 className='text-5xl font-bold text text-gray-800 dark:text-gray-50'> Term in Minutes?</h1>
+          <div className="relative smx:right-0 sm:right-[-180px]">
             <Image src={line3} alt='line' width={200} height={15}></Image>
           </div>
         </div>
@@ -42,9 +42,9 @@ const HomeSection = (props: Props) => {
     <div className="mt-[24px] p-[24px]">
         <Image src={homevideoimage} alt='image' className='rounded-sm brightness-75'></Image>
     </div>
-    
-    <div className="bg-lightradial dark:bg-darkradial w-[1000px] h-[1000px] absolute top-[150px] left-0 transform translate-x-[-50%] z-[-100]"></div>
-  </section>
+    {/* <div className="bg-lightradial dark:bg-darkradial w-[1000px] h-[1000px] absolute top-0 z-[-100] border border-green-500"></div> */}
+
+  </div>
 
   )
 }

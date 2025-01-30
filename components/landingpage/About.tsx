@@ -1,12 +1,12 @@
-import { africanStudentStudying, mic1 } from '@/public/images'
+import { africanStudentStudying, mic1, underline3 } from '@/public/images'
 import React from 'react'
 import Image from 'next/image'
 const About = () => {
   return (
-    <section className='flex flex-col md:flex-row-reverse mt-[16px]'>
+    <section className='flex flex-col md:flex-row-reverse mt-[16px] '>
         <div className="space-y-2 p-2">
             <div className="flex space-x-[4px] items-center">
-                <h1 className='text-2xl font-bold text-gray-800'>About</h1>
+                <h1 className='text-2xl font-bold text-gray-800 dark:text-gray-200'>About</h1>
                 <Image src={mic1} alt='mic' width={32} height={32}></Image>
             </div>
             <div className="">

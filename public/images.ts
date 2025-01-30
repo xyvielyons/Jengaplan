@@ -8,6 +8,9 @@ import arrow4 from './arrow4.svg'
 import glitter5 from './glitter5.svg'
 import africanStudentStudying from './study-group-african-people.jpg'
 import mic1 from './mic1.svg'
+import underline3 from './underline3.svg'
+import smiley1 from './smiley1.svg'
+import sparkle2 from './sparkle2.svg'
 export {
     logodark,
     logolight,
@@ -18,5 +21,8 @@ export {
     arrow4,
     glitter5,
     africanStudentStudying,
-    mic1
+    mic1,
+    underline3,
+    smiley1,
+    sparkle2
 }
