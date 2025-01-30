@@ -10,21 +10,21 @@ export default {
   ],
   theme: {
   	extend: {
-		backgroundImage: {
-			'radial': 'radial-gradient(var(--tw-gradient-stops))',
-			'lightradial': 'radial-gradient(50% 50% at 50% 50%, #BBDAFD 0%, transparent 85.84%)',
-			'darkradial':'radial-gradient(50% 50% at 50% 50%, #036FE9 0%, transparent 85.84%)'
-		},
-		screens:{
-			'smx':'440px',
-			'xs': '480px',   // Extra small devices
-			'sm': '640px',   // Small devices
-			'md': '768px',   // Medium devices
-			'custom-lg': '900px', // Custom large
-			'lg': '1024px',  // Default large
-			'xl': '1280px',  // Extra large
-			'2xl': '1536px'  // 2x extra large
-		},
+  		backgroundImage: {
+  			radial: 'radial-gradient(var(--tw-gradient-stops))',
+  			lightradial: 'radial-gradient(50% 50% at 50% 50%, #BBDAFD 0%, transparent 85.84%)',
+  			darkradial: 'radial-gradient(50% 50% at 50% 50%, #036FE9 0%, transparent 85.84%)'
+  		},
+  		screens: {
+  			smx: '440px',
+  			xs: '480px',
+  			sm: '640px',
+  			md: '768px',
+  			'custom-lg': '900px',
+  			lg: '1024px',
+  			xl: '1280px',
+  			'2xl': '1536px'
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -98,11 +98,29 @@ export default {
   				to: {
   					height: '0'
   				}
+  			},
+  			marquee: {
+  				from: {
+  					transform: 'translateX(0)'
+  				},
+  				to: {
+  					transform: 'translateX(calc(-100% - var(--gap)))'
+  				}
+  			},
+  			'marquee-vertical': {
+  				from: {
+  					transform: 'translateY(0)'
+  				},
+  				to: {
+  					transform: 'translateY(calc(-100% - var(--gap)))'
+  				}
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			marquee: 'marquee var(--duration) infinite linear',
+  			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite'
   		}
   	}
   },

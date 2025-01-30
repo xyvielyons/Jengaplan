@@ -11,6 +11,7 @@ import mic1 from './mic1.svg'
 import underline3 from './underline3.svg'
 import smiley1 from './smiley1.svg'
 import sparkle2 from './sparkle2.svg'
+import africanavatar from './africanavatar.png'
 export {
     logodark,
     logolight,
@@ -24,5 +25,6 @@ export {
     mic1,
     underline3,
     smiley1,
-    sparkle2
+    sparkle2,
+    africanavatar
 }
