@@ -7,7 +7,7 @@ type Props = {
 
 const LandingPageRootLayout = ({children}: Props) => {
   return (
-    <main className='max-w-7xl mx-auto h-screen '>
+    <main className='max-w-7xl mx-auto h-screen'>
       <Navbar></Navbar>
     {children}
     </main>

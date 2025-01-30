@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 
+
 export default {
     darkMode: ["class"],
     content: [
@@ -9,6 +10,11 @@ export default {
   ],
   theme: {
   	extend: {
+		backgroundImage: {
+			'radial': 'radial-gradient(var(--tw-gradient-stops))',
+			'lightradial': 'radial-gradient(50% 50% at 50% 50%, #BBDAFD 0%, transparent 85.84%)',
+			'darkradial':'radial-gradient(50% 50% at 50% 50%, #036FE9 0%, transparent 85.84%)'
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
