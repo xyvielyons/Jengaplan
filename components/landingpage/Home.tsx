@@ -6,7 +6,7 @@ type Props = {}
 
 const HomeSection = (props: Props) => {
   return (
-  <div className="overflow-hidden w-full h-full z-100">
+  <section className="overflow-hidden w-full h-full z-100">
 
     <div className="bg-lightradial dark:bg-darkradial w-[1000px] h-[1000px] absolute top-[-400px] right-0 transform translate-x-[50%] z-[-100]"></div>
     <div className="absolute top-[80px] left-[80px]">
@@ -18,7 +18,7 @@ const HomeSection = (props: Props) => {
     <div className="flex w-full flex-col md:items-center items-start justify-center p-4 md:mt-[80px] mt-[58px]">
         <h1 className='text-5xl font-bold text text-gray-800 dark:text-gray-50'>What If You Could Plan a Whole</h1>
         <div className="relative">
-          <h1 className='text-5xl font-bold text text-gray-800 dark:text-gray-50'> Term in Minutes?</h1>
+          <h1 className='text-5xl font-bold text text-gray-800 dark:text-gray-50'>Term in Minutes?</h1>
           <div className="absolute right-[15px] bottom-[-8px]">
             <Image src={line3} alt='line' width={200} height={15}></Image>
           </div>
@@ -44,7 +44,7 @@ const HomeSection = (props: Props) => {
     </div>
     
     <div className="bg-lightradial dark:bg-darkradial w-[1000px] h-[1000px] absolute top-[150px] left-0 transform translate-x-[-50%] z-[-100]"></div>
-  </div>
+  </section>
 
   )
 }
