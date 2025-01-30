@@ -12,9 +12,9 @@ const HomeSection = (props: Props) => {
     <div className="absolute top-[-5px] left-[80px]">
             <Image src={star1} alt='line' width={32} height={32}  className='dark:brightness-150'></Image>
     </div>
-    <div className="absolute right-8 bottom-[200px] md:bottom-[300px] lg:bottom-[350px] ">
+    {/* <div className="absolute right-2 bottom-[200px] md:bottom-[300px] lg:bottom-[350px] ">
             <Image src={smiley2} alt='line' width={32} height={32}  className='dark:brightness-150'></Image>
-    </div>
+    </div> */}
     <div className="flex w-full flex-col md:items-center items-start justify-center p-4 md:mt-[80px] mt-[58px]">
         <h1 className='text-5xl font-bold text text-gray-800 dark:text-gray-50'>What If You Could Plan a Whole</h1>
         <div className="">

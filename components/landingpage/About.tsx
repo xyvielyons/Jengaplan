@@ -12,7 +12,7 @@ const About = () => {
             <div className="">
                 <h1 className='text-4xl font-bold bg-[linear-gradient(to_right,#212121,#1582FF)] dark:bg-[linear-gradient(to_right,#ffffff,#1582FF)] bg-clip-text text-transparent'>“Redefining Lesson Planning for Teachers”</h1>
             </div>
-            <div className="space-y-2 p-2">
+            <div className="space-y-2 p-2 text-gray-600 dark:text-gray-100">
                 <p>JengaScheme is a simple yet powerful scheme of work generator designed to save teachers time and effort. With just a few clicks, you can create customized schemes of work tailored to your teaching schedule.</p>
                 <p>Built by educators for educators, JengaScheme takes the hassle out of lesson planning, so you can focus on what truly matters—teaching and inspiring students.</p>
             </div>
