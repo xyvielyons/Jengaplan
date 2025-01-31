@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { arrow4, glitter5, homevideoimage, line3, smiley2, star1 } from '@/public/images'
 import Link from 'next/link'
 import { FaFacebookSquare, FaLinkedin, FaWhatsappSquare } from 'react-icons/fa'
+import VideoThumbnail from './VideoThumbnail'
 type Props = {}
 
 const HomeSection = (props: Props) => {
@@ -58,8 +59,8 @@ const HomeSection = (props: Props) => {
         </div>
     </div>
 
-    <div className="mt-[24px] p-[24px]">
-        <Image src={homevideoimage} alt='image' className='rounded-sm brightness-75'></Image>
+    <div className="mt-[16px] flex justify-center items-center">
+        <VideoThumbnail></VideoThumbnail>
     </div>
     {/* <div className="bg-lightradial dark:bg-darkradial w-[1000px] h-[1000px] absolute top-0 z-[-100] border border-green-500"></div> */}
 
