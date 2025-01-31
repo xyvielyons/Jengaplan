@@ -12,6 +12,7 @@ import underline3 from './underline3.svg'
 import smiley1 from './smiley1.svg'
 import sparkle2 from './sparkle2.svg'
 import africanavatar from './africanavatar.png'
+import teamarrow from './teamarrow.png'
 export {
     logodark,
     logolight,
@@ -26,5 +27,6 @@ export {
     underline3,
     smiley1,
     sparkle2,
-    africanavatar
+    africanavatar,
+    teamarrow
 }

@@ -1,4 +1,5 @@
 import About from "@/components/landingpage/About";
+import Footer from "@/components/landingpage/Footer";
 import HomeSection from "@/components/landingpage/Home";
 import PricingSection from "@/components/landingpage/PricingSection";
 import Team from "@/components/landingpage/Team";
@@ -11,6 +12,7 @@ export default function Home() {
       <PricingSection></PricingSection>
       <Team></Team>
       <Testimonials/>
+      <Footer/>
    </div>
   );
 }

@@ -48,7 +48,7 @@ export default function Testimonials() {
             <h1 className='text-4xl font-bold bg-[linear-gradient(to_right,#212121,#0077FF)] dark:bg-[linear-gradient(to_right,#ffffff,#58A6FF)] bg-clip-text text-transparent w-fit'>What Teachers Are Saying</h1>
             <p className='text-gray-600 dark:text-gray-100'>Don{"'"}t just take our word for it—see how JengaScheme is transforming lesson planning for educators</p>
         </div>
-        <div className="relative flex h-[200px] w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background md:shadow-xl">
+        <div className="relative flex h-[200px] w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background ">
         <Marquee pauseOnHover className="[--duration:20s]">
             {firstRow.map((review) => (
             <ReviewCard key={review.username} {...review} />

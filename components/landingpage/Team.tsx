@@ -1,6 +1,7 @@
 import React from 'react'
 import { AnimatedTestimonials } from '../cards/animated-testimonials'
-
+import { teamarrow } from '@/public/images';
+import Image from 'next/image';
 const Team = () => {
     const testimonials = [
         {
@@ -20,9 +21,13 @@ const Team = () => {
       ];
   return (
     <section className='mt-[24px] '>
-        <div className="space-y-4 md:p-4">
+
+        <div className="space-y-4 md:p-4 relative">
             <h1 className='text-4xl text-start font-bold bg-[linear-gradient(to_right,#212121,#0077FF)] dark:bg-[linear-gradient(to_right,#ffffff,#58A6FF)] bg-clip-text text-transparent w-fit'>Meet the Team</h1>
             <p className='text-gray-600 md:pr-[200px] dark:text-gray-100'>At JengaScheme, we’re a small team of dedicated professionals passionate about education and technology. Together, we’re on a mission to transform lesson planning for teachers everywhere.</p>
+            <div className="absolute right-[150px] bottom-[-80px]">
+              <Image src={teamarrow} alt="arrowforteam" width={80} height={80}></Image>
+            </div>
         </div>
         <div className="">
             <AnimatedTestimonials testimonials={testimonials} autoplay />
