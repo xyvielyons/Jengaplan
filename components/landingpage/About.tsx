@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 const About = () => {
   return (
-    <section className='flex flex-col md:flex-row-reverse mt-[16px] '>
+    <section className='flex flex-col md:flex-row-reverse mt-[16px] ' id="about">
         <div className="space-y-2 p-2">
             <div className="flex space-x-[4px] items-center">
                 <h1 className='text-2xl font-bold text-gray-800 dark:text-gray-200'>About</h1>

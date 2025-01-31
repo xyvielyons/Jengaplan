@@ -2,6 +2,8 @@ import React from 'react'
 import { TestimonialsData } from '@/constants'
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/ui/marquee"
+import { one } from '@/public/images';
+import Image from 'next/image';
 
 
 const firstRow = TestimonialsData.slice(0, TestimonialsData.length / 2);
@@ -43,10 +45,13 @@ const ReviewCard = ({
 
 export default function Testimonials() {
   return (
-    <div className="">
-        <div className="space-y-2 text-center flex items-center justify-center flex-col">
+    <div className="" id='testimonials'>
+        <div className="space-y-2 text-center flex items-center justify-center flex-col relative">
             <h1 className='text-4xl font-bold bg-[linear-gradient(to_right,#212121,#0077FF)] dark:bg-[linear-gradient(to_right,#ffffff,#58A6FF)] bg-clip-text text-transparent w-fit'>What Teachers Are Saying</h1>
             <p className='text-gray-600 dark:text-gray-100'>Don{"'"}t just take our word for it—see how JengaScheme is transforming lesson planning for educators</p>
+            <div className='absolute right-[20px] top-4'>
+              <Image src={one} alt="one logo" ></Image>
+            </div>
         </div>
         <div className="relative flex h-[200px] w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background ">
         <Marquee pauseOnHover className="[--duration:20s]">

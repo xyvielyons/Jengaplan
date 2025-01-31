@@ -6,7 +6,7 @@ type Props = {}
 
 const HomeSection = (props: Props) => {
   return (
-  <div className="w-full h-full relative">
+  <div className="w-full h-full relative" id="home">
 
     {/* <div className="bg-lightradial dark:bg-darkradial w-[1000px] h-[1000px] absolute top-[150px] left-0 transform translate-x-[-50%] z-[-100] border border-green-500"></div> */}
     <div className="absolute top-[-5px] left-[80px]">

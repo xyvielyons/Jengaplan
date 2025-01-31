@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { smiley1, sparkle2, underline3 } from '@/public/images'
 const PricingSection = () => {
   return (
-    <section className='space-y-4 mt-[24px] relative'>
+    <section className='space-y-4 mt-[24px] relative' id='pricing'>
       <div className="absolute top-[100px] left-[20px] md:left-[40px] lg:left-[60px]">
             <Image src={smiley1} alt='underline' width={40} height={40} className='dark:brightness-125'></Image>
       </div>

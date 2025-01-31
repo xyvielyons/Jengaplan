@@ -20,7 +20,7 @@ const Team = () => {
         },
       ];
   return (
-    <section className='mt-[24px] '>
+    <section className='mt-[24px] ' id='team'>
 
         <div className="space-y-4 md:p-4 relative">
             <h1 className='text-4xl text-start font-bold bg-[linear-gradient(to_right,#212121,#0077FF)] dark:bg-[linear-gradient(to_right,#ffffff,#58A6FF)] bg-clip-text text-transparent w-fit'>Meet the Team</h1>

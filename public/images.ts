@@ -13,6 +13,7 @@ import smiley1 from './smiley1.svg'
 import sparkle2 from './sparkle2.svg'
 import africanavatar from './africanavatar.png'
 import teamarrow from './teamarrow.png'
+import one from './one.svg'
 export {
     logodark,
     logolight,
@@ -28,5 +29,6 @@ export {
     smiley1,
     sparkle2,
     africanavatar,
-    teamarrow
+    teamarrow,
+    one
 }

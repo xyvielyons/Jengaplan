@@ -1,10 +1,10 @@
 'use client'
 import Image from 'next/image'
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { logolight,logodark } from '@/public/images'
 import { Moon, MoonIcon, Sun,Menu,X } from "lucide-react"
 import { useTheme } from "next-themes"
- 
+import {Link} from 'react-scroll';
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -12,16 +12,40 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import Link from 'next/link'
+import { useScroll,useMotionValueEvent } from "framer-motion";
 type Props = {}
 
 const Navbar = (props: Props) => {
   const { setTheme } = useTheme()
   const [showNav, setShowNav] = useState<boolean>(false)
-  console.log(showNav)
+  const [Nav, setNav] = useState("home")
+  const [scroll, setScroll] = useState<any>()
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    setScroll(latest)
+  });
+  console.log(scroll)
+  useEffect(() => {
+    if(scroll>0){
+      setNav("home")
+      if(scroll>670){
+        setNav("about")
+        if(scroll>1000){
+          setNav("pricing")
+          if(scroll>1800){
+            setNav("team")
+            if(scroll>2200){
+              setNav("testimonials")
+            }
+          }
+        }
+      }
+    }
+  }, [scroll])
+  
   return (
-    <div className="z-100 bg-white/80 dark:bg-background/50 w-full ">
-        <nav className=' fixed bg-white/80 dark:bg-background/50 border border-b-slate-200 h-[56px] w-full flex items-center px-4 justify-between dark:border-b-gray-800 z-[1000]'>
+    <div className="z-100 bg-white/80 dark:bg-background/80 w-full ">
+        <nav className=' fixed bg-white/80 dark:bg-background/80 border border-b-slate-200 h-[56px] w-full flex items-center px-4 justify-between dark:border-b-gray-800 z-[1000]'>
               <div className="flex space-x-2">
                 <div className="md:hidden" onClick={()=>setShowNav(!showNav)}>
                   {showNav ? (
@@ -35,19 +59,19 @@ const Navbar = (props: Props) => {
               <div className="hidden md:block">
                 <ul className='flex space-x-2 items-center'>
                   <li>
-                    <Link href='#home' className='text-[16px] font-bold text-gray-800 dark:text-gray-100'>Home</Link>
+                    <Link to="home" spy={true} smooth={true} offset={-60} duration={500} href='#home' className={`${Nav === "home"?"text-gray-800 font-bold":""} text-[16px] font-regular text-gray-600 dark:text-gray-100`} onClick={()=>setNav("home")}>Home</Link>
                   </li>
                   <li>
-                    <Link href='#about' className='text-[16px] font-medium text-gray-600 dark:text-gray-300'>About</Link>
+                    <Link to="about" spy={true} smooth={true} offset={-60} duration={500} href='#about' className={`${Nav === "about"?"text-gray-800 font-bold":""} text-[16px] font-regular text-gray-600 dark:text-gray-100`} onClick={()=>setNav("about")}>About</Link>
                   </li>
                   <li>
-                    <Link href='#pricing' className='text-[16px] font-medium text-gray-600 dark:text-gray-300'>Pricing</Link>
+                    <Link to="pricing" spy={true} smooth={true} offset={-60} duration={500} href='#pricing' className={`${Nav === "pricing"?"text-gray-800 font-bold":""} text-[16px] font-regular text-gray-600 dark:text-gray-100`} onClick={()=>setNav("pricing")}>Pricing</Link>
                   </li>
                   <li>
-                    <Link href='#team' className='text-[16px] font-medium text-gray-600 dark:text-gray-300'>Team</Link>
+                    <Link to="team" spy={true} smooth={true} offset={-60} duration={500} href='#team' className={`${Nav === "team"?"text-gray-800 font-bold":""} text-[16px] font-regular text-gray-600 dark:text-gray-100`} onClick={()=>setNav("team")}>Team</Link>
                   </li>
                   <li>
-                    <Link href='#testimonials' className='text-[16px] font-medium text-gray-600 dark:text-gray-300'>Testimonials</Link>
+                    <Link to="testimonials" spy={true} smooth={true} offset={-60} duration={500} href='#testimonials' className={`${Nav === "testimonials"?"text-gray-800 font-bold":""} text-[16px] font-regular text-gray-600 dark:text-gray-100`} onClick={()=>setNav("testimonials")}>Testimonials</Link>
                   </li>
                 </ul>
               </div>
@@ -86,20 +110,35 @@ const Navbar = (props: Props) => {
           </div>
           <div className="">
                 <ul className='flex space-y-8 flex-col items-start p-8'>
-                  <li>
-                    <Link href='#home' className='text-[16px] font-bold text-gray-600 dark:text-gray-100'>Home</Link>
+                <li>
+                    <Link to="home" spy={true} smooth={true} offset={-60} duration={500} href='#home' className={`${Nav === "home"?"text-gray-800 font-bold":""} text-[16px] font-regular text-gray-600 dark:text-gray-100`} onClick={()=>{
+                      setNav("home")
+                      setShowNav(!showNav)
+                      }}>Home</Link>
                   </li>
                   <li>
-                    <Link href='#about' className='text-[16px] font-medium text-gray-600 dark:text-gray-400'>About</Link>
+                    <Link to="about" spy={true} smooth={true} offset={-60} duration={500} href='#about' className={`${Nav === "about"?"text-gray-800 font-bold":""} text-[16px] font-regular text-gray-600 dark:text-gray-100`} onClick={()=>{
+                      setNav("about")
+                      setShowNav(!showNav)
+                      }}>About</Link>
                   </li>
                   <li>
-                    <Link href='#pricing' className='text-[16px] font-medium text-gray-600 dark:text-gray-400'>Pricing</Link>
+                    <Link to="pricing" spy={true} smooth={true} offset={-60} duration={500} href='#pricing' className={`${Nav === "pricing"?"text-gray-800 font-bold":""} text-[16px] font-regular text-gray-600 dark:text-gray-100`} onClick={()=>{
+                      setNav("pricing")
+                      setShowNav(!showNav)
+                      }}>Pricing</Link>
                   </li>
                   <li>
-                    <Link href='#team' className='text-[16px] font-medium text-gray-600 dark:text-gray-400'>Team</Link>
+                    <Link to="team" spy={true} smooth={true} offset={-60} duration={500} href='#team' className={`${Nav === "team"?"text-gray-800 font-bold":""} text-[16px] font-regular text-gray-600 dark:text-gray-100`} onClick={()=>{
+                      setNav("team")
+                      setShowNav(!showNav)
+                      }}>Team</Link>
                   </li>
                   <li>
-                    <Link href='#testimonials' className='text-[16px] font-medium text-gray-600 dark:text-gray-400'>Testimonials</Link>
+                    <Link to="testimonials" spy={true} smooth={true} offset={-60} duration={500} href='#testimonials' className={`${Nav === "testimonials"?"text-gray-800 font-bold":""} text-[16px] font-regular text-gray-600 dark:text-gray-100`} onClick={()=>{
+                      setNav("testimonials")
+                      setShowNav(!showNav)
+                      }}>Testimonials</Link>
                   </li>
                 </ul>
           </div>
