@@ -2,6 +2,8 @@ import React from 'react'
 import { Button } from '../ui/button'
 import Image from 'next/image'
 import { arrow4, glitter5, homevideoimage, line3, smiley2, star1 } from '@/public/images'
+import Link from 'next/link'
+import { FaFacebookSquare, FaLinkedin, FaWhatsappSquare } from 'react-icons/fa'
 type Props = {}
 
 const HomeSection = (props: Props) => {
@@ -24,6 +26,23 @@ const HomeSection = (props: Props) => {
           </div>
         </div>
         <p className='text-md font-normal text-gray-600 dark:text-gray-200 mt-[8px]'>Create customized schemes of work tailored to your teaching schedule in just a few clicks.</p>
+        <div className="flex flex-row gap-4 pt-4">
+            <div className="">
+                <Link href="https://wa.me/+254728440683" target="_blank" rel="noopener noreferrer">
+                    <FaWhatsappSquare className='text-gray-400 dark:active:text-gray-100 dark:hover:text-gray-100 hover:text-gray-800 active:text-gray-800' size={32}></FaWhatsappSquare>
+                </Link>
+            </div>
+            <div className="">
+                <Link href="https://www.linkedin.com/in/xyvie-lyons-a8873820a" target="_blank" rel="noopener noreferrer">
+                    <FaLinkedin size={32} className='text-gray-400 dark:active:text-gray-100 dark:hover:text-gray-100 hover:text-gray-800 active:text-gray-800'></FaLinkedin>
+                </Link>
+            </div>
+            <div className="">
+                <Link href="https://www.facebook.com/profile.php?id=61559700346584" target="_blank" rel="noopener noreferrer">
+                    <FaFacebookSquare size={32} className='text-gray-400 dark:active:text-gray-100 dark:hover:text-gray-100 hover:text-gray-800 active:text-gray-800'></FaFacebookSquare>
+                </Link>
+            </div>
+        </div>
     </div>
 
     <div className="w-full flex items-center justify-center mt-[24px]">

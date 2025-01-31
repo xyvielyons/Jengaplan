@@ -36,10 +36,9 @@ const PricingSection = () => {
             <p className='text-gray-600 dark:text-gray-200'><Check className=' dark:text-gray-200 w-[24px] h-[24px] text-gray-600 inline-flex items-center'/>No hidden fees, no commitments—pay per scheme.</p>
             <p className='text-gray-600 dark:text-gray-200'><Check className=' dark:text-gray-200 w-[24px] h-[24px] text-gray-600 inline-flex items-center'/>Perfect for teachers who value flexibility and simplicity.</p>
           </div>
-          <Button className='w-full dark:text-gray-100'>Get started</Button> 
+          <Button className='w-full dark:text-gray-100 rounded-none bg-[#007AFF]'>Get started</Button> 
         </div>
       </div>
-      {/* <div className="bg-lightradial dark:bg-darkradial w-[1000px] h-[1000px] absolute right-0 transform translate-x-[55%] z-[-100] top-0"></div> */}
 
     </section>
   )

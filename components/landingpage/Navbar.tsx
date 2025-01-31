@@ -24,7 +24,6 @@ const Navbar = (props: Props) => {
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setScroll(latest)
   });
-  console.log(scroll)
   useEffect(() => {
     if(scroll>0){
       setNav("home")
@@ -77,7 +76,7 @@ const Navbar = (props: Props) => {
               </div>
               <div className="flex flex-row space-x-2 items-center">
                 <div className="space-x-2 flex">
-                  <Button variant="outline" size="default" className='bg-white text-black md:bg-transparent dark:md:text-white'>Sign-up</Button>
+                  <Button variant="outline" size="default" className='bg-white text-black md:bg-transparent dark:md:text-white rounded-none'>Sign-up</Button>
                   <Button className='hidden md:block dark:text-white bg-[#007AFF] rounded-none' size="default" >Login</Button>
                 </div>
                 <div className="">
