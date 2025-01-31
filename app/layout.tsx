@@ -14,7 +14,6 @@ export const metadata: Metadata = {
   description: "JengaPlan is an advanced schemes of work generator that helps teachers create structured lesson plans effortlessly. Customize by term, subject, and weekly lessons, then export to PDF. Save time and streamline your curriculum planning today!",
   keywords:'JengaPlan, schemes of work generator, lesson planning tool, teacher lesson planner, automated lesson plans, curriculum planning software, education SaaS, school lesson planner, teaching resources, academic planning tool.'
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,14 +24,14 @@ export default function RootLayout({
       <body
         className={`${roboto.variable}  antialiased`}
       >
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-        </ThemeProvider>
+          <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+          </ThemeProvider>
       </body>
     </html>
   );
