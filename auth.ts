@@ -8,6 +8,13 @@ export const auth = betterAuth({
     database:prismaAdapter(prisma,{ 
         provider:"mongodb"
     }),
+    user:{
+        additionalFields:{
+            role:{
+                type:"string"
+            }
+        }
+    },
     //we add the email and password method
     //we enable it by setting enables to true
     emailAndPassword: { 

@@ -2,6 +2,7 @@
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -15,14 +16,17 @@ import SidebarLogo from "./SidebarLogo"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
+import MySidebarFooter from "./SideBarFooter"
+import { authClient } from "@/auth-client"
 export function AppSidebar() {
     const pathname = usePathname()
     const [mypathname, setPathname] = useState<any>()
+    const {data:session} = authClient.useSession()
+
     useEffect(()=>{
         setPathname(pathname)
     },[pathname])
     
-
     return (
         <Sidebar collapsible="icon">
         <SidebarHeader className="mb-[24px]">
@@ -50,6 +54,14 @@ export function AppSidebar() {
             </SidebarGroupContent>
             </SidebarGroup>
         </SidebarContent>
+        <SidebarFooter>
+            <MySidebarFooter
+            name={session?.user.name as string}
+            email={session?.user.email as string}
+            avatar={session?.user.image}
+            type={session?.user?.role as string}
+            ></MySidebarFooter>
+        </SidebarFooter>
         </Sidebar>
     )
 }
