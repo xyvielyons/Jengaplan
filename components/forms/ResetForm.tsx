@@ -28,8 +28,6 @@ const ResetForm = () => {
     const error = searchParams.get("error");
     const token:any = searchParams.get("token");
 
-    console.log(token)
-
         // 1. Define your form.
         const form = useForm<z.infer<typeof resetPasswordSchema>>({
           resolver: zodResolver(resetPasswordSchema),
