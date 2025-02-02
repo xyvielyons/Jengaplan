@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 type Props = {}
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 const AuthNav = (props: Props) => {
   const { setTheme } = useTheme()
@@ -21,8 +22,10 @@ const AuthNav = (props: Props) => {
   return (
     <div className="bg-white/80 dark:bg-background/80 w-full ">
         <nav className='fixed bg-white/80 dark:bg-background/80 border border-b-slate-200 h-[56px] w-full flex items-center px-4 justify-between dark:border-b-gray-800 z-[100]'>
-              <div className="flex space-x-2" onClick={()=>router.push('/')}>
-                <Image alt='logo' src={logolight} width={110} height={110} className='dark:brightness-[150]'></Image>
+              <div className="flex space-x-2 ">
+                <Link href="/">
+                  <Image alt='logo' src={logolight} width={110} height={110} className='dark:brightness-[150]'></Image>
+                </Link>
               </div>
               <div className="flex flex-row space-x-2 items-center">
                 <div className="">

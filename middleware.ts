@@ -6,7 +6,7 @@ import type { Session } from "@/auth";
 //we specify our auth routes
 const authRoutes = ["/sign-in", "/sign-up"];
 //we specify our password routes
-const passwordRoutes = ["/reset-password", "/forgot-password","/email-verified"];
+const passwordRoutes = ["/reset-password", "/forgot-password","/email-verified","/"];
 
 export default async function authMiddleware(request: NextRequest) {
 //we get the pathname to which route we are in
