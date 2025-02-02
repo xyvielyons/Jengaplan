@@ -15,7 +15,7 @@ const page = () => {
         <div>
           <h1 className="text-4xl font-bold text-gray-800 dark:text-slate-100">Welcome Back!</h1>
           <p className="text-gray-600 dark:text-slate-300">
-          Manage Your Memberships with Ease.
+          Generate schemes of work with Ease.
           </p>
           <div className="py-[16px]">
             <Socials></Socials>

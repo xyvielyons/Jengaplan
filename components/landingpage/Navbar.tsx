@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useScroll,useMotionValueEvent } from "framer-motion";
 type Props = {}
-
+import { authClient } from '@/auth-client'
 const Navbar = (props: Props) => {
   const { setTheme } = useTheme()
   const [showNav, setShowNav] = useState<boolean>(false)
@@ -24,6 +24,8 @@ const Navbar = (props: Props) => {
   const [scroll, setScroll] = useState<any>()
   const { scrollY } = useScroll();
   const router = useRouter()
+  const {data:session} = authClient.useSession();
+
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setScroll(latest)
   });
@@ -78,10 +80,17 @@ const Navbar = (props: Props) => {
                 </ul>
               </div>
               <div className="flex flex-row space-x-2 items-center">
+              {!session ? (
                 <div className="space-x-2 flex">
-                  <Button variant="bordered" className='border-[1.5px]' radius='none' onPress={()=>router.push('/sign-up')}>Sign-up</Button>
-                  <Button className='hidden md:block text-white bg-[#007AFF] rounded-none' onPress={()=>router.push('/sign-in')}>Login</Button>
+                <Button variant="bordered" className='border-[1.5px]' radius='none' onPress={()=>router.push('/sign-up')}>Sign-up</Button>
+                <Button className='hidden md:block text-white bg-[#007AFF] rounded-none' onPress={()=>router.push('/sign-in')}>Login</Button>
+              </div>
+              ):(
+                <div className="space-x-2 flex">
+                  <Button className='text-white bg-[#007AFF] rounded-none' onPress={()=>router.push('/dashboard')}>Dashboard</Button>
                 </div>
+              )}
+                
                 <div className="">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
