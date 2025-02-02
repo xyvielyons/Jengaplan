@@ -11,16 +11,18 @@ const page = () => {
 
       {/* Left Section */}
       <div className="pt-6 pb-2 px-4 space-y-[28px] md:w-1/2 md:p-8 lg:p-16">
+
         <div>
           <h1 className="text-4xl font-bold text-gray-800 dark:text-slate-100">Welcome Back!</h1>
           <p className="text-gray-600 dark:text-slate-300">
           Manage Your Memberships with Ease.
           </p>
+          <div className="py-[16px]">
+            <Socials></Socials>
+          </div>
           <SignInForm />
         </div>
-        <div className="">
-          <Socials></Socials>
-        </div>
+        
         <div className="">
           <span className='text-sm text-gray-600 dark:text-slate-300'>Dont have an account? <Link href="/sign-up" className='text-gray-800 dark:text-slate-50 font-semibold hover:text-gray-500 active:text-gray-500'>Register</Link></span>
         </div>

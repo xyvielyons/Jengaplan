@@ -16,10 +16,10 @@ const page = () => {
           <p className="text-gray-600 dark:text-slate-300">
             Effortless Member Management Starts Here – Create Your Account Today!
           </p>
+          <div className="py-[16px]">
+            <Socials></Socials>
+          </div>
           <SignUpForm />
-        </div>
-        <div className="">
-          <Socials></Socials>
         </div>
         <div className="">
           <span className='text-sm text-gray-600 dark:text-slate-300'>Have an account? <Link href="/sign-in" className='text-gray-800 dark:text-slate-50 font-semibold hover:text-gray-500 active:text-gray-500'>Login</Link></span>

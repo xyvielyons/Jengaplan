@@ -15,6 +15,12 @@ export const auth = betterAuth({
         //we can enable email verification by setting this to true
         requireEmailVerification:true
     }, 
+    socialProviders:{
+        google:{
+            clientId: process.env.GOOGLE_CLIENT_ID as string, 
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string, 
+        }
+    },
     emailVerification:{
 			   //email verification to be sent on signup
         sendOnSignUp:true,
