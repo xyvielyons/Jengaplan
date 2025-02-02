@@ -76,6 +76,9 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  .toast-root {
+    z-index: 9999 !important;
+  }
 }
 
 .myradial{

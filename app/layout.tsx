@@ -27,6 +27,7 @@ export default function RootLayout({
       <body
         className={`${roboto.variable}  antialiased`}
       >
+        <Toaster />
           <ThemeProvider
               attribute="class"
               defaultTheme="system"
@@ -37,7 +38,7 @@ export default function RootLayout({
               {children}
               </Providers>
           </ThemeProvider>
-          <Toaster />
+          
       </body>
     </html>
   );

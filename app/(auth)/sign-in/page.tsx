@@ -6,7 +6,7 @@ import Socials from '@/components/global/Socials'
 // import { assets } from '@/public/assets'
 const page = () => {
   return (
-    <div className="flex flex-col md:flex-row mt-[32px] p-4 relative h-screen">
+    <div className="flex flex-col md:flex-row mt-[32px] p-4 relative ">
             <div className="bg-lightradial dark:bg-darkradial w-[1000px] h-[1000px] absolute right-0 transform translate-x-[55%] top-[-200px] hidden md:block"></div>
 
       {/* Left Section */}
