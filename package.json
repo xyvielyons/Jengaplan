@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroui/react": "^2.6.14",
     "@hookform/resolvers": "^3.10.0",
+    "@prisma/client": "^6.3.0",
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-alert-dialog": "^1.1.5",
     "@radix-ui/react-aspect-ratio": "^1.1.1",
@@ -38,7 +40,9 @@
     "@radix-ui/react-toggle-group": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.7",
     "@tabler/icons-react": "^3.29.0",
+    "@types/nodemailer": "^6.4.17",
     "@types/react-scroll": "^1.8.10",
+    "better-auth": "^1.1.15",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",
@@ -49,6 +53,8 @@
     "lucide-react": "^0.474.0",
     "next": "15.1.6",
     "next-themes": "^0.4.4",
+    "nodemailer": "^6.10.0",
+    "prisma": "^6.3.0",
     "react": "^19.0.0",
     "react-day-picker": "8.10.1",
     "react-dom": "^19.0.0",

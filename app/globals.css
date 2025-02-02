@@ -77,3 +77,8 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.myradial{
+  background: radial-gradient(50% 50% at 50% 50%, #BBDAFD 0%, transparent 85.84%);
+
+}

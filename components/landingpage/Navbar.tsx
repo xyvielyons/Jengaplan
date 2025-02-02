@@ -5,7 +5,9 @@ import { logolight,logodark } from '@/public/images'
 import { Moon, MoonIcon, Sun,Menu,X } from "lucide-react"
 import { useTheme } from "next-themes"
 import {Link} from 'react-scroll';
-import { Button } from "@/components/ui/button"
+import { Button } from '@heroui/react'
+import { Button as But } from '../ui/button'
+import { useRouter } from 'next/navigation'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,6 +23,7 @@ const Navbar = (props: Props) => {
   const [Nav, setNav] = useState("home")
   const [scroll, setScroll] = useState<any>()
   const { scrollY } = useScroll();
+  const router = useRouter()
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setScroll(latest)
   });
@@ -76,17 +79,17 @@ const Navbar = (props: Props) => {
               </div>
               <div className="flex flex-row space-x-2 items-center">
                 <div className="space-x-2 flex">
-                  <Button variant="outline" size="default" className='bg-white text-black md:bg-transparent dark:md:text-white rounded-none'>Sign-up</Button>
-                  <Button className='hidden md:block dark:text-white bg-[#007AFF] rounded-none' size="default" >Login</Button>
+                  <Button variant="bordered" className='border-[1.5px]' radius='none' onPress={()=>router.push('/sign-up')}>Sign-up</Button>
+                  <Button className='hidden md:block text-white bg-[#007AFF] rounded-none' onPress={()=>router.push('/sign-in')}>Login</Button>
                 </div>
                 <div className="">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="icon">
+                      <But variant="outline" size="icon">
                         <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                         <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                         <span className="sr-only">Toggle theme</span>
-                      </Button>
+                      </But>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuItem onClick={() => setTheme("light")}>

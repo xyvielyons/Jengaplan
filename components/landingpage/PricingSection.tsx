@@ -1,6 +1,7 @@
+'use client'
 import React from 'react'
 import { Check } from 'lucide-react'
-import { Button } from '../ui/button'
+import { Button } from '@heroui/react'
 import Image from 'next/image'
 import { smiley1, sparkle2, underline3 } from '@/public/images'
 const PricingSection = () => {

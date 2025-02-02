@@ -1,13 +1,16 @@
+'use client'
 import React from 'react'
-import { Button } from '../ui/button'
+import { Button } from '@heroui/react'
 import Image from 'next/image'
 import { arrow4, glitter5, homevideoimage, line3, smiley2, star1 } from '@/public/images'
 import Link from 'next/link'
 import { FaFacebookSquare, FaLinkedin, FaWhatsappSquare } from 'react-icons/fa'
 import VideoThumbnail from './VideoThumbnail'
+import { useRouter } from 'next/navigation'
 type Props = {}
 
 const HomeSection = (props: Props) => {
+    const router = useRouter()
   return (
   <div className="w-full h-full relative" id="home">
 
@@ -52,7 +55,7 @@ const HomeSection = (props: Props) => {
             <Image src={arrow4} alt='line' width={83} height={64} className='dark:brightness-150'></Image>
         </div>
           <div className="">
-        <Button size="lg" className='text-white bg-[#007AFF] rounded-none'>Get started</Button>
+        <Button size='lg' radius='none' className='text-white bg-[#007AFF]' onPress={()=>router.push('/sign-up')}>Get started</Button>
         </div>
         <div className="relative bottom-[30px] left-[-5px]">
             <Image src={glitter5} alt='line' width={33} height={33} className='dark:brightness-150'></Image>

@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { Toaster } from "@/components/ui/toaster"
+import { Providers } from "@/providers/heroui-provider";
+import {Button} from '@heroui/button'; 
 // Configure the font
 const roboto = Roboto({
   subsets: ['latin'],
@@ -30,8 +33,11 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
+              <Providers>
               {children}
+              </Providers>
           </ThemeProvider>
+          <Toaster />
       </body>
     </html>
   );
