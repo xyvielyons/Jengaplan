@@ -13,9 +13,9 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Jengaplan",
-  description: "JengaPlan is an advanced schemes of work generator that helps teachers create structured lesson plans effortlessly. Customize by term, subject, and weekly lessons, then export to PDF. Save time and streamline your curriculum planning today!",
-  keywords:'JengaPlan, schemes of work generator, lesson planning tool, teacher lesson planner, automated lesson plans, curriculum planning software, education SaaS, school lesson planner, teaching resources, academic planning tool.'
+  title: "Jengascheme",
+  description: "JengaScheme is an advanced schemes of work generator that helps teachers create structured lesson plans effortlessly. Customize by term, subject, and weekly lessons, then export to PDF. Save time and streamline your curriculum planning today!",
+  keywords:'JengaScheme, schemes of work generator, lesson planning tool, teacher lesson planner, automated lesson plans, curriculum planning software, education SaaS, school lesson planner, teaching resources, academic planning tool.'
 };
 export default function RootLayout({
   children,

@@ -15,6 +15,7 @@ import africanavatar from './africanavatar.png'
 import teamarrow from './teamarrow.png'
 import one from './one.svg'
 import reset from './reset.svg'
+import logo from './logo.svg'
 export {
     logodark,
     logolight,
@@ -32,5 +33,6 @@ export {
     africanavatar,
     teamarrow,
     one,
-    reset
+    reset,
+    logo
 }

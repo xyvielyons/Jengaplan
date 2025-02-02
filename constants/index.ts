@@ -1,3 +1,4 @@
+import { LayoutDashboard,SquarePen,Settings,Wallet } from 'lucide-react';
 export const TestimonialsData = [
     {
       name: "Mwangi Kamau",
@@ -37,5 +38,26 @@ export const TestimonialsData = [
     },
   ];
   
-  export default TestimonialsData;
+  export const DashboardItems = [
+    {
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: LayoutDashboard,
+    },
+    {
+      title: "Create Scheme",
+      url: "/create",
+      icon: SquarePen,
+    },
+    {
+      title: "Wallet",
+      url: "/wallet",
+      icon: Wallet,
+    },
+    {
+      title: "Settings",
+      url: "/settings",
+      icon: Settings,
+    },
+  ]
   
