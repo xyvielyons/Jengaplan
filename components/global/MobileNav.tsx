@@ -1,15 +1,66 @@
 'use client'
-import React from 'react'
-import { Plus,User } from 'lucide-react';
-import { Button } from '@heroui/react';
+import React, { useState } from 'react'
+import { LogOut, Plus,User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { LayoutDashboard,Wallet,Settings } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+  } from "@/components/ui/avatar"
+  import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+  } from "@/components/ui/dropdown-menu"
+  import {
+    Modal,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    Button,
+    useDisclosure,
+  } from "@heroui/react"
+  import { authClient } from "@/auth-client"
+
 type Props = {}
 
 const MobileNav = (props: Props) => {
     const router = useRouter()
     const pathname = usePathname()
+    const {data:session} = authClient.useSession();
+    const [pending, setPending] = useState(false);
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    //we call the handlesignout function
+	const handleSignOut = async () => {
+		try {
+		//set pending to true
+			setPending(true);
+			//we call the authClient.signout function
+			await authClient.signOut({
+				fetchOptions: {
+				//we listen to the onSuccess event
+					onSuccess: () => {
+					//if Success we route the user to the sign-in page
+						router.push("/sign-in");
+						router.refresh();
+					},
+				},
+			});
+		} catch (error) {
+		//here we throw an errro
+			console.error("Error signing out:", error);
+		} finally {
+		//when it finishes we set is pending to false
+			setPending(false);
+		}
+	};
   return (
     <nav className="md:hidden w-full h-[60px] border border-t-slate-200 dark:border-t-gray-800 fixed bottom-0 flex items-center justify-between px-[4px] bg-white dark:bg-gray-900">
     {/* Dashboard Button */}
@@ -36,7 +87,7 @@ const MobileNav = (props: Props) => {
     </Button>
 
     {/* Spacer div to maintain alignment */}
-    <div className="w-[60px]"></div>
+    <div className="w-[25px]"></div>
 
     {/* Settings Button */}
     <Button variant="light" className="flex-1" onPress={() => router.push('/settings')}>
@@ -51,20 +102,60 @@ const MobileNav = (props: Props) => {
         
     </Button>
 
-    {/* Profile Button (or another one) */}
-    <Button variant="light" className="flex-1" onPress={() => router.push('/profile')}>
-        <div className={`flex items-center justify-center flex-col ${pathname === '/profile' ? 'text-white' : 'text-gray-500'}`}>
-            <User size={18} />
-            <p className="text-xs">Profile</p>
-        </div>
-    </Button>
+    <div className="flex-1 w-full">
+        <DropdownMenu >
+            <DropdownMenuTrigger className='w-full'>
+                <div className="flex items-center justify-center flex-col">
+                    <Avatar className="h-6 w-6 rounded-sm">
+                        <AvatarImage src={session?.user.image as string} alt='profile' />
+                        <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                    </Avatar>
+                    {/* <p className='text-sm'>{session?.user.role}</p> */}
+                </div>
+
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+                <DropdownMenuLabel>Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={onOpen}>
+                  <LogOut />
+                  Log out
+                </DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+    </div>
+
 
     {/* Floating Create Button */}
-    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+    <div className="absolute -top-6 left-[53%] transform -translate-x-1/2">
         <div onClick={() => router.push('/create')} className={`rounded-full h-[50px] w-[50px] shadow-lg bg-blue-600 flex items-center justify-center active:bg-blue-400 ${pathname === '/create'?'border-4 dark:border-white border-black':''}`}>
             <Plus size={26} className="text-white" />
         </div>
     </div>
+    <div className="">
+              <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+              <ModalContent>
+                {(onClose) => (
+                  <>
+                    <ModalHeader className="flex flex-col gap-1">Logout</ModalHeader>
+                    <ModalBody>
+                      <div className="">
+                        <p>{session?.user.name} you sure you want to Logout?</p>
+                      </div>
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button color="danger" variant="light" onPress={onClose}>
+                        Close
+                      </Button>
+                      <Button color="primary" className="dark:text-white" onPress={handleSignOut} isLoading={pending}>
+                        Logout {session?.user.name}
+                      </Button>
+                    </ModalFooter>
+                  </>
+                )}
+              </ModalContent>
+            </Modal>
+        </div>
 </nav>
 
 
