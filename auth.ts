@@ -13,6 +13,19 @@ export const auth = betterAuth({
             role:{
                 type:"string"
             }
+        },
+        deleteUser:{
+            enabled:true
+        },
+        changeEmail:{
+            enabled:true,
+            sendChangeEmailVerification:async ({ user, newEmail, url, token }, request) => {
+                await sendEmail({
+                    to: newEmail,
+                    subject: 'JengaScheme: Verify your email change',
+                    text: `Click the link to verify: ${url}`
+                })
+            }
         }
     },
     //we add the email and password method

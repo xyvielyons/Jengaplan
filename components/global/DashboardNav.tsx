@@ -25,8 +25,11 @@ const DashboardNav = ({children}: Props) => {
 
   return (
         <nav className='bg-white/80 dark:bg-background/80 border-b-1 border-b-slate-200 h-[50px] w-full flex items-center px-4 justify-between dark:border-b-gray-800 z-[100]'>
-              <div className="space-x-2 hidden md:block">
-                {children}
+              <div className="space-x-2 hidden md:block gap-2 items-center justify-center">
+                
+                  {children}
+                
+                <p className='dark:text-slate-400 text-sm text-gray-600 inline-flex'>{pathname}</p>
               </div>
               <div className="md:hidden space-x-2 flex items-center ">
                 <Image src={logolight} alt='logo' width={100} height={100} className='dark:brightness-200'></Image>
