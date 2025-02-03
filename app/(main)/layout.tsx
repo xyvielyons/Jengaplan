@@ -16,7 +16,7 @@ const MainRootLayout = ({children}: Props) => {
         <DashboardNav>
           <SidebarTrigger></SidebarTrigger>
         </DashboardNav>
-        <div className="h-full">
+        <div className="h-full w-full ">
         {children}
         </div>
         <MobileNav></MobileNav>

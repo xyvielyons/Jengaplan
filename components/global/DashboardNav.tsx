@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-
+import { usePathname } from 'next/navigation'
 type Props = {
     children:React.ReactNode
 }
@@ -21,14 +21,16 @@ type Props = {
 const DashboardNav = ({children}: Props) => {
   const { setTheme } = useTheme()
   const router = useRouter()
+  const pathname = usePathname()
 
   return (
-        <nav className='bg-white/80 dark:bg-background/80 border border-b-slate-200 h-[50px] w-full flex items-center px-4 justify-between dark:border-b-gray-800 z-[100]'>
+        <nav className='bg-white/80 dark:bg-background/80 border-b-1 border-b-slate-200 h-[50px] w-full flex items-center px-4 justify-between dark:border-b-gray-800 z-[100]'>
               <div className="space-x-2 hidden md:block">
                 {children}
               </div>
-              <div className="md:hidden">
+              <div className="md:hidden space-x-2 flex items-center ">
                 <Image src={logolight} alt='logo' width={100} height={100} className='dark:brightness-200'></Image>
+                <p className='dark:text-slate-400 text-sm text-gray-600'>{pathname}</p>
               </div>
               <div className="flex flex-row space-x-2 items-center">
                 <div className="">

@@ -4,7 +4,9 @@ type Props = {}
 
 const SettingsPage = (props: Props) => {
   return (
-    <div>SettingsPage</div>
+    <div className='h-full bg-white max-w-7xl mx-auto'>
+      
+    </div>
   )
 }
 
