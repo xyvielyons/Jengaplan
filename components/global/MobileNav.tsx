@@ -127,7 +127,7 @@ const MobileNav = (props: Props) => {
 
 
     {/* Floating Create Button */}
-    <div className="absolute -top-6 left-[53%] transform -translate-x-1/2">
+    <div className="absolute -top-6 left-[53%] transform -translate-x-1/2 active:-scale-50">
         <div onClick={() => router.push('/create')} className={`rounded-full h-[50px] w-[50px] shadow-lg bg-blue-600 flex items-center justify-center active:bg-blue-400 ${pathname === '/create'?'border-4 dark:border-white border-black':''}`}>
             <Plus size={26} className="text-white" />
         </div>
