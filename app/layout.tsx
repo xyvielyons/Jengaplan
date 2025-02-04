@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster"
 import { Providers } from "@/providers/heroui-provider";
 import {Button} from '@heroui/button'; 
+import ReduxProvider from "@/providers/redux-provider";
 // Configure the font
 const roboto = Roboto({
   subsets: ['latin'],
@@ -27,7 +28,8 @@ export default function RootLayout({
       <body
         className={`${roboto.variable}  antialiased`}
       >
-        <Toaster />
+        <ReduxProvider>
+          <Toaster />
           <ThemeProvider
               attribute="class"
               defaultTheme="system"
@@ -38,6 +40,8 @@ export default function RootLayout({
               {children}
               </Providers>
           </ThemeProvider>
+        </ReduxProvider>
+        
           
       </body>
     </html>
