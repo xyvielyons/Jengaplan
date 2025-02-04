@@ -16,6 +16,8 @@ import teamarrow from './teamarrow.png'
 import one from './one.svg'
 import reset from './reset.svg'
 import logo from './logo.svg'
+import ErrorLottie from './ServerError.json'
+import ConfirmedLottie from './CardPayment.json'
 export {
     logodark,
     logolight,
@@ -34,5 +36,7 @@ export {
     teamarrow,
     one,
     reset,
-    logo
+    logo,
+    ErrorLottie,
+    ConfirmedLottie
 }

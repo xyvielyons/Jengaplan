@@ -1,10 +1,12 @@
 import React from 'react'
-
+import ConfirmedLottie from '@/components/global/ConfirmedLottie'
 type Props = {}
 
 const page = (props: Props) => {
   return (
-    <div>page</div>
+    <div>
+      <ConfirmedLottie></ConfirmedLottie>
+    </div>
   )
 }
 
