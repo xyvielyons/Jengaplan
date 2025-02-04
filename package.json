@@ -40,6 +40,7 @@
     "@radix-ui/react-toggle-group": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.7",
     "@tabler/icons-react": "^3.29.0",
+    "@tanstack/react-table": "^8.20.6",
     "@types/nodemailer": "^6.4.17",
     "@types/react-scroll": "^1.8.10",
     "axios": "^1.7.9",
