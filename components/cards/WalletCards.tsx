@@ -11,12 +11,16 @@ import {
 } from "@/components/ui/card"
 import { Wallet,BadgeDollarSign } from 'lucide-react';
 import { Button } from '@heroui/react';
-
+import {
+  useDisclosure,
+} from "@heroui/react";
+import TopUpForm from '../forms/TopUpForm';
 type Props = {
   bankInfo:getBankInformationTypes
 }
 
 const WalletCards = ({bankInfo}: Props) => {
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
   return (
     <div>
       <div className="gap-2 flex flex-col md:flex-row">
@@ -29,7 +33,7 @@ const WalletCards = ({bankInfo}: Props) => {
           </CardHeader>
           <CardContent className='space-y-2'>
             <h1 className='text-[32px] font-bold text-gray-800 dark:text-gray-200'>{`Ksh ${bankInfo?.amount}`}<span className='text-gray-500 dark:text-gray-400'>.00</span></h1>
-            <Button className='bg-blue-600 text-white w-full' radius='sm'>Top up</Button>
+            <Button onPress={onOpen} className='bg-blue-600 text-white w-full' radius='sm'>Top up</Button>
           </CardContent>
         </Card>
 
@@ -45,6 +49,8 @@ const WalletCards = ({bankInfo}: Props) => {
           </CardContent>
         </Card>
       </div>
+      <TopUpForm isOpen={isOpen} onOpen={onOpen} onOpenChange={onOpenChange}></TopUpForm>
+
     </div>
   )
 }

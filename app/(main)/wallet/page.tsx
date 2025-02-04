@@ -30,7 +30,7 @@ const WalletPage = async(props: Props) => {
       <div className="">
         <WalletCards bankInfo={myBankInformation}></WalletCards>
       </div>
-      <div className="bg-white">
+      <div className="bg-white dark:bg-transparent pb-[80px]">
         <DataTable columns={columns} data={getTransactions} ></DataTable>
       </div>
     </div>
