@@ -100,3 +100,19 @@ export const InitiatePayment = async({
     return console.log('An error has occured (IP)',error)
   }
 }
+
+export const TransactionStatus = async(orderTrackingId:string)=>{
+  try {
+    const pesapaltoken = await authorization();
+    const IPNURL = ` https://pay.pesapal.com/v3/api/Transactions/GetTransactionStatus?orderTrackingId=${orderTrackingId}`
+    const headers = {
+      'Accept':'application/json',
+      'Content-Type':'application/json',
+      'Authorization':`${pesapaltoken}`
+    }
+    const response = await axios.get(IPNURL,{headers})
+    return response
+  } catch (error) {
+    console.log(error,"error getting transaction status")
+  }
+}

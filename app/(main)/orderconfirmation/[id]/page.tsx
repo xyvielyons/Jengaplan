@@ -1,11 +1,25 @@
 import React from 'react'
 import ConfirmedLottie from '@/components/global/ConfirmedLottie'
-type Props = {}
+import { TransactionStatus } from '@/actions/pesapalpayments';
 
-const page = (props: Props) => {
+type Props = {
+  params:{ id: string },
+  searchParams: { [key: string]: string | string[] | undefined };
+  
+}
+
+const page = async({params,searchParams}: Props) => {
+  // const userId = (await params).id
+  const OrderTrackingId:any = await searchParams.OrderTrackingId?.toString()
+  // const OrderMerchantReference = await searchParams.OrderMerchantReference
+
+  const GetTransactionStatus:any = await TransactionStatus(OrderTrackingId) 
+
+
+
   return (
     <div>
-      <ConfirmedLottie></ConfirmedLottie>
+      <ConfirmedLottie data={GetTransactionStatus.data}></ConfirmedLottie>
     </div>
   )
 }

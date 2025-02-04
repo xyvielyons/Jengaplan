@@ -5,7 +5,7 @@ import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { MoveRight } from "lucide-react";
 import { ConfirmedLottie as Lott } from "@/public/images";
-const ConfirmedLottie = () => {
+const ConfirmedLottie = ({data}:{data:any}) => {
   const router = useRouter();
 
   return (
@@ -15,8 +15,10 @@ const ConfirmedLottie = () => {
       </div>
       <div className="w-full flex flex-col items-center space-y-4 text-center">
         <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 dark:text-white">
-          Your Payment Was Successfull
+          {data.status_code==1 ? "Payment Was Completed Successfully": data.status_code == 2 ? "Your Payment has Failed":"Your Payment Is Invalid" }
         </h1>
+        <p className="text-sm">{`${data.message}: ${data.payment_method}`}</p>
+        
         <Button
           radius="sm"
           className="dark:text-white text-gray-600"
