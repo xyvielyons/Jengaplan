@@ -24,7 +24,7 @@ const DashboardNav = ({children}: Props) => {
   const pathname = usePathname()
 
   return (
-        <nav className='bg-white/80 dark:bg-background/80 border-b-1 border-b-slate-200 h-[50px] w-full flex items-center px-4 justify-between dark:border-b-gray-800 z-[100]'>
+        <nav className='bg-white/80 dark:bg-background/80 border-b-1 border-b-slate-200 h-[50px] w-full flex items-center px-4 justify-between dark:border-b-gray-800 '>
               <div className="space-x-2 hidden md:block gap-2 items-center justify-center">
                 
                   {children}

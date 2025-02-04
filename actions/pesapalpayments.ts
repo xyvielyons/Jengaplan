@@ -74,9 +74,9 @@ export const InitiatePayment = async({
       "currency": "KES",
       "amount":amount,
       "description": "Jengascheme - Securely top up your wallet and enjoy seamless transactions",
-      "callback_url": `http://127.0.0.1:3000/orderconfirmation/${session?.user.id}`,
+      "callback_url": `${process.env.BETTER_AUTH_URL}/orderconfirmation/${session?.user.id}`,
       "redirect_mode": "",
-      "cancellation_url":"http://127.0.0.1:3000/ordercancelled",
+      "cancellation_url":`${process.env.BETTER_AUTH_URL}/ordercancelled`,
       "notification_id": "7a232b0b-8b52-4bde-94c4-dc330e92ee9d",
       "branch": "Jenga Scheme",
       "billing_address": {
