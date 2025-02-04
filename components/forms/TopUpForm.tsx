@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -19,7 +19,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
+import { useToast } from "@/hooks/use-toast";
+import { InitiatePayment } from "@/actions/pesapalpayments";
+import { authClient } from "@/auth-client";
+import { useRouter } from "next/navigation";
 interface Props {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
@@ -39,6 +42,9 @@ const formSchema = z.object({
 });
 
 const TopUpForm = ({ isOpen, onOpenChange }: Props) => {
+  const [pending, setPending] = useState<boolean>(false)
+  const {toast} = useToast()
+  const router = useRouter()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -46,9 +52,46 @@ const TopUpForm = ({ isOpen, onOpenChange }: Props) => {
       amount: "",
     },
   });
+  const {reset} = form
+  const { 
+    data: session, 
+    isPending, //loading state
+    error //error object
+    } = authClient.useSession() 
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log("Form Values:", values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+
+    try {
+        setPending(true)
+        const payment = await InitiatePayment({
+            amount:values.amount,
+            phoneNumber:values.phoneNumber,
+            name:session?.user.name as string,
+            email:session?.user.email as string
+        })
+        if(!payment){
+            return toast({
+                title:"Something went wrong",
+                description:"An error occured in the transaction process",
+                variant:"destructive"
+            })
+        }
+        router.push(payment.redirect_url)
+        toast({
+            title:"Payment initiated",
+        })
+        setPending(false)
+        reset()
+        
+    } catch (error) {
+        console.log(error,"An error occurred during the transaction process")
+        toast({
+            title:"Something went wrong",
+            description:"An error occured in the transaction process",
+            variant:"destructive"
+        })
+    }
+    
   }
 
   return (
@@ -114,6 +157,7 @@ const TopUpForm = ({ isOpen, onOpenChange }: Props) => {
                     <Button
                       type="submit"
                       color="primary"
+                      isLoading={pending}
                       className="bg-blue-600 text-white"
                       radius="sm"
                       endContent={<MoveRight />}

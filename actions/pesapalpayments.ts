@@ -45,13 +45,15 @@ export const RegisterPesapalIPN = async()=>{
 }
 
 export const InitiatePayment = async({
-  price,
+  amount,
   phoneNumber,
   name,
+  email
 }:{
-  price:string,
+  amount:string,
   phoneNumber:string,
   name:string,
+  email:string
   
 })=>{
   try {
@@ -70,22 +72,22 @@ export const InitiatePayment = async({
 
       "id": uid,
       "currency": "KES",
-      "amount":price,
-      "description": "your testing the api you built",
+      "amount":amount,
+      "description": "Jengascheme - Securely top up your wallet and enjoy seamless transactions",
       "callback_url": `http://127.0.0.1:3000/orderconfirmation/${session?.user.id}`,
       "redirect_mode": "",
       "cancellation_url":"http://127.0.0.1:3000/ordercancelled",
       "notification_id": "7a232b0b-8b52-4bde-94c4-dc330e92ee9d",
-      "branch": "Water vending ATM",
+      "branch": "Jenga Scheme",
       "billing_address": {
-          "email_address": "myvending@gmail.com",
+          "email_address": email,
           "phone_number": phoneNumber,
           "country_code": "KE",
           "first_name": name,
           "middle_name": "",
           "last_name": "",
-          "line_1": "Water Vending ATM",
-          "line_2": "req.body.order",
+          "line_1": "Jenga scheme",
+          "line_2": "",
           "city": "",
           "state": "",
           "postal_code": "",
@@ -96,24 +98,5 @@ export const InitiatePayment = async({
     return response.data
   } catch (error) {
     return console.log('An error has occured (IP)',error)
-  }
-}
-
-export const createTransaction = async () => {
-  try {
-    const transactionData = {
-      bankId: "cm6ptmqsj00059kk8fi2v922p",
-      Amount: 20, // ✅ Now correctly typed as an Int
-      OrderTrackingId: "1234567890",
-      OrderMerchantReference: "1234567890",
-    };
-
-    console.log("Creating transaction:", transactionData);
-
-    const res = await prisma.transactions.create({ data: transactionData });
-
-    console.log("Transaction created successfully:", res);
-  } catch (error) {
-    console.error("Error creating transaction:", error);
   }
 }
