@@ -28,8 +28,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
-  bankAccountId String
-  Bank          Bank?      @relation(fields: [bankAccountId], references: [id])
+  Bank          Bank?
 }
 
 model Session {
@@ -61,7 +60,7 @@ model Account {
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Verification {
@@ -75,22 +74,20 @@ model Verification {
 
 model Bank {
   id           String         @id @default(cuid()) @map("_id")
-  userId       String
-  amount       String
+  userId       String         @unique
+  amount       Int
   transactions Transactions[]
-  User         User[]
-
-  @@index([userId])
+  User         User           @relation(fields: [userId], references: [id])
 }
 
 model Transactions {
-  id        String   @id @default(cuid()) @map("_id")
-  bankId    String
-  Amount    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                     String   @id @default(cuid()) @map("_id")
+  bankId                 String
+  Amount                 Int
+  OrderTrackingId        String
+  OrderMerchantReference String
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
 
   Bank Bank @relation(fields: [bankId], references: [id])
-
-  @@index([bankId])
 }

@@ -3,11 +3,13 @@ import {prismaAdapter} from 'better-auth/adapters/prisma'
 import prisma from "./lib/prisma";
 //this links to our email provider like mailersend sendgrid and others
 import { sendEmail } from "./actions/sendemail";
+import { nextCookies } from "better-auth/next-js";
 
 export const auth = betterAuth({
     database:prismaAdapter(prisma,{ 
         provider:"mongodb"
     }),
+    plugins:[nextCookies()],
     user:{
         additionalFields:{
             role:{
