@@ -10,7 +10,7 @@ const SettingsPage = async(props: Props) => {
     headers:await headers()
   })
   return (
-    <div className='h-full max-w-7xl mx-auto flex flex-col gap-2 p-4 space-y-2'>
+    <div className='h-full max-w-7xl mx-auto flex flex-col gap-2 p-4 space-y-2 '>
       <div className="w-full space-y-2">
         <h1 className='text-[24px] font-bold text-gray-800 dark:text-gray-100'>Account Settings</h1>
         <p className='text-sm text-gray-600 dark:text-gray-300'>

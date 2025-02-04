@@ -10,7 +10,7 @@ const CancelledLottie = () => {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col items-center justify-center px-4">
+    <div className="flex flex-col items-center justify-center px-4 pb-[100px]">
       <div className="w-full max-w-xs sm:max-w-md">
         <Lottie animationData={ErrorLottie} loop autoplay />
       </div>

@@ -3,7 +3,7 @@ import axios from "axios";
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { NextRequest } from "next/server";
-
+import { revalidatePath } from "next/cache";
 export async function POST(req:NextRequest) {
   try {
     const body = await req.json(); // Get JSON data from request
@@ -77,6 +77,7 @@ export async function POST(req:NextRequest) {
         })
         }
     }
+    revalidatePath('/wallet')
 
     return NextResponse.json({ message: "Success"}, { status: 200 });
 
