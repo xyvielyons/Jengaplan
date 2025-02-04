@@ -15,7 +15,6 @@ const WalletPage = async(props: Props) => {
   //   console.log(initiatePayment)
   // }
   const myBankInformation = await BankInformation()
-  console.log(myBankInformation)
   
   return (
     <div className='h-full max-w-7xl mx-auto flex flex-col gap-2 p-4 space-y-2'>
@@ -26,7 +25,7 @@ const WalletPage = async(props: Props) => {
         </p>
       </div>
       <div className="">
-        <WalletCards></WalletCards>
+        <WalletCards bankInfo={myBankInformation}></WalletCards>
       </div>
     </div>
   )
