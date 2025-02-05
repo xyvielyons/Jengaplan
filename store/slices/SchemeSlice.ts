@@ -1,34 +1,60 @@
 // store/slices/counterSlice.ts
 import { createSlice } from "@reduxjs/toolkit";
- 
+
+interface Break {
+  startWeek: number;
+  startLesson: number;
+  endWeek: number;
+  endLesson: number;
+  title: string;
+}
 //create the type of the initial CounterState Value that is going to be passed in
 interface SchemeStateTypes {
-  value: number;
+  currentStep:number,
+  formData?:{
+    schoolName?:string,
+    level?:string,
+    subject?:string,
+    term?:string,
+    year?:string,
+    selectedTopics?:string[],
+    lessonsPerWeek?:number,
+    startWeek?:number,
+    startLesson?:number,
+    endWeek?:number,
+    endLesson?:number,
+    addBreaks?:boolean,
+    breaks?:Break[]
+    doubleLesson?:number[]
+  }
 }
 //our initial counter state is o
 const initialState: SchemeStateTypes = {
-  value: 0,
+  currentStep:1,
+  formData:{}
 };
  
 const SchemeSlice = createSlice({
 //name of the slice
-  name: "counter",
+  name: "schemegendata",
   //the initial state
   initialState,
   //the reducer functions
   reducers: {
   //add + 1
-    increment: (state) => {
-      state.value += 1;
+    setCurrentStep:(state,action)=>{
+      state.currentStep = action.payload
     },
-   //add - 1 
-    decrement: (state) => {
-      state.value -= 1;
-    },
+    updateFormData:(state,action)=>{
+      state.formData={
+        ...state.formData,
+        ...action.payload
+      }
+    } 
   },
 });
 
 //export the reducers from counterSlice.actions
-export const { increment, decrement } = SchemeSlice.actions;
+export const { setCurrentStep,updateFormData } = SchemeSlice.actions;
 //export the counterSlice.reducer
 export default SchemeSlice.reducer;
