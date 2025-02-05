@@ -1,3 +1,5 @@
+import SchemeCard from '@/components/cards/SchemeCard'
+import Steps from '@/components/cards/Steps'
 import React from 'react'
 
 type Props = {}
@@ -12,7 +14,7 @@ const CreatePage = (props: Props) => {
         </p>
       </div>
       <div className="">
-        
+        <SchemeCard></SchemeCard>
       </div>
     </div>
   )

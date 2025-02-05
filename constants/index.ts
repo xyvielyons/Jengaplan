@@ -60,4 +60,36 @@ export const TestimonialsData = [
       icon: Settings,
     },
   ]
-  
+  export const steps = [
+    {
+        number:1,
+        title:"Fill in the subject and the school details",
+        subtitle:"Fill the form with the correct details."
+    },
+    {
+        number:2,
+        title:"Topic details",
+        subtitle:"Select the topics you would like to include."
+    },
+    {
+        number:3,
+        title:"Timetable structure details",
+        subtitle:"Fill in your details based on your school timetable."
+    },
+    {
+        number:4,
+        title:"Team breaks and interruptions",
+        subtitle:"Fill in your details based on your school timetable."
+    },
+    {
+        number:5,
+        title:"Customize Topic Order",
+        subtitle:"Easily drag and drop topics to arrange them as you prefer."
+    },
+    {
+        number:6,
+        title:"Download your scheme",
+        subtitle:"Your scheme has been generated successfully."
+    }
+
+]
