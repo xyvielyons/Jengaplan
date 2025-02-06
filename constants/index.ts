@@ -1,3 +1,4 @@
+import { SelectTypes } from '@/lib/types';
 import { LayoutDashboard,SquarePen,Settings,Wallet } from 'lucide-react';
 export const TestimonialsData = [
     {
@@ -94,21 +95,643 @@ export const TestimonialsData = [
 
 ]
 
-export const primaryClasses = ["PP1","PP2","Grade-1","Grade-2","Grade-3","Grade-4","Grade-5","Grade-6","Grade-7","Grade-8","Grade-9"]
-export const secondaryClasses = ["Form-1","Form-2","Form-3","Form-4"]
 
-export const secondarySubjects = ["English","Kiswahili","Mathematics","Chemistry","Biology","Physics","History","Geograpghy","CRE","Business","HomeScience","Computer","IRE"]
-export const primarySubjects = (grade:string | any)=>{
+export const secondaryClasses:SelectTypes[] = [
+  {
+    name:"Form 1",
+    serverName:"form1"
+  },
+  {
+    name:"Form 2",
+    serverName:"form2"
+  },
+  {
+    name:"Form 3",
+    serverName:"form3"
+  },
+  {
+    name:"Form 4",
+    serverName:"form4"
+  }
+
+]
+export const primaryClasses:SelectTypes[] = [
+  {
+    name:"PP1",
+    serverName:"pp1"
+  },
+  {
+    name:"PP2",
+    serverName:"pp2"
+  },
+  {
+    name:"Grade 1",
+    serverName:"grade1"
+  },
+  {
+    name:"Grade 2",
+    serverName:"grade2"
+  },
+  {
+    name:"Grade 3",
+    serverName:"grade3"
+  },
+  {
+    name:"Grade 4",
+    serverName:"grade4"
+  },
+  {
+    name:"Grade 5",
+    serverName:"grade5"
+  },
+  {
+    name:"Grade 6",
+    serverName:"grade6"
+  },
+  {
+    name:"Grade 7",
+    serverName:"grade7"
+  },
+  {
+    name:"Grade 8",
+    serverName:"grade8"
+  },
+
+]
+export const secondarySubjects:SelectTypes[] = [
+  {
+    name:"Mathematics",
+    serverName:'mathematics'
+  },
+  {
+    name:"English",
+    serverName:'english'
+  },
+  {
+    name:"Kiswahili",
+    serverName:'kiswahili'
+  },
+  {
+    name:"Chemistry",
+    serverName:'chemistry'
+  },
+  {
+    name:"Biology",
+    serverName:'biology'
+  },
+  {
+    name:"Physics",
+    serverName:'physics'
+  },
+  {
+    name:"History",
+    serverName:'history'
+  },
+  {
+    name:"Geography",
+    serverName:'geograpghy'
+  },
+  {
+    name:"CRE",
+    serverName:'cre'
+  },
+  {
+    name:"Business",
+    serverName:'business'
+  },
+  {
+    name:"Home Science",
+    serverName:'homescience'
+  },
+  {
+    name:"Computer",
+    serverName:'computer'
+  },
+  {
+    name:"IRE",
+    serverName:'ire'
+  }
+]
+
+// export const secondarySubjects = ["English","Kiswahili","Mathematics","Chemistry","Biology","Physics","History","Geograpghy","CRE","Business","HomeScience","Computer","IRE"]
+export const primarySubjects = (grade:string | any):SelectTypes[]=>{
   switch (grade) {
-    case "PP1":
-      return ["English","Mathematics","CRE","Arts&Crafts","Music","EnvironMent","Movement"]
-      break;
-    case "PP2":
-      return ["English","Mathematics","CRE","Arts&Crafts","Music","EnvironMent","Movement","Psychomotor"]
-      break;
+    case "pp1":
+      return [
+        {
+          name:"Mathematics",
+          serverName:"mathematics"
+        },
+        {
+          name:"English",
+          serverName:"english"
+        },
+        {
+          name:"CRE",
+          serverName:"cre"
+        },
+        {
+          name:"ART & CRAFT",
+          serverName:"artsandcraft"
+        },
+        {
+          name:"MUSIC",
+          serverName:"music"
+        },
+        {
+          name:"Environment",
+          serverName:"environment"
+        },
+        {
+          name:"Movement",
+          serverName:"movement"
+        },
+      ]
+    case "pp2":
+      return [
+        {
+          name:"Mathematics",
+          serverName:"mathematics"
+        },
+        {
+          name:"English",
+          serverName:"english"
+        },
+        {
+          name:"CRE",
+          serverName:"cre"
+        },
+        {
+          name:"ART & CRAFT",
+          serverName:"artsandcraft"
+        },
+        {
+          name:"MUSIC",
+          serverName:"music"
+        },
+        {
+          name:"Environment",
+          serverName:"environment"
+        },
+        {
+          name:"Psychomotor",
+          serverName:"psychomotor"
+        },
+      ]
+    case "grade1":
+      return [
+        {
+          name:"Mathematics",
+          serverName:"mathematics"
+        },
+        {
+          name:"English",
+          serverName:"english"
+        },
+        {
+          name:"Kiswahili",
+          serverName:"kiswahili"
+        },
+        {
+          name:"CRE",
+          serverName:"cre"
+        },
+        {
+          name:"ART & CRAFT",
+          serverName:"artsandcraft"
+        },
+        {
+          name:"MUSIC",
+          serverName:"music"
+        },
+        {
+          name:"Environment",
+          serverName:"environment"
+        },
+        {
+          name:"Hygine & Nutrition",
+          serverName:"hygineandnutrition"
+        },
+        {
+          name:"Literacy",
+          serverName:"literacy"
+        },
+        {
+          name:"Movement",
+          serverName:"movement"
+        },
+        
+      ]
+    case "grade2":
+      return [
+        {
+          name:"Mathematics",
+          serverName:"mathematics"
+        },
+        {
+          name:"English",
+          serverName:"english"
+        },
+        {
+          name:"Kiswahili",
+          serverName:"kiswahili"
+        },
+        {
+          name:"CRE",
+          serverName:"cre"
+        },
+        {
+          name:"ART & CRAFT",
+          serverName:"artsandcraft"
+        },
+        {
+          name:"MUSIC",
+          serverName:"music"
+        },
+        {
+          name:"Environment",
+          serverName:"environment"
+        },
+        {
+          name:"Hygine & Nutrition",
+          serverName:"hygineandnutrition"
+        },
+        {
+          name:"Literacy",
+          serverName:"literacy"
+        },
+        {
+          name:"Movement",
+          serverName:"movement"
+        },
+        {
+          name:"Creative Arts and sports",
+          serverName:"creativeartsandsports"
+        },
+        
+      ]
+    case "grade3":
+      return [
+        {
+          name:"Mathematics",
+          serverName:"mathematics"
+        },
+        {
+          name:"English",
+          serverName:"english"
+        },
+        {
+          name:"Kiswahili",
+          serverName:"kiswahili"
+        },
+        {
+          name:"CRE",
+          serverName:"cre"
+        },
+        {
+          name:"ART & CRAFT",
+          serverName:"artsandcraft"
+        },
+        {
+          name:"MUSIC",
+          serverName:"music"
+        },
+        {
+          name:"Environment",
+          serverName:"environment"
+        },
+        {
+          name:"Hygine & Nutrition",
+          serverName:"hygineandnutrition"
+        },
+        {
+          name:"Literacy",
+          serverName:"literacy"
+        },
+        {
+          name:"Movement",
+          serverName:"movement"
+        },
+        {
+          name:"Creative Arts and sports",
+          serverName:"creativeartsandsports"
+        },
+        {
+          name:"IRE",
+          serverName:"ire"
+        },
+        
+      ]
+      case "grade4":
+      return [
+        {
+          name:"Mathematics",
+          serverName:"mathematics"
+        },
+        {
+          name:"English",
+          serverName:"english"
+        },
+        {
+          name:"Kiswahili",
+          serverName:"kiswahili"
+        },
+        {
+          name:"CRE",
+          serverName:"cre"
+        },
+        {
+          name:"ART & CRAFT",
+          serverName:"artsandcraft"
+        },
+        {
+          name:"MUSIC",
+          serverName:"music"
+        },
+        {
+          name:"IRE",
+          serverName:"ire"
+        },
+        {
+          name:"Agriculture & Nutrition",
+          serverName:"agricultureandnutrition"
+        },
+        {
+          name:"Agriculture",
+          serverName:"agriculture"
+        },
+        {
+          name:"Social Studies",
+          serverName:"socialstudies"
+        },
+        {
+          name:"Science",
+          serverName:"science"
+        },
+        {
+          name:"Home Science",
+          serverName:"homescienece"
+        },
+        {
+          name:"Physical Health",
+          serverName:"physicalhealth"
+        },
+        {
+          name:"Creative Arts and sports",
+          serverName:"creativeartsandsports"
+        },
+      ]
+      case "grade5":
+      return [
+        {
+          name:"Mathematics",
+          serverName:"mathematics"
+        },
+        {
+          name:"English",
+          serverName:"english"
+        },
+        {
+          name:"Kiswahili",
+          serverName:"kiswahili"
+        },
+        {
+          name:"CRE",
+          serverName:"cre"
+        },
+        {
+          name:"ART & CRAFT",
+          serverName:"artsandcraft"
+        },
+        {
+          name:"MUSIC",
+          serverName:"music"
+        },
+        {
+          name:"IRE",
+          serverName:"ire"
+        },
+        {
+          name:"Agriculture & Nutrition",
+          serverName:"agricultureandnutrition"
+        },
+        {
+          name:"Agriculture",
+          serverName:"agriculture"
+        },
+        {
+          name:"Social Studies",
+          serverName:"socialstudies"
+        },
+        {
+          name:"Science",
+          serverName:"science"
+        },
+        {
+          name:"Home Science",
+          serverName:"homescienece"
+        },
+        {
+          name:"Physical Health",
+          serverName:"physicalhealth"
+        },
+        {
+          name:"Lifeskills",
+          serverName:"lifeskills"
+        },
+      ]
+      case "grade6":
+      return [
+        {
+          name:"Mathematics",
+          serverName:"mathematics"
+        },
+        {
+          name:"English",
+          serverName:"english"
+        },
+        {
+          name:"Kiswahili",
+          serverName:"kiswahili"
+        },
+        {
+          name:"CRE",
+          serverName:"cre"
+        },
+        {
+          name:"ART & CRAFT",
+          serverName:"artsandcraft"
+        },
+        {
+          name:"MUSIC",
+          serverName:"music"
+        },
+        {
+          name:"IRE",
+          serverName:"ire"
+        },
+        {
+          name:"Agriculture & Nutrition",
+          serverName:"agricultureandnutrition"
+        },
+        {
+          name:"Agriculture",
+          serverName:"agriculture"
+        },
+        {
+          name:"Social Studies",
+          serverName:"socialstudies"
+        },
+        {
+          name:"Science",
+          serverName:"science"
+        },
+        {
+          name:"Home Science",
+          serverName:"homescienece"
+        },
+        {
+          name:"Physical Health",
+          serverName:"physicalhealth"
+        }
+      ]
+      case "grade7":
+        return [
+          {
+            name:"Mathematics",
+            serverName:"mathematics"
+          },
+          {
+            name:"English",
+            serverName:"english"
+          },
+          {
+            name:"Kiswahili",
+            serverName:"kiswahili"
+          },
+          {
+            name:"CRE",
+            serverName:"cre"
+          },
+          {
+            name:"Agriculture & Nutrition",
+            serverName:"agricultureandnutrition"
+          },
+          {
+            name:"Social Studies",
+            serverName:"socialstudies"
+          },
+          {
+            name:"Integrated Science",
+            serverName:"integratedscience"
+          },
+          {
+            name:"Creative Arts & Sports",
+            serverName:"creativeartsandsports"
+          },
+          {
+            name:"Pre Tech Studies",
+            serverName:"pretechstudies"
+          },
+          {
+            name:"IRE",
+            serverName:"ire"
+          },
+        ]
+      case "grade8":
+        return [
+          {
+            name:"Mathematics",
+            serverName:"mathematics"
+          },
+          {
+            name:"English",
+            serverName:"english"
+          },
+          {
+            name:"Kiswahili",
+            serverName:"kiswahili"
+          },
+          {
+            name:"CRE",
+            serverName:"cre"
+          },
+          {
+            name:"Agriculture & Nutrition",
+            serverName:"agricultureandnutrition"
+          },
+          {
+            name:"Social Studies",
+            serverName:"socialstudies"
+          },
+          {
+            name:"Integrated Science",
+            serverName:"integratedscience"
+          },
+          {
+            name:"Hindu Religious Education",
+            serverName:"hindu"
+          },
+          {
+            name:"Creative Arts & Sports",
+            serverName:"creativeartsandsports"
+          },
+          {
+            name:"Pre Tech Studies",
+            serverName:"pretechstudies"
+          },
+          {
+            name:"IRE",
+            serverName:"ire"
+          },
+        ]
+      case "grade9":
+        return [
+          {
+            name:"Mathematics",
+            serverName:"mathematics"
+          },
+          {
+            name:"English",
+            serverName:"english"
+          },
+          {
+            name:"Kiswahili",
+            serverName:"kiswahili"
+          },
+          {
+            name:"CRE",
+            serverName:"cre"
+          },
+          {
+            name:"Agriculture & Nutrition",
+            serverName:"agricultureandnutrition"
+          },
+          {
+            name:"Social Studies",
+            serverName:"socialstudies"
+          },
+          {
+            name:"Integrated Science",
+            serverName:"integratedscience"
+          },
+          {
+            name:"Creative Arts & Sports",
+            serverName:"creativeartsandsports"
+          },
+          {
+            name:"Pre Tech Studies",
+            serverName:"pretechstudies"
+          },
+          {
+            name:"IRE",
+            serverName:"ire"
+          },
+        ]
+    
   
     default:
       return []
-      break;
+      
   }
 }

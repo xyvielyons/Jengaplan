@@ -114,12 +114,12 @@ const SchoolDetailsForm = (props: Props) => {
                                     setSelectedClass(value)
                                 }} defaultValue={field.value}>
                                     <SelectTrigger>
-                                    <SelectValue placeholder="Choose a subject" />
+                                    <SelectValue placeholder={`${selectedLevel == "primary"?'eg. Grade 1':'eg. form 1'}`} />
                                     </SelectTrigger>
                                     <SelectContent>
                                     {schoolLevelItems.map((subject) => (
-                                        <SelectItem key={subject} value={subject}>
-                                        {subject}
+                                        <SelectItem key={subject.name} value={subject.serverName}>
+                                        {subject.name}
                                         </SelectItem>
                                     ))}
                                     </SelectContent>
@@ -144,8 +144,8 @@ const SchoolDetailsForm = (props: Props) => {
                                         </SelectTrigger>
                                         <SelectContent>
                                         {subjects.map((subject) => (
-                                            <SelectItem key={subject} value={subject}>
-                                            {subject}
+                                            <SelectItem key={subject.name} value={subject.serverName}>
+                                            {subject.name}
                                             </SelectItem>
                                         ))}
                                         </SelectContent>
