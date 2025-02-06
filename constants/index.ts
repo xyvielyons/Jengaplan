@@ -93,3 +93,22 @@ export const TestimonialsData = [
     }
 
 ]
+
+export const primaryClasses = ["PP1","PP2","Grade-1","Grade-2","Grade-3","Grade-4","Grade-5","Grade-6","Grade-7","Grade-8","Grade-9"]
+export const secondaryClasses = ["Form-1","Form-2","Form-3","Form-4"]
+
+export const secondarySubjects = ["English","Kiswahili","Mathematics","Chemistry","Biology","Physics","History","Geograpghy","CRE","Business","HomeScience","Computer","IRE"]
+export const primarySubjects = (grade:string | any)=>{
+  switch (grade) {
+    case "PP1":
+      return ["English","Mathematics","CRE","Arts&Crafts","Music","EnvironMent","Movement"]
+      break;
+    case "PP2":
+      return ["English","Mathematics","CRE","Arts&Crafts","Music","EnvironMent","Movement","Psychomotor"]
+      break;
+  
+    default:
+      return []
+      break;
+  }
+}

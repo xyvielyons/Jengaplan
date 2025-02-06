@@ -21,7 +21,7 @@ import { authClient } from "@/auth-client"
 export function AppSidebar() {
     const pathname = usePathname()
     const [mypathname, setPathname] = useState<any>()
-    const {data:session} = authClient.useSession()
+    const {data:session}:any = authClient.useSession()
 
     useEffect(()=>{
         setPathname(pathname)
@@ -29,7 +29,7 @@ export function AppSidebar() {
     
     return (
         <Sidebar collapsible="icon">
-        <SidebarHeader className="mb-[24px]">
+        <SidebarHeader className="mt-[80px]">
             <SidebarLogo></SidebarLogo>
         </SidebarHeader>
         <SidebarContent> 

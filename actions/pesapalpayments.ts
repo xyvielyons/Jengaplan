@@ -77,7 +77,7 @@ export const InitiatePayment = async({
       "callback_url": `${process.env.BETTER_AUTH_URL}/orderconfirmation/${session?.user.id}`,
       "redirect_mode": "",
       "cancellation_url":`${process.env.BETTER_AUTH_URL}/ordercancelled`,
-      "notification_id": "7a232b0b-8b52-4bde-94c4-dc330e92ee9d",
+      "notification_id": "ef5ed9fe-88c0-412b-98bc-dc306942aeab",
       "branch": "Jenga Scheme",
       "billing_address": {
           "email_address": email,

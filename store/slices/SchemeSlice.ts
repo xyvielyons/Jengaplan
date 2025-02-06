@@ -13,9 +13,10 @@ interface SchemeStateTypes {
   currentStep:number,
   formData?:{
     schoolName?:string,
-    level?:string,
+    schoolLevel?:string,
     subject?:string,
     term?:string,
+    class?:string,
     year?:string,
     selectedTopics?:string[],
     lessonsPerWeek?:number,

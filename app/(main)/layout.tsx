@@ -3,9 +3,8 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from '@/components/global/app-sidebar'
 import DashboardNav from '@/components/global/DashboardNav'
 import MobileNav from '@/components/global/MobileNav'
-import { authorization, createTransaction } from '@/actions/pesapalpayments'
-import { auth } from '@/auth'
-import { headers } from 'next/headers'
+import { RegisterPesapalIPN } from '@/actions/pesapalpayments'
+
 
 type Props = {
     children:React.ReactNode
@@ -17,14 +16,17 @@ const MainRootLayout = async({children}: Props) => {
   // })
   // console.log("session data",session)
   // console.log(await createTransaction())
+  // const registerIpn = await RegisterPesapalIPN()
+  // console.log(registerIpn)
   return (
+
     <SidebarProvider>
       <AppSidebar />
-      <main className='w-full flex flex-col justify-between'>
+      <main className='w-full'>
         <DashboardNav>
           <SidebarTrigger></SidebarTrigger>
         </DashboardNav>
-        <div className="h-full w-full ">
+        <div className="pt-[72px]">
         {children}
         </div>
         <MobileNav></MobileNav>

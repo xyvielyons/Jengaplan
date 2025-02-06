@@ -14,19 +14,17 @@ import {
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { SidebarInset } from '../ui/sidebar'
 type Props = {
     children:React.ReactNode
 }
 
-const DashboardNav = ({children}: Props) => {
+const DashboardNav2 = ({children}: Props) => {
   const { setTheme } = useTheme()
   const router = useRouter()
   const pathname = usePathname()
 
   return (
-    
-        <nav className='fixed top-0 left-0 right-0 z-10 flex h-16 items-center justify-between gap-2 border-b bg-background px-4'>
+        <div className='bg-white/80 dark:bg-background/95 border-b-1 border-b-slate-200 h-[50px] items-center px-4 justify-between dark:border-b-gray-800 w-full hidden md:block md:flex'>
               <div className="space-x-2 hidden md:block gap-2 items-center justify-center">
                 
                   {children}
@@ -61,11 +59,9 @@ const DashboardNav = ({children}: Props) => {
                 </DropdownMenu>
                
               </div>
-        </nav>
-    
-        
+        </div>
         
   )
 }
 
-export default DashboardNav
+export default DashboardNav2
