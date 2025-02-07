@@ -89,7 +89,7 @@ export default function TopicSelectorForm() {
       )}
 
       {/* Display selected topics */}
-      <div className="mt-4 p-2 bg-gray-100 rounded">
+      <div className="mt-4 p-2 bg-gray-100 rounded dark:bg-slate-700">
         <h3 className="font-bold">Selected Topics (Ordered):</h3>
         <pre className="text-sm">{JSON.stringify(selectedTopics, null, 2)}</pre>
       </div>
