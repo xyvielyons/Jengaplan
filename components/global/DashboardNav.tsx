@@ -26,7 +26,7 @@ const DashboardNav = ({children}: Props) => {
 
   return (
     
-        <nav className='fixed top-0 left-0 right-0 z-10 flex h-16 items-center justify-between gap-2 border-b bg-background px-4'>
+        <nav className='fixed top-0 left-0 right-0 z-10 flex h-16 items-center justify-between gap-2 border-b bg-background/90 px-4'>
               <div className="space-x-2 hidden md:block gap-2 items-center justify-center">
                 
                   {children}
