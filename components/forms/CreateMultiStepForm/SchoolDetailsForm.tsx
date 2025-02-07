@@ -66,7 +66,7 @@ const SchoolDetailsForm = (props: Props) => {
   return (
     <div>
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 pb-[80px]">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 ">
                 <FormField
                 control={form.control}
                 name="schoolName"

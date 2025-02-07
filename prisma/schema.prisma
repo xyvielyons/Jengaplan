@@ -91,3 +91,12 @@ model Transactions {
 
   Bank Bank @relation(fields: [bankId], references: [id])
 }
+model form1mathematics {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}

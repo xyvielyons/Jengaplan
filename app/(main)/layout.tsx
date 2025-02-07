@@ -4,6 +4,7 @@ import { AppSidebar } from '@/components/global/app-sidebar'
 import DashboardNav from '@/components/global/DashboardNav'
 import MobileNav from '@/components/global/MobileNav'
 import { RegisterPesapalIPN } from '@/actions/pesapalpayments'
+import { getData, getUniqueTopics } from '@/actions/testing'
 
 
 type Props = {
@@ -11,13 +12,9 @@ type Props = {
 }
 
 const MainRootLayout = async({children}: Props) => {
-  // const session = await auth.api.getSession({
-  //   headers:await headers()
-  // })
-  // console.log("session data",session)
-  // console.log(await createTransaction())
-  // const registerIpn = await RegisterPesapalIPN()
-  // console.log(registerIpn)
+//  const data = await getData('form1mathematics')
+//  const topics = await getUniqueTopics(data)
+//  console.log(topics)
   return (
 
     <SidebarProvider>
