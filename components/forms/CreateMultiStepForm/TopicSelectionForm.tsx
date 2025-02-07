@@ -9,8 +9,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { getData, getUniqueTopics } from "@/actions/schemes";
-import { useAppSelector } from "@/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import NavButtons from "./FormNavButtons";
+import { setCurrentStep, updateFormData } from "@/store/slices/SchemeSlice";
 
 // Zod validation schema
 const formSchema = z.object({
@@ -19,7 +20,9 @@ const formSchema = z.object({
 
 export default function TopicSelectorForm() {
   const [topics, setTopics] = useState<string[]>([]);
+  const dispatch = useAppDispatch()
   const formStateData = useAppSelector((state: any) => state.schemes.formData);
+  const currentStep = useAppSelector((state) => state.schemes.currentStep);
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: { topics: [] },
@@ -50,8 +53,9 @@ export default function TopicSelectorForm() {
   };
 
   const onSubmit = (data: { topics: string[] }) => {
-    console.log("Selected Topics:", data.topics);
-    alert(`Submitted Topics: ${data.topics.join(", ")}`);
+    dispatch(updateFormData(selectedTopics))
+    dispatch(setCurrentStep(currentStep + 1));
+    console.log(selectedTopics)
   };
 
   return (
@@ -90,7 +94,7 @@ export default function TopicSelectorForm() {
 
       {/* Display selected topics */}
       <div className="mt-4 p-2 bg-gray-100 rounded dark:bg-slate-700">
-        <h3 className="font-bold">Selected Topics (Ordered):</h3>
+        <h3 className="font-semibold">Selected Topics:</h3>
         <pre className="text-sm">{JSON.stringify(selectedTopics, null, 2)}</pre>
       </div>
     </Card>
