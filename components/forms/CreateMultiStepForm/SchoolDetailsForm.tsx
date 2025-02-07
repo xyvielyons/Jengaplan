@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { useAppSelector } from '@/hooks/hooks'
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
 import {
     Select,
     SelectContent,
@@ -36,6 +36,8 @@ const formSchema = z.object({
   
 })
 import { primaryClasses,primarySubjects,secondaryClasses, secondarySubjects } from '@/constants'
+import NavButtons from './FormNavButtons'
+import { setCurrentStep, updateFormData } from '@/store/slices/SchemeSlice'
 type Props = {}
 
 const SchoolDetailsForm = (props: Props) => {
@@ -46,6 +48,8 @@ const SchoolDetailsForm = (props: Props) => {
 
     const schoolLevelItems = selectedLevel === 'primary'?primaryClasses:secondaryClasses
     const subjects = selectedLevel === 'secondary' ? secondarySubjects : primarySubjects(selectedClass)
+    const dispatch = useAppDispatch()
+    const currentStep = useAppSelector((state)=>state.schemes.currentStep)
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -55,9 +59,9 @@ const SchoolDetailsForm = (props: Props) => {
     
     // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values)
+       dispatch(updateFormData(values))
+       dispatch(setCurrentStep(currentStep + 1));
+       console.log(values)
     }
   return (
     <div>
@@ -131,7 +135,7 @@ const SchoolDetailsForm = (props: Props) => {
                             />}
                     </div>
                     <div className="w-full">
-                        <FormField
+                        {selectedClass && <FormField
                             control={form.control}
                             name="subject"
                             render={({ field }) => (
@@ -154,7 +158,7 @@ const SchoolDetailsForm = (props: Props) => {
                                 <FormMessage />
                                 </FormItem>
                             )}
-                        />
+                        />}
                     </div>
                 </div>
                 
@@ -172,9 +176,9 @@ const SchoolDetailsForm = (props: Props) => {
                                     <SelectValue placeholder="select Term" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="Term1">Term-1</SelectItem>                              
-                                        <SelectItem value="Term2">Term-2</SelectItem>                              
-                                        <SelectItem value="Term3">Term-3</SelectItem>                              
+                                        <SelectItem value="term1">Term 1</SelectItem>                              
+                                        <SelectItem value="term2">Term 2</SelectItem>                              
+                                        <SelectItem value="term3">Term 3</SelectItem>                              
                                     </SelectContent>
                                 </Select>
                             </FormControl>
@@ -200,9 +204,7 @@ const SchoolDetailsForm = (props: Props) => {
                     </div>
                     
                 </div>
-                <div className="w-full flex justify-end pt-[16px]">
-                    <Button type="submit" className='bg-blue-600 text-white' radius='sm'>Next</Button>
-                </div>
+                <NavButtons></NavButtons>
             </form>
         </Form>
     </div>
