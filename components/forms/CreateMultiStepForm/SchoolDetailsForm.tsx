@@ -118,7 +118,7 @@ const SchoolDetailsForm = (props: Props) => {
                                     setSelectedClass(value)
                                 }} defaultValue={field.value}>
                                     <SelectTrigger>
-                                    <SelectValue placeholder={`${selectedLevel == "primary"?'eg. Grade 1':'eg. form 1'}`} />
+                                    <SelectValue placeholder={`${selectedLevel == "primary"?'select primary level':'select secondary level'}`} />
                                     </SelectTrigger>
                                     <SelectContent>
                                     {schoolLevelItems.map((subject) => (
