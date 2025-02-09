@@ -9,7 +9,6 @@ export const getData = async (collectionName: string) => {
         return [];
     }
 
-    console.log(data);
     return data;
 };
 
