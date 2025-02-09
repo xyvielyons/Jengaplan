@@ -69,7 +69,7 @@ export const TestimonialsData = [
     },
     {
         number:2,
-        title:"Topic details",
+        title:"Topic selection",
         subtitle:"Select the topics you would like to include."
     },
     {
@@ -79,7 +79,7 @@ export const TestimonialsData = [
     },
     {
         number:4,
-        title:"Team breaks and interruptions",
+        title:"Term breaks and interruptions",
         subtitle:"Fill in your details based on your school timetable."
     },
     {
