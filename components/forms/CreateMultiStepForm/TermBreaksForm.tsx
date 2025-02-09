@@ -14,6 +14,17 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
+import NavButtons from './FormNavButtons'
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
+import { updateFormData } from '@/store/slices/SchemeSlice'
+import { Minus, Plus } from 'lucide-react'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 // Define the Break schema
 const breakSchema = z.object({
@@ -36,11 +47,12 @@ const formSchema = z.object({
 type BreakFormValues = z.infer<typeof formSchema>
 
 const AddBreaksForm = () => {
-  const form = useForm<BreakFormValues>({
+  const formData = useAppSelector((state: any) => state.schemes.formData)
+  const dispatch = useAppDispatch()
+  const form:any = useForm<BreakFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      addBreaks: false,
-      breaks: [],
+      ...formData,
     },
   })
 
@@ -59,8 +71,49 @@ const AddBreaksForm = () => {
   }
 
   const onSubmit = (values: BreakFormValues) => {
-    console.log("Form submitted with values:", values)
+    dispatch(updateFormData(values))
+    console.log(values)
   }
+
+  // Generate options for lessons based on the global lessonsPerWeek.
+  // If lessonsPerWeek is not available, default to 4.
+  const lessonOptions = () => {
+    const lessonsPerWeek = form.watch("lessonsPerWeek") || 4;
+    const options = []
+    for (let i = 1; i <= lessonsPerWeek; i++) {
+      options.push(
+        <SelectItem key={i} value={String(i)}>
+          {`Lesson ${i}`}
+        </SelectItem>
+      )
+    }
+    return options
+  }
+  const weekOptions = () => {
+    const weeks:any = form.watch("endWeek") || 10;
+    const options = []
+    for (let i = 1; i <= weeks; i++) {
+      options.push(
+        <SelectItem key={i} value={String(i)}>
+          {`week ${i}`}
+        </SelectItem>
+      )
+    }
+    return options
+  }
+
+  // // Generate options for weeks. Here we use a fixed range (1–10).
+  // const weekOptions = (maxWeeks: number = 10) => {
+  //   const options = []
+  //   for (let i = 1; i <= maxWeeks; i++) {
+  //     options.push(
+  //       <SelectItem key={i} value={String(i)}>
+  //         {`Week ${i}`}
+  //       </SelectItem>
+  //     )
+  //   }
+  //   return options
+  // }
 
   return (
     <Form {...form}>
@@ -92,6 +145,8 @@ const AddBreaksForm = () => {
               <h2 className="text-lg font-semibold">Breaks</h2>
               <Button
                 type="button"
+                radius="sm"
+                className="text-gray-800"
                 onClick={() =>
                   append({
                     startWeek: 1,
@@ -101,13 +156,14 @@ const AddBreaksForm = () => {
                     title: "",
                   })
                 }
+                startContent={<Plus />}
               >
-                +
+                Add Break
               </Button>
             </div>
 
             {fields.map((fieldItem, index) => (
-              <div key={fieldItem.id} className="border p-4 rounded mb-2">
+              <div key={fieldItem.id} className="border p-4 rounded mb-4 mt-2 space-y-2">
                 {/* Title Field */}
                 <FormField
                   control={form.control}
@@ -122,75 +178,139 @@ const AddBreaksForm = () => {
                     </FormItem>
                   )}
                 />
+                <h1 className="text-[16px] font-bold text-gray-800 ">Break start</h1>
 
-                {/* Start Week & Lesson */}
-                <div className="flex space-x-2">
-                  <FormField
-                    control={form.control}
-                    name={`breaks.${index}.startWeek`}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Start Week</FormLabel>
-                        <FormControl>
-                          <Input type="number" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name={`breaks.${index}.startLesson`}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Start Lesson</FormLabel>
-                        <FormControl>
-                          <Input type="number" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                {/* Start Week and Start Lesson as select components */}
+                <div className="flex mt-2 flex-col md:flex-row md:gap-2">
+                  <div className="w-full">
+                    <FormField
+                      control={form.control}
+                      name={`breaks.${index}.startWeek`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Start Week</FormLabel>
+                          <FormControl>
+                            <Select
+                              onValueChange={(value) =>
+                                field.onChange(Number(value))
+                              }
+                              defaultValue={String(field.value)}
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select week" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {weekOptions()}
+                              </SelectContent>
+                            </Select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="w-full">
+                    <FormField
+                      control={form.control}
+                      name={`breaks.${index}.startLesson`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Start Lesson</FormLabel>
+                          <FormControl>
+                            <Select
+                              onValueChange={(value) =>
+                                field.onChange(Number(value))
+                              }
+                              defaultValue={String(field.value)}
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select lesson" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {lessonOptions()}
+                              </SelectContent>
+                            </Select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
+                <h1 className="text-[16px] font-bold text-gray-800 ">Break end</h1>
+                {/* End Week and End Lesson as select components */}
+                <div className="flex mt-2 flex-col md:flex-row md:gap-2">
+                  <div className="w-full">
+                    <FormField
+                      control={form.control}
+                      name={`breaks.${index}.endWeek`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>End Week</FormLabel>
+                          <FormControl>
+                            <Select
+                              onValueChange={(value) =>
+                                field.onChange(Number(value))
+                              }
+                              defaultValue={String(field.value)}
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select week" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {weekOptions()}
+                              </SelectContent>
+                            </Select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="w-full">
+                    
+                    <FormField
+                      control={form.control}
+                      name={`breaks.${index}.endLesson`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>End Lesson</FormLabel>
+                          <FormControl>
+                            <Select
+                              onValueChange={(value) =>
+                                field.onChange(Number(value))
+                              }
+                              defaultValue={String(field.value)}
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select lesson" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {lessonOptions()}
+                              </SelectContent>
+                            </Select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
                 </div>
 
-                {/* End Week & Lesson */}
-                <div className="flex space-x-2">
-                  <FormField
-                    control={form.control}
-                    name={`breaks.${index}.endWeek`}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>End Week</FormLabel>
-                        <FormControl>
-                          <Input type="number" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name={`breaks.${index}.endLesson`}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>End Lesson</FormLabel>
-                        <FormControl>
-                          <Input type="number" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <Button type="button" onClick={() => remove(index)}>
+                <Button
+                  type="button"
+                  onClick={() => remove(index)}
+                  className="mt-4"
+                  radius="sm"
+                  startContent={<Minus />}
+                >
                   Remove Break
                 </Button>
               </div>
             ))}
           </div>
         )}
-        <Button type="submit">Submit</Button>
+        <NavButtons />
       </form>
     </Form>
   )
