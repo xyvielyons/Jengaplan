@@ -51,11 +51,15 @@ const SchemeSlice = createSlice({
         ...state.formData,
         ...action.payload
       }
-    } 
+    },
+    clearData:(state,action)=>{
+      state.currentStep = 1;
+      state.formData = action.payload
+    }
   },
 });
 
 //export the reducers from counterSlice.actions
-export const { setCurrentStep,updateFormData } = SchemeSlice.actions;
+export const { setCurrentStep,updateFormData,clearData } = SchemeSlice.actions;
 //export the counterSlice.reducer
 export default SchemeSlice.reducer;

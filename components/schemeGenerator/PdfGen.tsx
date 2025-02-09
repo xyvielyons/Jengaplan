@@ -7,7 +7,7 @@ import { getTotalLessons } from '@/lib/Mathfunctions';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { authClient } from '@/auth-client';
 import { ArrowLeft, ArrowRight, EyeIcon, Plus } from 'lucide-react';
-import { setCurrentStep } from '@/store/slices/SchemeSlice';
+import { clearData, setCurrentStep } from '@/store/slices/SchemeSlice';
 import TablePreview from './TablePreview';
 import { BankInformation, DeductFromBank } from '@/actions/queries';
 import { useToast } from '@/hooks/use-toast';
@@ -359,10 +359,13 @@ const PdfGen = ({ data }: { data: any }) => {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      createAnotherScheme()
     }
   };
+  const createAnotherScheme = async()=>{
+    dispatch(clearData({}))
+  }
 
-  
   return (
     <div className="space-y-10">
       {pdfDataUrl ? (
@@ -374,7 +377,7 @@ const PdfGen = ({ data }: { data: any }) => {
             <Button onPress={payAndDownloadFunction} className="w-full md:w-fit bg-blue-600 text-white" radius="sm" endContent={<ArrowRight />}>
               Pay & Download
             </Button>
-            <Button onPress={openTablePreviewInNewTab} className="w-full md:w-fit text-gray-800 dark:text-gray-50" endContent={<Plus />}>
+            <Button onPress={createAnotherScheme} className="w-full md:w-fit text-gray-800 dark:text-gray-50" endContent={<Plus />}>
               Create another scheme
             </Button>
           </div>
