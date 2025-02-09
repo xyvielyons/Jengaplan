@@ -318,7 +318,10 @@ const PdfGen = ({data}: { data: any}) => {
         </div>
       )}
       {!pdfDataUrl && (
-        <div className="">
+        <div className="space-y-4">
+          <Chip className={`${loading ? 'bg-emerald-600' : 'bg-red-500'} text-white`}>
+              {loading ? 'status: Generating Scheme' : 'status: idle'}
+            </Chip>
           <Button className='bg-blue-600 text-white w-full' onPress={createPDF} endContent={<ArrowRight></ArrowRight>} radius='sm' >Generate Pdf</Button>
         </div>
       )}
