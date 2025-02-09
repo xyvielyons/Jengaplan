@@ -101,7 +101,7 @@ const TimetableStructureDetails = (props: Props) => {
             )}
           />
 
-          <h1 className="text-[16px] font-bold text-gray-800 underline">First Lesson details</h1>
+          <h1 className="text-[16px] font-bold text-gray-800 dark:text-gray-200">First Lesson details</h1>
           <div className="flex flex-col md:items-center md:justify-center md:flex-row gap-2">
             <div className="w-full">
               <FormField
@@ -151,7 +151,7 @@ const TimetableStructureDetails = (props: Props) => {
             </div>
           </div>
 
-          <h1 className="text-[16px] font-bold text-gray-800 underline">Last Lesson details</h1>
+          <h1 className="text-[16px] font-bold text-gray-800 dark:text-gray-200">Last Lesson details</h1>
           <div className="flex flex-col md:items-center md:justify-center md:flex-row gap-2">
             <div className="w-full">
               <FormField
