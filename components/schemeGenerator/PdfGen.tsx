@@ -9,7 +9,6 @@ import { authClient } from '@/auth-client';
 import { ArrowLeft, ArrowRight, EyeIcon, Plus } from 'lucide-react';
 import { setCurrentStep } from '@/store/slices/SchemeSlice';
 import TablePreview from './TablePreview';
-
 const PdfGen = ({ data }: { data: any }) => {
   const formdata: any = useAppSelector((state) => state.schemes.formData);
   const { data: session } = authClient.useSession();
@@ -283,15 +282,15 @@ const PdfGen = ({ data }: { data: any }) => {
       <Button onPress={createPDF}>
         {loading ? "Generating PDF..." : "Create PDF"}
       </Button>
-      <div className="mt-4">
-        <Button onPress={openTablePreviewInNewTab}>
-          Open Table Preview in New Tab
-        </Button>
-        <Button onPress={handlePrevious}>
+      <div className="mt-4 flex items-center md:justify-between flex-col-reverse md:flex-row">
+        <Button onPress={handlePrevious} className='w-full md:w-fit' radius='sm'>
           Back
         </Button>
+        <Button onPress={openTablePreviewInNewTab} className='bg-gray-900 text-white w-full md:w-fit' endContent={<EyeIcon></EyeIcon>}>
+          Preview Scheme
+        </Button>
       </div>
-      {pdfDataUrl && (
+      {/* {pdfDataUrl && (
         <div style={{ marginTop: "20px", border: "1px solid #ccc" }}>
           <iframe
             src={pdfDataUrl}
@@ -299,7 +298,7 @@ const PdfGen = ({ data }: { data: any }) => {
             title="PDF Preview"
           />
         </div>
-      )}
+      )} */}
     </div>
   );
 };
