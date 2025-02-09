@@ -128,7 +128,7 @@ export default function MySidebarFooter({name,email,avatar,type}:{name:string,em
                       <Button color="danger" variant="light" onPress={onClose}>
                         Close
                       </Button>
-                      <Button color="primary" className="dark:text-white" onPress={handleSignOut} isLoading={pending}>
+                      <Button color="primary" className="dark:text-white dark:bg-blue-600" onPress={handleSignOut} isLoading={pending}>
                         Logout {name}
                       </Button>
                     </ModalFooter>
