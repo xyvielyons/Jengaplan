@@ -12,9 +12,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { SidebarInset } from '../ui/sidebar'
+import { BankInformation } from '@/actions/queries'
+import { useToast } from '@/hooks/use-toast'
 type Props = {
     children:React.ReactNode
 }
@@ -23,6 +23,22 @@ const DashboardNav = ({children}: Props) => {
   const { setTheme } = useTheme()
   const router = useRouter()
   const pathname = usePathname()
+  const [bankAmount, setBankAmount] = useState<number>(0)
+  const {toast} = useToast()
+  useEffect(()=>{
+    const fetchData = async()=>{
+      const bankInformation = await BankInformation()
+      if(!bankInformation){
+        return toast({
+          title:"Something went wrong",
+          description:"Cannot access bank information",
+          variant:"destructive"
+        })
+      }
+      setBankAmount(bankInformation.amount)
+    }
+    fetchData()
+  },[])
 
   return (
     
@@ -38,7 +54,9 @@ const DashboardNav = ({children}: Props) => {
                 <p className='dark:text-slate-400 text-sm text-gray-600 '>{pathname}</p>
               </div>
               <div className="flex flex-row space-x-2 items-center">
-                
+                  <div className="mr-2 flex items-center justify-center border p-2 text-sm rounded-sm text-gray-700 cursor-pointer dark:text-gray-300 dark:border-gray-700" onClick={()=>router.push('/wallet')}>
+                    {`Ksh ${bankAmount}`}
+                  </div>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <But variant="outline" size="icon">

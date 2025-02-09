@@ -337,7 +337,7 @@ const PdfGen = ({ data }: { data: any }) => {
         variant: "destructive"
       });
     }
-    const AmountToDeduct = getBankBalance - 1
+    const AmountToDeduct = getBankBalance - 25
     const deductMoneyFromBank = await DeductFromBank(getBankInfo.id,AmountToDeduct)
     if(!deductMoneyFromBank){
       return toast({
