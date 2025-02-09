@@ -294,25 +294,35 @@ const PdfGen = ({data}: { data: any}) => {
 
   return (
     <div className="space-y-8">
-      <Chip className={`${loading ? 'bg-emerald-600' : 'bg-red-500'} text-white`}>
-        {loading ? 'status: Generating Scheme' : 'status: idle'}
-      </Chip>
-      <div className="mt-4 flex items-center md:gap-2 flex-col-reverse md:flex-row gap-2">
-        <Button onPress={handlePrevious} className="w-full md:w-fit bg-blue-600 text-white" radius="sm" endContent={<ArrowRight />}>
-          Pay & Download
-        </Button>
-        <Button onPress={openTablePreviewInNewTab} className="w-full md:w-fit text-gray-800 dark:text-gray-50" endContent={<Plus />}>
-          Create another scheme
-        </Button>
-      </div>
-      <div className="mt-4 flex items-center md:justify-between md:flex-row gap-2">
-        <Button onPress={handlePrevious} className="w-full md:w-fit" radius="sm">
-          Back
-        </Button>
-        <Button radius="none" onPress={openTablePreviewInNewTab} className="bg-gray-600 text-white w-full md:w-fit" endContent={<EyeIcon />}>
-          Preview Scheme
-        </Button>
-      </div>
+      {pdfDataUrl && (
+        <div className="">
+            <Chip className={`${loading ? 'bg-emerald-600' : 'bg-red-500'} text-white`}>
+              {loading ? 'status: Generating Scheme' : 'status: idle'}
+            </Chip>
+            <div className="mt-4 flex items-center md:gap-2 flex-col-reverse md:flex-row gap-2">
+              <Button onPress={handlePrevious} className="w-full md:w-fit bg-blue-600 text-white" radius="sm" endContent={<ArrowRight />}>
+                Pay & Download
+              </Button>
+              <Button onPress={openTablePreviewInNewTab} className="w-full md:w-fit text-gray-800 dark:text-gray-50" endContent={<Plus />}>
+                Create another scheme
+              </Button>
+            </div>
+            <div className="mt-4 flex items-center md:justify-between md:flex-row gap-2">
+              <Button onPress={handlePrevious} className="w-full md:w-fit" radius="sm">
+                Back
+              </Button>
+              <Button radius="none" onPress={openTablePreviewInNewTab} className="bg-gray-600 text-white w-full md:w-fit" endContent={<EyeIcon />}>
+                Preview Scheme
+              </Button>
+            </div>
+        </div>
+      )}
+      {!pdfDataUrl && (
+        <div className="">
+          <Button className='bg-blue-600 text-white w-full' onPress={createPDF} endContent={<ArrowRight></ArrowRight>} radius='sm' >Generate Pdf</Button>
+        </div>
+      )}
+      
       {pdfDataUrl && (
         <div style={{ marginTop: '20px', border: '1px solid #ccc' }}>
           <iframe src={pdfDataUrl} style={{ width: '100%', height: '500px', border: 'none' }} title="PDF Preview" />

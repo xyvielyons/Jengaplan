@@ -107,7 +107,7 @@ const KanbanTopic = () => {
           endContent={<ArrowRight />}
           onPress={updateTopicOrder}
         >
-          Generate Pdf
+          Next
         </Button>
       </div>
     </div>

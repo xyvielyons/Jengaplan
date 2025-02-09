@@ -2,6 +2,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 //import the ConterSlice from Slices folder
 import SchemeSlice from "./slices/SchemeSlice";
+import PdfTriggerSlice from "./slices/PdfTriggerSlice";
 //configure your store
 export const store = configureStore({
     
@@ -9,7 +10,8 @@ export const store = configureStore({
       
       //define your slices here
       //the first is the name of the slice parsing in the counterSlice
-      schemes:SchemeSlice
+      schemes:SchemeSlice,
+      pdf:PdfTriggerSlice
      
     },
   });
