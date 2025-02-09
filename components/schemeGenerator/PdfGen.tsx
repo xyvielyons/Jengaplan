@@ -49,14 +49,14 @@ const PdfGen = ({data}: { data: any}) => {
       const randomIndex = Math.floor(Math.random() * myAdjustedData.length);
       const randomTopic = myAdjustedData[randomIndex];
       myAdjustedData.splice(randomIndex + 1, 0, randomTopic);
-      console.log(`Duplicated topic from index ${randomIndex} and inserted at ${randomIndex + 1}`);
+      //console.log(`Duplicated topic from index ${randomIndex} and inserted at ${randomIndex + 1}`);
     }
   }
 
   const createPDF = async (): Promise<any[]> => {
     setLoading(true);
     // Increase delay to ensure the loading indicator is rendered before heavy processing starts
-    await new Promise((resolve) => setTimeout(resolve, 200));
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
     const doc = new jsPDF({
       orientation: 'landscape',
@@ -317,7 +317,7 @@ const PdfGen = ({data}: { data: any}) => {
             </div>
         </div>
       )}
-      {!pdfDataUrl && (
+      {!pdfDataUrl && totalLessons>1 && (
         <div className="space-y-4">
           <Chip className={`${loading ? 'bg-emerald-600' : 'bg-red-500'} text-white`}>
               {loading ? 'status: Generating Scheme' : 'status: idle'}
