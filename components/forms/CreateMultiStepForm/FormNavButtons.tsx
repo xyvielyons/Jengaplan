@@ -38,6 +38,8 @@ export default function NavButtons() {
       
       >
       {currentStep === 6 ? "Confirm and Submit" : "Save and Continue"}
+      <ChevronRight className="w-5 h-5 ml-2 inline-flex" />
+
       </Button>
     </div>
   );
