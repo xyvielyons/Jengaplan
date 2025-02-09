@@ -1,5 +1,5 @@
 'use client';
-import React, { useImperativeHandle, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { jsPDF } from 'jspdf';
 import { Button, Chip } from '@heroui/react';
 import autoTable from 'jspdf-autotable';
@@ -10,7 +10,7 @@ import { ArrowLeft, ArrowRight, EyeIcon, Plus } from 'lucide-react';
 import { setCurrentStep } from '@/store/slices/SchemeSlice';
 import TablePreview from './TablePreview';
 
-const PdfGen = ({data}: { data: any}) => {
+const PdfGen = ({ data }: { data: any }) => {
   const formdata: any = useAppSelector((state) => state.schemes.formData);
   const { data: session } = authClient.useSession();
   const [loading, setLoading] = useState(false);
@@ -49,13 +49,15 @@ const PdfGen = ({data}: { data: any}) => {
       const randomIndex = Math.floor(Math.random() * myAdjustedData.length);
       const randomTopic = myAdjustedData[randomIndex];
       myAdjustedData.splice(randomIndex + 1, 0, randomTopic);
-      //console.log(`Duplicated topic from index ${randomIndex} and inserted at ${randomIndex + 1}`);
+      // Uncomment if you need debugging info:
+      // console.log(`Duplicated topic from index ${randomIndex} and inserted at ${randomIndex + 1}`);
     }
   }
 
-  const createPDF = async (): Promise<any[]> => {
+  // Wrap createPDF in useCallback so that its reference stays stable
+  const createPDF = useCallback(async (): Promise<any[]> => {
     setLoading(true);
-    // Increase delay to ensure the loading indicator is rendered before heavy processing starts
+    // Increase delay to ensure the loading indicator is rendered before heavy processing
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     const doc = new jsPDF({
@@ -202,7 +204,20 @@ const PdfGen = ({data}: { data: any}) => {
     setPdfDataUrl(pdfDataUri);
     setLoading(false);
     return lessons;
-  };
+  }, [
+    addBreaks,
+    breaks,
+    doubleLesson,
+    endLesson,
+    endWeek,
+    formdata,
+    lessonsPerWeek,
+    myAdjustedData,
+    session,
+    startLesson,
+    startWeek,
+    totalLessons,
+  ]);
 
   const dispatch = useAppDispatch();
   const currentStepValue = useAppSelector((state) => state.schemes.currentStep);
@@ -292,40 +307,61 @@ const PdfGen = ({data}: { data: any}) => {
     }
   };
 
+  // A function to handle payment (if needed) and then trigger PDF download
+  const payAndDownloadFunction = async () => {
+    // (Optionally add payment processing logic here)
+
+    // If PDF is not generated, call createPDF first
+    if (!pdfDataUrl) {
+      await createPDF();
+    }
+    // Trigger download using an anchor element
+    if (pdfDataUrl) {
+      const link = document.createElement('a');
+      link.href = pdfDataUrl;
+      link.download = 'scheme.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
   return (
     <div className="space-y-8">
-      {pdfDataUrl && (
-        <div className="">
+      {pdfDataUrl ? (
+        <div>
+          <Chip className={`${loading ? 'bg-emerald-600' : 'bg-red-500'} text-white`}>
+            {loading ? 'status: Generating Scheme' : 'status: idle'}
+          </Chip>
+          <div className="mt-4 flex items-center md:gap-2 flex-col-reverse md:flex-row gap-2">
+            <Button onPress={payAndDownloadFunction} className="w-full md:w-fit bg-blue-600 text-white" radius="sm" endContent={<ArrowRight />}>
+              Pay & Download
+            </Button>
+            <Button onPress={openTablePreviewInNewTab} className="w-full md:w-fit text-gray-800 dark:text-gray-50" endContent={<Plus />}>
+              Create another scheme
+            </Button>
+          </div>
+          <div className="mt-4 flex items-center md:justify-between md:flex-row gap-2">
+            <Button onPress={handlePrevious} className="w-full md:w-fit" radius="sm">
+              Back
+            </Button>
+            <Button radius="none" onPress={openTablePreviewInNewTab} className="bg-gray-600 text-white w-full md:w-fit" endContent={<EyeIcon />}>
+              Preview Scheme
+            </Button>
+          </div>
+        </div>
+      ) : (
+        totalLessons > 1 && (
+          <div className="space-y-4">
             <Chip className={`${loading ? 'bg-emerald-600' : 'bg-red-500'} text-white`}>
               {loading ? 'status: Generating Scheme' : 'status: idle'}
             </Chip>
-            <div className="mt-4 flex items-center md:gap-2 flex-col-reverse md:flex-row gap-2">
-              <Button onPress={handlePrevious} className="w-full md:w-fit bg-blue-600 text-white" radius="sm" endContent={<ArrowRight />}>
-                Pay & Download
-              </Button>
-              <Button onPress={openTablePreviewInNewTab} className="w-full md:w-fit text-gray-800 dark:text-gray-50" endContent={<Plus />}>
-                Create another scheme
-              </Button>
-            </div>
-            <div className="mt-4 flex items-center md:justify-between md:flex-row gap-2">
-              <Button onPress={handlePrevious} className="w-full md:w-fit" radius="sm">
-                Back
-              </Button>
-              <Button radius="none" onPress={openTablePreviewInNewTab} className="bg-gray-600 text-white w-full md:w-fit" endContent={<EyeIcon />}>
-                Preview Scheme
-              </Button>
-            </div>
-        </div>
+            <Button className="bg-blue-600 text-white w-full" onPress={createPDF} endContent={<ArrowRight />} radius="sm">
+              Generate PDF
+            </Button>
+          </div>
+        )
       )}
-      {!pdfDataUrl && totalLessons>1 && (
-        <div className="space-y-4">
-          <Chip className={`${loading ? 'bg-emerald-600' : 'bg-red-500'} text-white`}>
-              {loading ? 'status: Generating Scheme' : 'status: idle'}
-            </Chip>
-          <Button className='bg-blue-600 text-white w-full' onPress={createPDF} endContent={<ArrowRight></ArrowRight>} radius='sm' >Generate Pdf</Button>
-        </div>
-      )}
-      
       {pdfDataUrl && (
         <div style={{ marginTop: '20px', border: '1px solid #ccc' }}>
           <iframe src={pdfDataUrl} style={{ width: '100%', height: '500px', border: 'none' }} title="PDF Preview" />
