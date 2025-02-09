@@ -3,6 +3,7 @@ import SchoolDetailsForm from './SchoolDetailsForm';
 import { useAppSelector } from '@/hooks/hooks';
 import TopicSelectionForm from './TopicSelectionForm';
 import TimetableStructureDetails from './TimetableStructureDetails';
+import TermBreaksForm from './TermBreaksForm';
 const StepForm = () => {
     const currentStep = useAppSelector((state)=>state.schemes.currentStep);
 
@@ -13,6 +14,8 @@ const StepForm = () => {
           return <TopicSelectionForm/>
         }else if(currentStep === 3){
           return <TimetableStructureDetails/>
+        }else if(currentStep === 4){
+          return <TermBreaksForm/>
         }
     }
   return (
