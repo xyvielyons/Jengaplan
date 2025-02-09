@@ -4,6 +4,8 @@ import { useAppSelector } from '@/hooks/hooks';
 import TopicSelectionForm from './TopicSelectionForm';
 import TimetableStructureDetails from './TimetableStructureDetails';
 import TermBreaksForm from './TermBreaksForm';
+import TopicOrder from './KanbanTopic';
+import KanbanTopic from './KanbanTopic';
 const StepForm = () => {
     const currentStep = useAppSelector((state)=>state.schemes.currentStep);
 
@@ -16,6 +18,8 @@ const StepForm = () => {
           return <TimetableStructureDetails/>
         }else if(currentStep === 4){
           return <TermBreaksForm/>
+        }else if(currentStep === 5){
+          return <KanbanTopic/>
         }
     }
   return (

@@ -21,15 +21,23 @@ export default function NavButtons() {
           <span>Previous</span>
         </Button>
       )}
-      <Button
+      {/* <Button
         type="submit"
-        className="bg-blue-600 text-white"
+        className={`bg-blue-600 text-white flex-row ${currentStep == 5?"hidden":"block"}`}
         radius="sm"
       >
         <span>
           {currentStep === 6 ? "Confirm and Submit" : "Save and Continue"}
         </span>
         <ChevronRight className="w-5 h-5 ml-2" />
+      </Button> */}
+      <Button
+      type="submit"
+      className={`bg-blue-600 text-white flex-row ${currentStep == 5?"hidden":"block"}`}
+      radius="sm"
+      
+      >
+      {currentStep === 6 ? "Confirm and Submit" : "Save and Continue"}
       </Button>
     </div>
   );
