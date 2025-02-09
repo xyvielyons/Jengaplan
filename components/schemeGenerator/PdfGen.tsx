@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
-import { Button } from '@heroui/react';
+import { Button, Chip } from '@heroui/react';
 import autoTable from 'jspdf-autotable';
 import { getTotalLessons } from '@/lib/Mathfunctions';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
@@ -277,12 +277,17 @@ const PdfGen = ({ data }: { data: any }) => {
   };
 
   return (
-    <div>
-      <h1>Generate PDF</h1>
-      <Button onPress={createPDF}>
-        {loading ? "Generating PDF..." : "Create PDF"}
-      </Button>
-      <div className="mt-4 flex items-center md:justify-between flex-col-reverse md:flex-row">
+    <div className='space-y-8'>
+      <Chip className={`${loading ? "bg-emerald-600":"bg-red-500"} text-white`}>{loading ? "status: Generating Scheme" : "status: idle"}</Chip>
+      <div className="mt-4 flex items-center md:gap-2 flex-col-reverse md:flex-row gap-2">
+        <Button onPress={handlePrevious} className='w-full md:w-fit bg-blue-600 text-white' radius='sm' endContent={<ArrowRight></ArrowRight>}>
+          Pay & Download
+        </Button>
+        <Button onPress={openTablePreviewInNewTab} className=' w-full md:w-fit text-gray-800 dark:text-gray-50' endContent={<Plus></Plus>}>
+          Create another scheme
+        </Button>
+      </div>
+      <div className="mt-4 flex items-center md:justify-between md:flex-row gap-2">
         <Button onPress={handlePrevious} className='w-full md:w-fit' radius='sm'>
           Back
         </Button>
