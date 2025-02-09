@@ -20,15 +20,24 @@ const formSchema = z.object({
 
 export default function TopicSelectorForm() {
   const [topics, setTopics] = useState<string[]>([]);
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const formStateData = useAppSelector((state: any) => state.schemes.formData);
   const currentStep = useAppSelector((state) => state.schemes.currentStep);
+
+  // Initialize the form using any pre-selected topics from global state.
   const form = useForm({
     resolver: zodResolver(formSchema),
-    defaultValues: { topics: [] },
+    defaultValues: { topics: formStateData?.selectedTopics || [] },
   });
 
-  const selectedTopics:any = form.watch("topics");
+  const selectedTopics: string[] = form.watch("topics");
+
+  // If the global state changes and contains selected topics, update the form.
+  useEffect(() => {
+    if (formStateData?.selectedTopics) {
+      form.setValue("topics", formStateData.selectedTopics);
+    }
+  }, [formStateData?.selectedTopics]);
 
   // Fetch topics from server action
   useEffect(() => {
@@ -44,20 +53,18 @@ export default function TopicSelectorForm() {
   // Function to toggle topic selection while maintaining order
   const handleCheckedChange = (topic: string) => {
     const newSelection = selectedTopics.includes(topic)
-      ? selectedTopics.filter((t:any) => t !== topic) // Remove if already selected
+      ? selectedTopics.filter((t) => t !== topic) // Remove if already selected
       : [...selectedTopics, topic]; // Add new topic
 
-    // Ensure the selection strictly follows the original order
-    const orderedSelection:any = topics.filter((t) => newSelection.includes(t));
+    // Ensure the selection follows the original order defined by topics
+    const orderedSelection = topics.filter((t) => newSelection.includes(t));
     form.setValue("topics", orderedSelection);
   };
 
   const onSubmit = (data: { topics: string[] }) => {
-    dispatch(updateFormData({
-      selectedTopics
-    }))
+    dispatch(updateFormData({ selectedTopics: data.topics }));
     dispatch(setCurrentStep(currentStep + 1));
-   
+    console.log(data);
   };
 
   return (
@@ -74,7 +81,7 @@ export default function TopicSelectorForm() {
               name="topics"
               render={() => (
                 <div className="space-y-2">
-                  {topics.map((topic:any) => (
+                  {topics.map((topic) => (
                     <FormItem key={topic} className="flex items-center space-x-2">
                       <FormControl>
                         <Checkbox
@@ -89,7 +96,7 @@ export default function TopicSelectorForm() {
                 </div>
               )}
             />
-            <NavButtons></NavButtons>
+            <NavButtons />
           </form>
         </Form>
       )}
