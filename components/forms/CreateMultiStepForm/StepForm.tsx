@@ -6,6 +6,7 @@ import TimetableStructureDetails from './TimetableStructureDetails';
 import TermBreaksForm from './TermBreaksForm';
 import TopicOrder from './KanbanTopic';
 import KanbanTopic from './KanbanTopic';
+import GenerateSchemeForm from './GenerateSchemeForm';
 const StepForm = () => {
     const currentStep = useAppSelector((state)=>state.schemes.currentStep);
 
@@ -20,6 +21,8 @@ const StepForm = () => {
           return <TermBreaksForm/>
         }else if(currentStep === 5){
           return <KanbanTopic/>
+        }else if(currentStep === 6){
+          return <GenerateSchemeForm/>
         }
     }
   return (
