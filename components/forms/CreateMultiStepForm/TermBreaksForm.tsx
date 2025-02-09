@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import NavButtons from './FormNavButtons'
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks'
-import { updateFormData } from '@/store/slices/SchemeSlice'
+import { setCurrentStep, updateFormData } from '@/store/slices/SchemeSlice'
 import { Minus, Plus } from 'lucide-react'
 import {
   Select,
@@ -48,6 +48,7 @@ type BreakFormValues = z.infer<typeof formSchema>
 
 const AddBreaksForm = () => {
   const formData = useAppSelector((state: any) => state.schemes.formData)
+  const currentStep = useAppSelector((state) => state.schemes.currentStep)
   const dispatch = useAppDispatch()
   const form:any = useForm<BreakFormValues>({
     resolver: zodResolver(formSchema),
@@ -72,6 +73,7 @@ const AddBreaksForm = () => {
 
   const onSubmit = (values: BreakFormValues) => {
     dispatch(updateFormData(values))
+    dispatch(setCurrentStep(currentStep + 1));
     console.log(values)
   }
 
