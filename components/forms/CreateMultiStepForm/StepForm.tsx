@@ -2,6 +2,7 @@ import React from 'react'
 import SchoolDetailsForm from './SchoolDetailsForm';
 import { useAppSelector } from '@/hooks/hooks';
 import TopicSelectionForm from './TopicSelectionForm';
+import TimetableStructureDetails from './TimetableStructureDetails';
 const StepForm = () => {
     const currentStep = useAppSelector((state)=>state.schemes.currentStep);
 
@@ -10,6 +11,8 @@ const StepForm = () => {
             return <SchoolDetailsForm/>
         }else if(currentStep === 2){
           return <TopicSelectionForm/>
+        }else if(currentStep === 3){
+          return <TimetableStructureDetails/>
         }
     }
   return (

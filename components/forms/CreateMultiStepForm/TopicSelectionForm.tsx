@@ -53,9 +53,11 @@ export default function TopicSelectorForm() {
   };
 
   const onSubmit = (data: { topics: string[] }) => {
-    dispatch(updateFormData(selectedTopics))
+    dispatch(updateFormData({
+      selectedTopics
+    }))
     dispatch(setCurrentStep(currentStep + 1));
-    console.log(selectedTopics)
+   
   };
 
   return (

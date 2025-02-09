@@ -11,7 +11,7 @@ export default function NavButtons() {
   }
   
   return (
-    <div className="flex justify-between flex-col-reverse gap-2 md:flex-row">
+    <div className="flex justify-between flex-col-reverse gap-2 md:flex-row pt-4">
       {currentStep > 1 && (
         <Button
           onPress={handlePrevious}
