@@ -20,3 +20,19 @@ export const BankInformation = async()=>{
         console.log(error)
     }
 }
+
+export const DeductFromBank = async(BankId:string,amount:number)=>{
+    try {
+        const Deduction = await prisma.bank.update({
+            where:{
+                id:BankId
+            },
+            data:{
+                amount
+            }
+        })
+        return Deduction
+    } catch (error) {
+        console.log(error)
+    }
+}

@@ -29,19 +29,24 @@ const formSchema = z.object({
   startLesson: z.coerce.number(),
   endWeek: z.coerce.number(),
   endLesson: z.coerce.number(),
-  doubleLesson: z.array(z.number()).default([]),  // default value set here
+  doubleLesson: z.array(z.number()).default([]), // default value set here
 })
 
 import { primaryClasses, primarySubjects, secondaryClasses, secondarySubjects } from '@/constants'
 import NavButtons from './FormNavButtons'
 import { setCurrentStep, updateFormData } from '@/store/slices/SchemeSlice'
+
 type Props = {}
 
 const TimetableStructureDetails = (props: Props) => {
+  // Retrieve previous form data from Redux
   const formData = useAppSelector((state: any) => state.schemes.formData)
-  const [showDoubleLesson, setShowDoubleLesson] = useState<any>(false);
+  // Initialize the double-lesson toggle based on whether previous data exists
+  const [showDoubleLesson, setShowDoubleLesson] = useState<any>(
+    !!(formData.doubleLesson && formData.doubleLesson.length > 0)
+  )
   const dispatch = useAppDispatch()
-  const currentStep = useAppSelector((state) => state.schemes.currentStep)
+  const currentStep = useAppSelector((state: any) => state.schemes.currentStep)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -49,16 +54,17 @@ const TimetableStructureDetails = (props: Props) => {
     },
   })
 
+  // Helper function to generate lesson pairs for double lessons
   const lessonPairs = () => {
     const lessons = form.watch('lessonsPerWeek') || 1;
-    const pairs = [];
+    const pairs: [number, number][] = []
     for (let i = 1; i < lessons; i++) {
-      pairs.push([i, i + 1]); // Store as an array of numbers
+      pairs.push([i, i + 1])
     }
     return pairs;
   };
 
-  // 2. Define a submit handler.
+  // Submit handler: update the Redux form data and move to the next step
   function onSubmit(values: z.infer<typeof formSchema>) {
     dispatch(updateFormData(values))
     dispatch(setCurrentStep(currentStep + 1));
@@ -69,6 +75,7 @@ const TimetableStructureDetails = (props: Props) => {
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+          {/* Lessons per week */}
           <FormField
             control={form.control}
             name="lessonsPerWeek"
@@ -101,6 +108,7 @@ const TimetableStructureDetails = (props: Props) => {
             )}
           />
 
+          {/* First Lesson Details */}
           <h1 className="text-[16px] font-bold text-gray-800 dark:text-gray-200">First Lesson details</h1>
           <div className="flex flex-col md:items-center md:justify-center md:flex-row gap-2">
             <div className="w-full">
@@ -151,6 +159,7 @@ const TimetableStructureDetails = (props: Props) => {
             </div>
           </div>
 
+          {/* Last Lesson Details */}
           <h1 className="text-[16px] font-bold text-gray-800 dark:text-gray-200">Last Lesson details</h1>
           <div className="flex flex-col md:items-center md:justify-center md:flex-row gap-2">
             <div className="w-full">
@@ -174,7 +183,7 @@ const TimetableStructureDetails = (props: Props) => {
                 name="endLesson"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>First Lesson of Teaching</FormLabel>
+                    <FormLabel>Last Lesson of Teaching</FormLabel>
                     <FormControl>
                       <Select
                         onValueChange={(value) => {
@@ -199,56 +208,59 @@ const TimetableStructureDetails = (props: Props) => {
                 )}
               />
             </div>
-        </div>
-            
-                    <div className="flex items-center gap-2 py-4 ">
-                        <Checkbox
-                        id="double-lesson"
-                        onCheckedChange={(checked) => {
-                            setShowDoubleLesson(checked);
-                            if (!checked) {
-                            // Reset the doubleLesson field to an empty array when unchecked
-                            form.setValue("doubleLesson", []);
-                            }
-                        }}
-                        />
-                        <FormLabel htmlFor="double-lesson">Enable double lessons</FormLabel>
-                    </div>
-           
-                
-            
-              {showDoubleLesson && (
-                <FormField
-                  control={form.control}
-                  name="doubleLesson"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Select Double Lesson</FormLabel>
-                      <FormControl>
-                        <Select
-                          onValueChange={(value) => {
-                            field.onChange(JSON.parse(value));
-                          }}
-                        >
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select double lesson" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {lessonPairs().map((pair, index) => (
-                              <SelectItem key={index} value={JSON.stringify(pair)}>
-                                {`Lesson ${pair[0]} & ${pair[1]}`}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+          </div>
+
+          {/* Double Lesson Toggle */}
+          <div className="flex items-center gap-2 py-4 ">
+            <Checkbox
+              id="double-lesson"
+              checked={showDoubleLesson}
+              onCheckedChange={(checked:any) => {
+                setShowDoubleLesson(checked);
+                if (!checked) {
+                  // Reset the doubleLesson field to an empty array when unchecked
+                  form.setValue("doubleLesson", []);
+                }
+              }}
+            />
+            <FormLabel htmlFor="double-lesson">Enable double lessons</FormLabel>
+          </div>
+
+          {/* Double Lesson Selection */}
+          {showDoubleLesson && (
+            <FormField
+              control={form.control}
+              name="doubleLesson"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Select Double Lesson</FormLabel>
+                  <FormControl>
+                    <Select
+                      onValueChange={(value) => {
+                        // Parse the JSON value (e.g., "[1,2]") and update the field
+                        field.onChange(JSON.parse(value));
+                      }}
+                      defaultValue={field.value && field.value.length > 0 ? JSON.stringify(field.value) : ""}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select double lesson" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {lessonPairs().map((pair, index) => (
+                          <SelectItem key={index} value={JSON.stringify(pair)}>
+                            {`Lesson ${pair[0]} & ${pair[1]}`}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
               )}
-            
-      
+            />
+          )}
+
+          {/* Navigation Buttons */}
           <NavButtons />
         </form>
       </Form>

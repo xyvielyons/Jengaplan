@@ -9,6 +9,9 @@ import { authClient } from '@/auth-client';
 import { ArrowLeft, ArrowRight, EyeIcon, Plus } from 'lucide-react';
 import { setCurrentStep } from '@/store/slices/SchemeSlice';
 import TablePreview from './TablePreview';
+import { BankInformation, DeductFromBank } from '@/actions/queries';
+import { useToast } from '@/hooks/use-toast';
+import { useRouter } from 'next/navigation';
 
 const PdfGen = ({ data }: { data: any }) => {
   const formdata: any = useAppSelector((state) => state.schemes.formData);
@@ -221,7 +224,8 @@ const PdfGen = ({ data }: { data: any }) => {
 
   const dispatch = useAppDispatch();
   const currentStepValue = useAppSelector((state) => state.schemes.currentStep);
-
+  const {toast} = useToast()
+  const router = useRouter()
   const handlePrevious = () => {
     dispatch(setCurrentStep(currentStepValue - 1));
   };
@@ -315,8 +319,40 @@ const PdfGen = ({ data }: { data: any }) => {
     if (!pdfDataUrl) {
       await createPDF();
     }
+
+    const getBankInfo = await BankInformation()
+    if(!getBankInfo){
+      return toast({
+        title:"Something went wrong",
+        description:"Could not access your wallet",
+        variant:"destructive"
+      })
+    }
+    const getBankBalance = await getBankInfo?.amount
+    if(getBankBalance < 10){
+      router.push('/wallet')
+      return toast({
+        title: "Please top up your account",
+        description: "You don't have enough funds",
+        variant: "destructive"
+      });
+    }
+    const AmountToDeduct = getBankBalance - 1
+    const deductMoneyFromBank = await DeductFromBank(getBankInfo.id,AmountToDeduct)
+    if(!deductMoneyFromBank){
+      return toast({
+        title:"Something went wrong",
+        description:"Could not process your payment",
+        variant:"destructive"
+      })
+    }
+
     // Trigger download using an anchor element
     if (pdfDataUrl) {
+      toast({
+        title:"Please wait.........",
+        description:"Your download process has been queued",
+      })
       const link = document.createElement('a');
       link.href = pdfDataUrl;
       link.download = 'scheme.pdf';
