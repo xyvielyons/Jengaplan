@@ -14,7 +14,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 
 const PdfGen = ({ data }: { data: any }) => {
-  const formdata: any = useAppSelector((state) => state.schemes.formData);
+  const formdata:any = useAppSelector((state) => state.schemes.formData);
   const { data: session } = authClient.useSession();
   const [loading, setLoading] = useState(false);
   const [pdfDataUrl, setPdfDataUrl] = useState<string | null>(null);
@@ -355,15 +355,16 @@ const PdfGen = ({ data }: { data: any }) => {
       })
       const link = document.createElement('a');
       link.href = pdfDataUrl;
-      link.download = 'scheme.pdf';
+      link.download = `${formdata?.subject}-${formdata?.schoolName}-${formdata?.year}-${session?.user.id}-${totalLessons}-${lessonsPerWeek}`
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     }
   };
 
+  
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       {pdfDataUrl ? (
         <div>
           <Chip className={`${loading ? 'bg-emerald-600' : 'bg-red-500'} text-white`}>
@@ -398,11 +399,11 @@ const PdfGen = ({ data }: { data: any }) => {
           </div>
         )
       )}
-      {pdfDataUrl && (
+      {/* {pdfDataUrl && (
         <div style={{ marginTop: '20px', border: '1px solid #ccc' }}>
           <iframe src={pdfDataUrl} style={{ width: '100%', height: '500px', border: 'none' }} title="PDF Preview" />
         </div>
-      )}
+      )} */}
     </div>
   );
 };
