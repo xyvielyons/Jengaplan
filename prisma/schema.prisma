@@ -29,6 +29,7 @@ model User {
   sessions      Session[]
   accounts      Account[]
   Bank          Bank?
+  schemes       generatedPdfScheme[]
 }
 
 model Session {
@@ -99,4 +100,37 @@ model form1mathematics {
   REFERENCE  String
   SUBTOPIC   String
   TOPIC      String
+}
+
+model generatedPdfScheme {
+    id                 String   @id @default(cuid()) @map("_id")
+    userId             String
+    schoolName         String
+    schoolLevel        String
+    subject            String
+    term               String
+    class              String
+    year               String
+    selectedTopics     String[]
+    lessonsPerWeek     Int
+    startWeek          Int
+    startLesson        Int
+    endWeek            Int
+    endLesson          Int
+    addBreaks          Boolean
+    breaks             Break[]
+    doubleLesson       Int[]
+    User               User   @relation(fields: [userId],references: [id],onDelete:Cascade)
+
+}
+model Break {
+  id          String  @id @default(cuid()) @map("_id")
+  schemeId    String
+  startWeek   Int
+  startLesson Int
+  endWeek     Int
+  endLesson   Int
+  title       String
+  Scheme      generatedPdfScheme   @relation(fields: [schemeId],references: [id],onDelete:Cascade)
+
 }
