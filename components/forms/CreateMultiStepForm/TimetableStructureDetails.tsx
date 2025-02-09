@@ -60,8 +60,8 @@ const TimetableStructureDetails = (props: Props) => {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // dispatch(updateFormData(values))
-    // dispatch(setCurrentStep(currentStep + 1));
+    dispatch(updateFormData(values))
+    dispatch(setCurrentStep(currentStep + 1));
     console.log(values)
   }
 
