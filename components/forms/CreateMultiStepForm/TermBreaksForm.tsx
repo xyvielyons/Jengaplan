@@ -92,17 +92,21 @@ const AddBreaksForm = () => {
     return options
   }
   const weekOptions = () => {
-    const weeks:any = form.watch("endWeek") || 10;
-    const options = []
-    for (let i = 1; i <= weeks; i++) {
+    const startWeek: number = form.watch("startWeek") || 1;
+    const endWeek: number = form.watch("endWeek") || 10;
+    const options = [];
+  
+    for (let i = startWeek; i <= endWeek; i++) {
       options.push(
         <SelectItem key={i} value={String(i)}>
-          {`week ${i}`}
+          {`Week ${i}`}
         </SelectItem>
-      )
+      );
     }
-    return options
-  }
+  
+    return options;
+  };
+  
 
   // // Generate options for weeks. Here we use a fixed range (1–10).
   // const weekOptions = (maxWeeks: number = 10) => {
@@ -148,7 +152,7 @@ const AddBreaksForm = () => {
               <Button
                 type="button"
                 radius="sm"
-                className="text-gray-800"
+                className="text-gray-800 dark:text-gray-100"
                 onClick={() =>
                   append({
                     startWeek: 1,
@@ -180,7 +184,7 @@ const AddBreaksForm = () => {
                     </FormItem>
                   )}
                 />
-                <h1 className="text-[16px] font-bold text-gray-800 ">Break start</h1>
+                <h1 className="text-[16px] font-bold text-gray-800 dark:text-gray-100">Break start</h1>
 
                 {/* Start Week and Start Lesson as select components */}
                 <div className="flex mt-2 flex-col md:flex-row md:gap-2">
@@ -239,7 +243,7 @@ const AddBreaksForm = () => {
                     />
                   </div>
                 </div>
-                <h1 className="text-[16px] font-bold text-gray-800 ">Break end</h1>
+                <h1 className="text-[16px] font-bold text-gray-800 dark:text-gray-100">Break end</h1>
                 {/* End Week and End Lesson as select components */}
                 <div className="flex mt-2 flex-col md:flex-row md:gap-2">
                   <div className="w-full">

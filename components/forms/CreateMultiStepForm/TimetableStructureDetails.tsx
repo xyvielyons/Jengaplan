@@ -111,7 +111,7 @@ const TimetableStructureDetails = (props: Props) => {
                   <FormItem>
                     <FormLabel>First Week of Teaching</FormLabel>
                     <FormControl>
-                      <Input type="number" {...field} />
+                      <Input type="number" {...field} min={1}/>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -161,7 +161,7 @@ const TimetableStructureDetails = (props: Props) => {
                   <FormItem>
                     <FormLabel>Last Week of Teaching</FormLabel>
                     <FormControl>
-                      <Input type="number" {...field} />
+                      <Input type="number" {...field} min={1} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
