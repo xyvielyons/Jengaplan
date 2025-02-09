@@ -49,7 +49,7 @@ const SortableItem = ({
       style={style}
       {...attributes}
       {...listeners}
-      className="dark:bg-background bg-white border border-gray-300 p-2 mb-4 cursor-grab dark:border-gray-600 touch-none shadow-sm text-gray-700 rounded-sm"
+      className="dark:bg-background bg-white border border-gray-300 p-2 mb-4 cursor-grab dark:border-gray-600 touch-none shadow-sm text-gray-700 rounded-sm dark:text-gray-100"
     >
       <span className="font-bold mr-2">{index + 1}.</span>
       {id}
