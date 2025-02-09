@@ -1,30 +1,40 @@
 'use client';
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
-import { Button } from '@/components/ui/button';
+import { Button } from '@heroui/react';
 import autoTable from 'jspdf-autotable';
-import { getTotalLessons} from '@/lib/Mathfunctions';
-import { useAppSelector } from '@/hooks/hooks';
+import { getTotalLessons } from '@/lib/Mathfunctions';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { authClient } from '@/auth-client';
+import { ArrowLeft, ArrowRight, EyeIcon, Plus } from 'lucide-react';
+import { setCurrentStep } from '@/store/slices/SchemeSlice';
+import TablePreview from './TablePreview';
 
-const PdfGen = ({data}: {
-  data:any,
-}) => {
-  const formdata:any = useAppSelector((state)=>state.schemes.formData)
-  const {data:session} = authClient.useSession()
+const PdfGen = ({ data }: { data: any }) => {
+  const formdata: any = useAppSelector((state) => state.schemes.formData);
+  const { data: session } = authClient.useSession();
   const [loading, setLoading] = useState(false);
   const [pdfDataUrl, setPdfDataUrl] = useState<string | null>(null);
+  const [tableData, setTableData] = useState<any[]>([]); // State for table data preview
 
-  const [lessonsPerWeek, setLessonsPerWeek] = useState(formdata?.lessonsPerWeek);
-  const [startWeek, setStartWeek] = useState(formdata?.startWeek);
-  const [startLesson, setStartLesson] = useState(formdata?.startLesson);
-  const [endWeek, setEndWeek] = useState(formdata?.endWeek);
-  const [endLesson, setEndLesson] = useState(formdata?.endLesson);
-  const [addBreaks, setAddBreaks] = useState(formdata?.addBreaks);
-  const [breaks, setBreaks] = useState(formdata?.breaks);
-  const [doubleLesson, setDoubleLesson] = useState(formdata?.doubleLesson); // Example: combine lesson 1 with lesson 2
-
-  const totalLessons = getTotalLessons(startWeek, endWeek, startLesson, endLesson, lessonsPerWeek, breaks, addBreaks,doubleLesson);
+  const [lessonsPerWeek] = useState(formdata?.lessonsPerWeek);
+  const [startWeek] = useState(formdata?.startWeek);
+  const [startLesson] = useState(formdata?.startLesson);
+  const [endWeek] = useState(formdata?.endWeek);
+  const [endLesson] = useState(formdata?.endLesson);
+  const [addBreaks] = useState(formdata?.addBreaks);
+  const [breaks] = useState(formdata?.breaks);
+  const [doubleLesson] = useState(formdata?.doubleLesson);
+  const totalLessons = getTotalLessons(
+    startWeek,
+    endWeek,
+    startLesson,
+    endLesson,
+    lessonsPerWeek,
+    breaks,
+    addBreaks,
+    doubleLesson
+  );
   console.log('Total Teachable Lessons:', totalLessons);
  
   const myAdjustedData: any[] = [...data]; // Start with the original topics
@@ -33,23 +43,19 @@ const PdfGen = ({data}: {
   const topicsToAdd = totalLessons - myAdjustedData.length;
   
   if (topicsToAdd > 0) {
-    // Loop to add topics until we reach the required total lessons
     while (myAdjustedData.length < totalLessons) {
-      // Pick a random position to duplicate a topic from the current adjusted data
       const randomIndex = Math.floor(Math.random() * myAdjustedData.length);
       const randomTopic = myAdjustedData[randomIndex];
-  
-      // Insert the duplicated topic immediately after the original
       myAdjustedData.splice(randomIndex + 1, 0, randomTopic);
-  
-      // Optionally log for debugging
       console.log(`Duplicated topic from index ${randomIndex} and inserted at ${randomIndex + 1}`);
     }
   }
 
-  const createPDF = async() => {
+  const createPDF = async () => {
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 100));
+    // Increase delay to ensure the loading indicator is rendered before heavy processing starts
+    await new Promise((resolve) => setTimeout(resolve, 200));
+
     const doc = new jsPDF({
       orientation: 'landscape',
       format: 'a4',
@@ -74,7 +80,6 @@ const PdfGen = ({data}: {
     const totalTopics = myAdjustedData.length;
     const topicsPerLesson = Math.floor(totalTopics / totalLessons);
     let extraTopics = totalTopics % totalLessons;
-
     let topicIndex = 0;
 
     for (let week = startWeek; week <= endWeek; week++) {
@@ -83,7 +88,7 @@ const PdfGen = ({data}: {
         if (week === endWeek && lesson > endLesson) break;
 
         const breakInfo = addBreaks ? breaks.find(
-          (b:any) =>
+          (b: any) =>
             (week > b.startWeek || (week === b.startWeek && lesson >= b.startLesson)) &&
             (week < b.endWeek || (week === b.endWeek && lesson <= b.endLesson))
         ) : null;
@@ -129,7 +134,7 @@ const PdfGen = ({data}: {
 
           lessons.push([
             week,
-            `${lesson} and ${lesson + 1}`, // Combine the lesson number
+            `${lesson} and ${lesson + 1}`,
             combinedTopic,
             combinedSubTopic,
             combinedObjectives,
@@ -140,7 +145,7 @@ const PdfGen = ({data}: {
 
           topicIndex += currentTopicsCount;
           if (extraTopics > 0) extraTopics--;
-          lesson++; // Skip the next lesson since it's part of the double lesson
+          lesson++;
         } else if (topicIndex < myAdjustedData.length) {
           const currentTopicsCount = topicsPerLesson + (extraTopics > 0 ? 1 : 0);
           const assignedTopics = myAdjustedData.slice(topicIndex, topicIndex + currentTopicsCount);
@@ -171,14 +176,12 @@ const PdfGen = ({data}: {
       }
     }
 
+    setTableData(lessons);
     autoTable(doc, {
       head: headers,
       body: lessons,
       startY: 20,
-      styles: {
-        fontSize: 10,
-        cellPadding: 3,
-      },
+      styles: { fontSize: 10, cellPadding: 3 },
       headStyles: { fillColor: [229, 228, 226], textColor: [0, 0, 0] },
       theme: 'grid',
     });
@@ -188,17 +191,111 @@ const PdfGen = ({data}: {
     setLoading(false);
   };
 
+  const dispatch = useAppDispatch();
+  const currentStepValue = useAppSelector((state) => state.schemes.currentStep);
+
+  const handlePrevious = () => {
+    dispatch(setCurrentStep(currentStepValue - 1));
+  };
+
+  const openTablePreviewInNewTab = () => {
+    createPDF()
+    if (!tableData || tableData.length === 0) return;
+  
+    const newWindow = window.open("", "_blank", "width=1200,height=800");
+    if (newWindow) {
+      newWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>Table Preview</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+              body {
+                margin: 0;
+                padding: 20px;
+                font-family: sans-serif;
+              }
+              .table-container {
+                transform: scale(0.8);
+                transform-origin: top left;
+                width: 125%;
+              }
+              table {
+                width: 100%;
+                border-collapse: collapse;
+              }
+              th, td {
+                border: 1px solid #ccc;
+                padding: 8px;
+                text-align: left;
+              }
+              th {
+                background-color: #f2f2f2;
+              }
+            </style>
+          </head>
+          <body>
+            <h2 style="text-align: center;">PDF Content Preview</h2>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Week</th>
+                    <th>Lesson</th>
+                    <th>Topic(s)</th>
+                    <th>Sub-Topic(s)</th>
+                    <th>Objectives</th>
+                    <th>T/L Activities</th>
+                    <th>T/L Aids</th>
+                    <th>Reference</th>
+                    <th>Remarks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${tableData
+                    .map((row) => {
+                      return `<tr>${row
+                        .map((cell: any) => {
+                          if (typeof cell === "object" && cell !== null && cell.content) {
+                            // Use colSpan if provided; otherwise default to 1.
+                            const colSpan = cell.colSpan || 1;
+                            return `<td colspan="${colSpan}">${cell.content}</td>`;
+                          }
+                          return `<td>${cell}</td>`;
+                        })
+                        .join("")}</tr>`;
+                    })
+                    .join("")}
+                </tbody>
+              </table>
+            </div>
+          </body>
+        </html>
+      `);
+      newWindow.document.close();
+    }
+  };
+
   return (
     <div>
       <h1>Generate PDF</h1>
-      <Button onClick={createPDF} disabled={loading}>
-        {loading ? 'Generating PDF...' : 'Create PDF'}
+      <Button onPress={createPDF}>
+        {loading ? "Generating PDF..." : "Create PDF"}
       </Button>
+      <div className="mt-4">
+        <Button onPress={openTablePreviewInNewTab}>
+          Open Table Preview in New Tab
+        </Button>
+        <Button onPress={handlePrevious}>
+          Back
+        </Button>
+      </div>
       {pdfDataUrl && (
-        <div style={{ marginTop: '20px', border: '1px solid #ccc' }}>
+        <div style={{ marginTop: "20px", border: "1px solid #ccc" }}>
           <iframe
             src={pdfDataUrl}
-            style={{ width: '100%', height: '500px', border: 'none' }}
+            style={{ width: "100%", height: "500px", border: "none" }}
             title="PDF Preview"
           />
         </div>
