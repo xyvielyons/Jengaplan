@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
 import { BankInformation } from '@/actions/queries'
 import { useToast } from '@/hooks/use-toast'
+import { useAppSelector } from '@/hooks/hooks'
 type Props = {
     children:React.ReactNode
 }
@@ -25,6 +26,7 @@ const DashboardNav = ({children}: Props) => {
   const pathname = usePathname()
   const [bankAmount, setBankAmount] = useState<number>(0)
   const {toast} = useToast()
+  const formData = useAppSelector((state)=>state.schemes.formData)
   useEffect(()=>{
     const fetchData = async()=>{
       const bankInformation = await BankInformation()
@@ -38,7 +40,7 @@ const DashboardNav = ({children}: Props) => {
       setBankAmount(bankInformation.amount)
     }
     fetchData()
-  },[])
+  },[FormData])
 
   return (
     

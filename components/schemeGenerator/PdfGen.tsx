@@ -8,13 +8,12 @@ import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { authClient } from '@/auth-client';
 import { ArrowLeft, ArrowRight, EyeIcon, Plus } from 'lucide-react';
 import { clearData, setCurrentStep } from '@/store/slices/SchemeSlice';
-import TablePreview from './TablePreview';
 import { BankInformation, DeductFromBank } from '@/actions/queries';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 
 const PdfGen = ({ data }: { data: any }) => {
-  const formdata:any = useAppSelector((state) => state.schemes.formData);
+  const formdata: any = useAppSelector((state) => state.schemes.formData);
   const { data: session } = authClient.useSession();
   const [loading, setLoading] = useState(false);
   const [pdfDataUrl, setPdfDataUrl] = useState<string | null>(null);
@@ -72,17 +71,19 @@ const PdfGen = ({ data }: { data: any }) => {
     const pageWidth = doc.internal.pageSize.getWidth();
     const centerX = pageWidth / 2;
 
-    // Use optional chaining and default text to avoid errors if a property is missing
+    // Header content
+    doc.setFontSize(24);
+    doc.text('Name..........................', centerX - 8, 35, { align: 'right' });
+    doc.text('TSC No..........................', centerX, 50, { align: 'right' });
     doc.setFontSize(32);
-    doc.text(formdata?.schoolName?.toLocaleUpperCase() || 'SCHOOL NAME', centerX, 60, { align: 'center' });
+    doc.text(formdata?.schoolName?.toLocaleUpperCase() || 'SCHOOL NAME', centerX, 80, { align: 'center' });
     doc.text(
       `${formdata?.term?.toLocaleUpperCase() || 'TERM'}  ${formdata?.class?.toLocaleUpperCase() || 'CLASS'}`,
       centerX,
-      80,
+      100,
       { align: 'center' }
     );
-    doc.text(`Year: ${formdata?.year || 'N/A'}`, centerX, 100, { align: 'center' });
-    doc.text(`${session?.user?.name || 'User Name'}`, centerX, 140, { align: 'center' });
+    doc.text(`Year: ${formdata?.year || 'N/A'}`, centerX, 120, { align: 'center' });
     doc.addPage();
 
     const headers = [
@@ -109,24 +110,16 @@ const PdfGen = ({ data }: { data: any }) => {
           : null;
 
         if (breakInfo) {
-          const isBreakAlreadyAdded = lessons.some(
-            (row) =>
-              typeof row[0] === 'object' &&
-              row[0].content.includes(
-                `${breakInfo.title}: Week ${breakInfo.startWeek} lesson ${breakInfo.startLesson} to Week ${breakInfo.endWeek} lesson ${breakInfo.endLesson}`
-              )
-          );
+          // Add a break row with centered, bold, red text.
+          lessons.push([
+            {
+              content: `${breakInfo.title}: Week ${breakInfo.startWeek} lesson ${breakInfo.startLesson} to Week ${breakInfo.endWeek} lesson ${breakInfo.endLesson}`,
+              colSpan: headers[0].length,
+              styles: { halign: 'center', fontStyle: 'bold', textColor: [255, 0, 0] },
+            },
+          ]);
 
-          if (!isBreakAlreadyAdded) {
-            lessons.push([
-              {
-                content: `${breakInfo.title}: Week ${breakInfo.startWeek} lesson ${breakInfo.startLesson} to Week ${breakInfo.endWeek} lesson ${breakInfo.endLesson}`,
-                colSpan: headers[0].length,
-                styles: { halign: 'center', fontStyle: 'bold', textColor: [255, 0, 0] },
-              },
-            ]);
-          }
-
+          // Skip lessons covered by the break
           while (
             (week < breakInfo.endWeek || (week === breakInfo.endWeek && lesson < breakInfo.endLesson)) &&
             lesson <= lessonsPerWeek
@@ -224,8 +217,9 @@ const PdfGen = ({ data }: { data: any }) => {
 
   const dispatch = useAppDispatch();
   const currentStepValue = useAppSelector((state) => state.schemes.currentStep);
-  const {toast} = useToast()
-  const router = useRouter()
+  const { toast } = useToast();
+  const router = useRouter();
+
   const handlePrevious = () => {
     dispatch(setCurrentStep(currentStepValue - 1));
   };
@@ -237,9 +231,10 @@ const PdfGen = ({ data }: { data: any }) => {
     // If lessons data is empty, exit early
     if (!lessons || lessons.length === 0) return;
 
-    const newWindow = window.open('', '_blank', 'width=1200,height=800');
-    if (newWindow) {
-      newWindow.document.write(`
+    // Open a new tab (note: we remove the third parameter so that it opens as a tab)
+    const newTab = window.open('', '_blank');
+    if (newTab) {
+      newTab.document.write(`
         <!DOCTYPE html>
         <html>
           <head>
@@ -268,10 +263,50 @@ const PdfGen = ({ data }: { data: any }) => {
               th {
                 background-color: #f2f2f2;
               }
+              .header-section {
+                margin-bottom: 20px;
+              }
+              .header-section .name-tsc {
+                display: flex;
+                justify-content: space-between;
+              }
+              .header-section .school-name {
+                text-align: center;
+                font-size: 32px;
+                font-weight: bold;
+                margin-bottom: 10px;
+              }
+              .header-section .term-class {
+                text-align: center;
+                font-size: 32px;
+                margin-bottom: 10px;
+              }
+              .header-section .year {
+                text-align: center;
+                font-size: 32px;
+                margin-bottom: 20px;
+              }
+              .back-button {
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                z-index:1000;
+              }
             </style>
           </head>
           <body>
-            <h2 style="text-align: center;">PDF Content Preview</h2>
+            <button class="back-button" onclick="window.close()">Back</button>
+            <div class="header-section">
+              <div class="school-name">${formdata?.schoolName?.toLocaleUpperCase() || 'SCHOOL NAME'}</div>
+              <div class="term-class">${formdata?.term?.toLocaleUpperCase() || 'TERM'} ${formdata?.class?.toLocaleUpperCase() || 'CLASS'}</div>
+              <div class="year">Year: ${formdata?.year || 'N/A'}</div>
+            </div>
             <div class="table-container">
               <table>
                 <thead>
@@ -293,8 +328,25 @@ const PdfGen = ({ data }: { data: any }) => {
                       return `<tr>${row
                         .map((cell: any) => {
                           if (typeof cell === 'object' && cell !== null && cell.content) {
+                            let inlineStyle = "";
+                            if(cell.styles) {
+                              if(
+                                cell.styles.textColor &&
+                                cell.styles.textColor[0] === 255 &&
+                                cell.styles.textColor[1] === 0 &&
+                                cell.styles.textColor[2] === 0
+                              ) {
+                                inlineStyle += "color: red;";
+                              }
+                              if(cell.styles.halign === 'center') {
+                                inlineStyle += " text-align: center;";
+                              }
+                              if(cell.styles.fontStyle && cell.styles.fontStyle === 'bold') {
+                                inlineStyle += " font-weight: bold;";
+                              }
+                            }
                             const colSpan = cell.colSpan || 1;
-                            return `<td colspan="${colSpan}">${cell.content}</td>`;
+                            return `<td colspan="${colSpan}" style="${inlineStyle}">${cell.content}</td>`;
                           }
                           return `<td>${cell}</td>`;
                         })
@@ -307,7 +359,7 @@ const PdfGen = ({ data }: { data: any }) => {
           </body>
         </html>
       `);
-      newWindow.document.close();
+      newTab.document.close();
     }
   };
 
@@ -320,51 +372,53 @@ const PdfGen = ({ data }: { data: any }) => {
       await createPDF();
     }
 
-    const getBankInfo = await BankInformation()
-    if(!getBankInfo){
+    const getBankInfo = await BankInformation();
+    if (!getBankInfo) {
       return toast({
-        title:"Something went wrong",
-        description:"Could not access your wallet",
-        variant:"destructive"
-      })
+        title: "Something went wrong",
+        description: "Could not access your wallet",
+        variant: "destructive"
+      });
     }
-    const getBankBalance = await getBankInfo?.amount
-    if(getBankBalance < 10){
-      router.push('/wallet')
+    const getBankBalance = await getBankInfo?.amount;
+    if (getBankBalance < 10) {
+      router.push('/wallet');
       return toast({
         title: "Please top up your account",
         description: "You don't have enough funds",
         variant: "destructive"
       });
     }
-    const AmountToDeduct = getBankBalance - 25
-    const deductMoneyFromBank = await DeductFromBank(getBankInfo.id,AmountToDeduct)
-    if(!deductMoneyFromBank){
+    const AmountToDeduct = getBankBalance - 25;
+    const deductMoneyFromBank = await DeductFromBank(getBankInfo.id, AmountToDeduct);
+    if (!deductMoneyFromBank) {
       return toast({
-        title:"Something went wrong",
-        description:"Could not process your payment",
-        variant:"destructive"
-      })
+        title: "Something went wrong",
+        description: "Could not process your payment",
+        variant: "destructive"
+      });
     }
 
     // Trigger download using an anchor element
     if (pdfDataUrl) {
       toast({
-        title:"Please wait.........",
-        description:"Your download process has been queued",
-      })
+        title: "Please wait.........",
+        description: "Your download process has been queued",
+      });
       const link = document.createElement('a');
       link.href = pdfDataUrl;
-      link.download = `${formdata?.subject}-${formdata?.schoolName}-${formdata?.year}-${session?.user.id}-${totalLessons}-${lessonsPerWeek}`
+      link.download = `${formdata?.subject}-${formdata?.schoolName}-${formdata?.year}-${session?.user.id}-${totalLessons}-${lessonsPerWeek}`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      createAnotherScheme()
+      createAnotherScheme();
     }
   };
-  const createAnotherScheme = async()=>{
-    dispatch(clearData({}))
-  }
+
+  const createAnotherScheme = async () => {
+    dispatch(clearData({}));
+    router.refresh();
+  };
 
   return (
     <div className="space-y-10">
@@ -381,23 +435,26 @@ const PdfGen = ({ data }: { data: any }) => {
               Create another scheme
             </Button>
           </div>
-          <div className="mt-4 flex items-center md:justify-between md:flex-row gap-2">
-            <Button onPress={handlePrevious} className="w-full md:w-fit" radius="sm">
+          <div className="mt-4 flex items-center md:justify-between md:flex-row gap-2 flex-col">
+            <Button onPress={handlePrevious} className="w-full md:w-fit" radius="sm" startContent={<ArrowLeft></ArrowLeft>}>
               Back
             </Button>
-            <Button radius="none" onPress={openTablePreviewInNewTab} className="bg-gray-600 text-white w-full md:w-fit" endContent={<EyeIcon />}>
+            <Button radius="sm" variant='bordered' onPress={openTablePreviewInNewTab} className="w-full" endContent={<EyeIcon />}>
               Preview Scheme
             </Button>
           </div>
         </div>
       ) : (
-        totalLessons > 1 && (
+        totalLessons > 2 && (
           <div className="space-y-4">
             <Chip className={`${loading ? 'bg-emerald-600' : 'bg-red-500'} text-white`}>
               {loading ? 'status: Generating Scheme' : 'status: idle'}
             </Chip>
             <Button className="bg-blue-600 text-white w-full" onPress={createPDF} endContent={<ArrowRight />} radius="sm">
               Generate PDF
+            </Button>
+            <Button onPress={handlePrevious} className="w-full md:w-fit" radius="sm" startContent={<ArrowLeft></ArrowLeft>}>
+              Back
             </Button>
           </div>
         )
