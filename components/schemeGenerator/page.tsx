@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import PdfGen from "./PdfGen";
 import { getData } from "@/actions/schemes";
 import { useAppSelector } from "@/hooks/hooks";
-export default function SchemeGenerator() {
+export default function SchemeGenerator({generate}:{generate:()=>void}) {
   const [mathsform1data, setmathsform1data] = useState([])
   const formdata = useAppSelector((state)=>state.schemes.formData)
+
   useEffect(()=>{
     const fetchdata = async()=>{
       const mathsform1data: any = await getData('form1mathematics')
@@ -36,7 +37,7 @@ const orderedTopics = filteredTopics.sort(
 
 return (
   <div className="p-4">
-    <PdfGen data={orderedTopics}/>
+    <PdfGen data={orderedTopics} />
   </div>
 );
 }
