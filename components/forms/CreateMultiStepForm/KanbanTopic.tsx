@@ -20,7 +20,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import NavButtons from './FormNavButtons';
 import { Button } from '@heroui/react';
 import { ArrowRight } from 'lucide-react';
-import { updateFormData } from '@/store/slices/SchemeSlice';
+import { setCurrentStep, updateFormData } from '@/store/slices/SchemeSlice';
 
 // A sortable item component for each topic, now with an index to display its number.
 const SortableItem = ({
@@ -83,8 +83,10 @@ const KanbanTopic = () => {
   };
 
   const dispatch = useAppDispatch();
+  const currentStep = useAppSelector((state)=>state.schemes.currentStep)
   const updateTopicOrder = () => {
     dispatch(updateFormData({ selectedTopics: topics }));
+    dispatch(setCurrentStep(currentStep + 1))
     console.log(topics);
   };
 

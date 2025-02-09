@@ -33,7 +33,7 @@ export default function NavButtons() {
       </Button> */}
       <Button
       type="submit"
-      className={`bg-blue-600 text-white flex-row ${currentStep == 5?"hidden":"block"}`}
+      className={`bg-blue-600 text-white flex-row ${currentStep == 5 ?"hidden":"block"}`}
       radius="sm"
       
       >
