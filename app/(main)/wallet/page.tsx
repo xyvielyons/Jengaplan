@@ -1,22 +1,15 @@
+export const dynamic = "force-dynamic"; // Ensures it is not statically pre-rendered
 import { BankInformation } from '@/actions/queries'
-import { columns,Transaction } from '@/components/Tables/Transactions/columns'
+import { columns} from '@/components/Tables/Transactions/columns'
 import { DataTable } from '@/components/Tables/Transactions/data-table'
 import WalletCards from '@/components/cards/WalletCards'
 import React from 'react'
 
-type Props = {}
 
-const WalletPage = async(props: Props) => {
 
-  // const submit = async()=>{
-  //   const initiatePayment = await InitiatePayment({
-  //     price:"1.00",
-  //     phoneNumber:"0728440683",
-  //     name:"xyvie"
-  //   })
-  //   console.log(initiatePayment)
-  // }
-  const myBankInformation = await BankInformation()
+const WalletPage = async() => {
+
+  const myBankInformation:any = await BankInformation()
   
   const getTransactions:any = myBankInformation?.transactions
   return (
@@ -24,7 +17,7 @@ const WalletPage = async(props: Props) => {
       <div className="w-full space-y-2">
         <h1 className='text-[24px] font-bold text-gray-800 dark:text-gray-100'>Wallet</h1>
         <p className='text-sm text-gray-600 dark:text-gray-300'>
-        Easily track your balance, top up, and pay for generated schemes. Stay in control of your spending with a simple and secure wallet system.
+        Easily track your balance{`,`} top up{`,`} and pay for generated schemes. Stay in control of your spending with a simple and secure wallet system.
         </p>
       </div>
       <div className="">

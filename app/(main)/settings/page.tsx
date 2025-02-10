@@ -3,9 +3,8 @@ import React from 'react'
 import {auth} from '@/auth'
 import { headers } from 'next/headers'
 import AccountSettingsForm from '@/components/forms/AccountSettingsForm'
-type Props = {}
 
-const SettingsPage = async(props: Props) => {
+const SettingsPage = async() => {
   const session = await auth.api.getSession({
     headers:await headers()
   })
@@ -14,7 +13,7 @@ const SettingsPage = async(props: Props) => {
       <div className="w-full space-y-2">
         <h1 className='text-[24px] font-bold text-gray-800 dark:text-gray-100'>Account Settings</h1>
         <p className='text-sm text-gray-600 dark:text-gray-300'>
-          Update your profile, preferences, and teaching details to make JengaScheme work perfectly for you.
+          Update your profile{`,`} preferences{`,`} and teaching details to make JengaScheme work perfectly for you.
         </p>
       </div>
 

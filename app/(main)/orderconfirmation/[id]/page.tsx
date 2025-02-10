@@ -3,12 +3,11 @@ import ConfirmedLottie from '@/components/global/ConfirmedLottie'
 import { TransactionStatus } from '@/actions/pesapalpayments';
 
 type Props = {
-  params:{ id: string },
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: any
   
 }
 
-const page = async({params,searchParams}: Props) => {
+const page = async({searchParams}: Props) => {
   // const userId = (await params).id
   const OrderTrackingId:any = await searchParams.OrderTrackingId?.toString()
   // const OrderMerchantReference = await searchParams.OrderMerchantReference

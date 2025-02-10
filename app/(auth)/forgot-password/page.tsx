@@ -2,7 +2,6 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import ForgetForm from '@/components/forms/ForgetForm'
-import { reset } from '@/public/images'
 const page = () => {
   return (
     <div className="flex flex-col md:flex-row mt-[32px] p-4 relative">

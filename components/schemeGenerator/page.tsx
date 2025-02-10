@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import PdfGen from "./PdfGen";
 import { getData } from "@/actions/schemes";
 import { useAppSelector } from "@/hooks/hooks";
-export default function SchemeGenerator({generate}:{generate:()=>void}) {
+export default function SchemeGenerator() {
   const [mathsform1data, setmathsform1data] = useState([])
   const formdata:any = useAppSelector((state)=>state.schemes.formData)
 
