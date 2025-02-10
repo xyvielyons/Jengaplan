@@ -103,7 +103,11 @@ export const getGeneratedPdfData = async({userId}:{userId:any})=>{
     try {
         const getGeneratedPdfs = await prisma.generatedPdfScheme.findMany({
             where:{
-                userId:userId
+                userId:userId,
+                
+            },
+            include:{
+                breaks:true
             },
             orderBy:{
                 createdAt:'asc'

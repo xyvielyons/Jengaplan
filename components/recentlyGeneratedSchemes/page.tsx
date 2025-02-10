@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import PdfGen from "./PdfGen";
 import { getData } from "@/actions/schemes";
 import { useAppSelector } from "@/hooks/hooks";
-export default function SchemeGenerator({generate}:{generate:()=>void}) {
+export default function RecentlyGenerated({pdfData}:any) {
   const [mathsform1data, setmathsform1data] = useState([])
-  const formdata:any = useAppSelector((state)=>state.schemes.formData)
+  const formdata = useAppSelector((state)=>state.schemes.formData)
 
   useEffect(()=>{
     const fetchdata = async()=>{
-      const mathsform1data: any = await getData(formdata?.class + formdata?.subject)
+      const mathsform1data: any = await getData(pdfData.class + pdfData.subject)
       setmathsform1data(mathsform1data)
     }
     fetchdata()
@@ -17,11 +17,11 @@ export default function SchemeGenerator({generate}:{generate:()=>void}) {
   // Fetch the maths form 1 data
 //console.log(mathsform1data[0]);
 
-if(!formdata){
-  return <div>loading....</div>
-}
+// if(!formdata){
+//   return <div>loading....</div>
+// }
 // Specify the topics you want to include
-const includeTopics = formdata?.selectedTopics
+const includeTopics = pdfData?.selectedTopics
 
 if(!includeTopics){
   return <div>loading....</div>
@@ -37,7 +37,7 @@ const orderedTopics = filteredTopics.sort(
 
 return (
   <div className="p-4">
-    <PdfGen data={orderedTopics} />
+    <PdfGen data={orderedTopics} pdf={pdfData} />
   </div>
 );
 }

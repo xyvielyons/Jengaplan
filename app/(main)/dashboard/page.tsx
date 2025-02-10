@@ -14,7 +14,7 @@ const page = async(props: Props) => {
   const myBankInformation = await BankInformation()
   const getPdfs = await getGeneratedPdfData({userId:session?.user.id})
   return (
-    <div className='h-full max-w-7xl mx-auto flex flex-col gap-2 p-4 space-y-2 pb-[120px]'>
+    <div className='h-full max-w-7xl mx-auto flex flex-col p-4 space-y-2 pb-[120px]'>
       <div className="w-full space-y-2">
         <h1 className='text-[24px] font-bold text-gray-800 dark:text-gray-100'>Hello 👋 {session?.user.name}</h1>
         <h1 className='text-[18px] font-bold text-gray-800 dark:text-gray-100'>Overview Dashboard</h1>
