@@ -16,6 +16,7 @@ import { usePathname } from 'next/navigation'
 import { BankInformation } from '@/actions/queries'
 import { useToast } from '@/hooks/use-toast'
 import { useAppSelector } from '@/hooks/hooks'
+import { HandCoins } from 'lucide-react';
 type Props = {
     children:React.ReactNode
 }
@@ -55,9 +56,10 @@ const DashboardNav = ({children}: Props) => {
                 <Image src={logolight} alt='logo' width={100} height={100} className='dark:brightness-200'></Image>
                 <p className='dark:text-slate-400 text-sm text-gray-600 '>{pathname}</p>
               </div>
-              <div className="flex flex-row space-x-2 items-center">
-                  <div className="mr-2 flex items-center justify-center border p-2 text-sm rounded-sm text-gray-700 cursor-pointer dark:text-gray-300 dark:border-gray-700" onClick={()=>router.push('/wallet')}>
-                    {`Ksh ${bankAmount}`}
+              <div className="flex flex-row space-x-[4px] items-center">
+                  <div className="mr-2 text-[12px] flex items-center justify-center border p-2 text-sm rounded-sm text-gray-700 cursor-pointer dark:text-gray-300 dark:border-gray-700" onClick={()=>router.push('/wallet')}>
+                    <HandCoins size={18} className='mr-[4px]'></HandCoins>
+                    {`${bankAmount}`}
                   </div>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
