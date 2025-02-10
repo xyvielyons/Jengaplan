@@ -110,7 +110,7 @@ export const getGeneratedPdfData = async({userId}:{userId:any})=>{
                 breaks:true
             },
             orderBy:{
-                createdAt:'asc'
+                createdAt:'desc'
             }
         })
         return getGeneratedPdfs

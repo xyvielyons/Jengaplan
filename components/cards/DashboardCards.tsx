@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import CountUp from 'react-countup';
 import { Wallet,BadgeDollarSign } from 'lucide-react';
 import { Button } from '@heroui/react';
 import {
@@ -33,7 +34,7 @@ const DashboardCards = ({bankInfo,pdfs}: Props) => {
             </CardTitle>
           </CardHeader>
           <CardContent className='space-y-2'>
-            <h1 className='text-[32px] font-bold text-gray-800 dark:text-gray-200'>{`Ksh ${bankInfo?.amount}`}<span className='text-gray-500 dark:text-gray-400'>.00</span></h1>
+            <h1 className='text-[32px] font-bold text-gray-800 dark:text-gray-200'><CountUp end={bankInfo?.amount as number} duration={10}  /><span className='text-gray-500 dark:text-gray-400'>.00</span></h1>
             <Button onPress={onOpen} className='bg-blue-600 text-white w-full' radius='sm'>Top up</Button>
           </CardContent>
         </Card>
@@ -46,7 +47,7 @@ const DashboardCards = ({bankInfo,pdfs}: Props) => {
             </CardTitle>
           </CardHeader>
           <CardContent className='space-y-2'>
-            <h1 className='text-[32px] font-bold text-gray-800 dark:text-gray-200 flex items-center gap-4'>{`${bankInfo?.transactions.length}`}<span className='text-gray-500 dark:text-gray-400 text-[20px] font-medium'> Transactions</span></h1>
+            <h1 className='text-[32px] font-bold text-gray-800 dark:text-gray-200 flex items-center gap-4'><CountUp end={bankInfo?.transactions.length as number} duration={10}  /><span className='text-gray-500 dark:text-gray-400 text-[20px] font-medium'> Transactions</span></h1>
           </CardContent>
         </Card>
         <Card className='dark:bg-background w-full'>
@@ -57,7 +58,7 @@ const DashboardCards = ({bankInfo,pdfs}: Props) => {
             </CardTitle>
           </CardHeader>
           <CardContent className='space-y-2'>
-            <h1 className='text-[32px] font-bold text-gray-800 dark:text-gray-200 flex items-center gap-4'>{`${pdfs.length}`}<span className='text-gray-500 dark:text-gray-400 text-[20px] font-medium'> Schemes</span></h1>
+            <h1 className='text-[32px] font-bold text-gray-800 dark:text-gray-200 flex items-center gap-4'><CountUp end={pdfs.length as number} duration={10}  /><span className='text-gray-500 dark:text-gray-400 text-[20px] font-medium'> Schemes</span></h1>
           </CardContent>
         </Card>
       </div>
