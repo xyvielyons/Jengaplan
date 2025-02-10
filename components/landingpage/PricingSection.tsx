@@ -1,10 +1,12 @@
 'use client'
 import React from 'react'
-import { Check } from 'lucide-react'
+import { Check, Router } from 'lucide-react'
 import { Button } from '@heroui/react'
 import Image from 'next/image'
 import { smiley1, sparkle2, underline3 } from '@/public/images'
+import { useRouter } from 'next/navigation'
 const PricingSection = () => {
+  const router = useRouter()
   return (
     <section className='space-y-4 mt-[24px] relative' id='pricing'>
       <div className="absolute top-[100px] left-[20px] md:left-[40px] lg:left-[60px]">
@@ -37,7 +39,7 @@ const PricingSection = () => {
             <p className='text-gray-600 dark:text-gray-200'><Check className=' dark:text-gray-200 w-[24px] h-[24px] text-gray-600 inline-flex items-center'/>No hidden fees, no commitments—pay per scheme.</p>
             <p className='text-gray-600 dark:text-gray-200'><Check className=' dark:text-gray-200 w-[24px] h-[24px] text-gray-600 inline-flex items-center'/>Perfect for teachers who value flexibility and simplicity.</p>
           </div>
-          <Button className='w-full dark:text-gray-100 rounded-none bg-[#007AFF]'>Get started</Button> 
+          <Button className='w-full dark:text-gray-100 rounded-none bg-[#007AFF] text-white' onPress={()=>router.push('/sign-in')}>Get started</Button> 
         </div>
       </div>
 
