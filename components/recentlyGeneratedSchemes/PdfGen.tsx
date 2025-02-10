@@ -95,7 +95,7 @@ const PdfGen = ({ data,pdf }: { data: any,pdf:any }) => {
     doc.addPage();
 
     const headers = [
-      ['Week', 'Lesson', 'Topic(s)', 'Sub-Topic(s)', 'Objectives', 'T/L Activities', 'T/L Aids', 'Reference'],
+      ['Week', 'Lesson', 'Topic(s)', 'Sub-Topic(s)', 'Objectives', 'T/L Activities', 'T/L Aids', 'Reference','Remarks'],
     ];
 
     const lessons: any[] = [];
