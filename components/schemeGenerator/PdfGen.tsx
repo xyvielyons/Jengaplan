@@ -8,12 +8,12 @@ import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { authClient } from '@/auth-client';
 import { ArrowLeft, ArrowRight, EyeIcon, Plus } from 'lucide-react';
 import { clearData, setCurrentStep } from '@/store/slices/SchemeSlice';
-import { BankInformation, DeductFromBank } from '@/actions/queries';
+import { BankInformation, DeductFromBank, SaveGeneratedPdfData } from '@/actions/queries';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 
 const PdfGen = ({ data }: { data: any }) => {
-  const formdata: any = useAppSelector((state) => state.schemes.formData);
+  const formdata = useAppSelector((state) => state.schemes.formData);
   const { data: session } = authClient.useSession();
   const [loading, setLoading] = useState(false);
   const [pdfDataUrl, setPdfDataUrl] = useState<string | null>(null);
@@ -101,34 +101,38 @@ const PdfGen = ({ data }: { data: any }) => {
         if (week === startWeek && lesson < startLesson) continue;
         if (week === endWeek && lesson > endLesson) break;
 
-        const breakInfo = addBreaks
-          ? breaks.find(
-              (b: any) =>
-                (week > b.startWeek || (week === b.startWeek && lesson >= b.startLesson)) &&
-                (week < b.endWeek || (week === b.endWeek && lesson <= b.endLesson))
-            )
-          : null;
+        const breakInfo = addBreaks ? breaks.find(
+          (b) =>
+            (week > b.startWeek || (week === b.startWeek && lesson >= b.startLesson)) &&
+            (week < b.endWeek || (week === b.endWeek && lesson <= b.endLesson))
+        ) : null;
 
-        if (breakInfo) {
-          // Add a break row with centered, bold, red text.
-          lessons.push([
-            {
-              content: `${breakInfo.title}: Week ${breakInfo.startWeek} lesson ${breakInfo.startLesson} to Week ${breakInfo.endWeek} lesson ${breakInfo.endLesson}`,
-              colSpan: headers[0].length,
-              styles: { halign: 'center', fontStyle: 'bold', textColor: [255, 0, 0] },
-            },
-          ]);
-
-          // Skip lessons covered by the break
-          while (
-            (week < breakInfo.endWeek || (week === breakInfo.endWeek && lesson < breakInfo.endLesson)) &&
-            lesson <= lessonsPerWeek
-          ) {
-            lesson++;
+          if (breakInfo) {
+            const isBreakAlreadyAdded = lessons.some(
+              (row) =>
+                typeof row[0] === 'object' &&
+                row[0].content.includes(`${breakInfo.title}: Week ${breakInfo.startWeek} lesson ${breakInfo.startLesson} to Week ${breakInfo.endWeek} lesson ${breakInfo.endLesson}`)
+            );
+          
+            if (!isBreakAlreadyAdded) {
+              lessons.push([
+                {
+                  content: `${breakInfo.title}: Week ${breakInfo.startWeek} lesson ${breakInfo.startLesson} to Week ${breakInfo.endWeek} lesson ${breakInfo.endLesson}`,
+                  colSpan: headers[0].length,
+                  styles: { halign: 'center', fontStyle: 'bold', textColor: [255, 0, 0] },
+                },
+              ]);
+            }
+          
+            while (
+              (week < breakInfo.endWeek || (week === breakInfo.endWeek && lesson < breakInfo.endLesson)) &&
+              lesson <= lessonsPerWeek
+            ) {
+              lesson++;
+            }
+            if (lesson > lessonsPerWeek) break;
+            continue;
           }
-          if (lesson > lessonsPerWeek) break;
-          continue;
-        }
 
         // Handle double lessons safely by ensuring doubleLesson is an array
         if (Array.isArray(doubleLesson) && doubleLesson.includes(lesson) && topicIndex < myAdjustedData.length) {
@@ -411,6 +415,26 @@ const PdfGen = ({ data }: { data: any }) => {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+
+      await SaveGeneratedPdfData({
+        userId:session?.user.id,
+        schoolName:formdata?.schoolName,
+        schoolLevel:formdata?.schoolLevel,
+        subject:formdata?.subject,
+        term:formdata?.term,
+        year:formdata?.year,
+        selectedTopics:formdata?.selectedTopics,
+        lessonsPerWeek,
+        startWeek,
+        startLesson,
+        endWeek,
+        endLesson,
+        addBreaks,
+        breaks:formdata?.breaks,
+        doubleLesson:formdata?.doubleLesson,
+        className:formdata?.class
+      })
+      
       createAnotherScheme();
     }
   };

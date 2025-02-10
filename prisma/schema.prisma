@@ -14,18 +14,18 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid()) @map("_id")
+  id            String               @id @default(cuid()) @map("_id")
   name          String
-  email         String    @unique
-  emailVerified Boolean   @default(false)
+  email         String               @unique
+  emailVerified Boolean              @default(false)
   image         String?
-  premium       Boolean   @default(false)
-  role          String    @default("user")
-  banned        Boolean   @default(false)
+  premium       Boolean              @default(false)
+  role          String               @default("user")
+  banned        Boolean              @default(false)
   banReason     String?
   banExpires    Int? /// Unix timestamp for ban expiration
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
   sessions      Session[]
   accounts      Account[]
   Bank          Bank?
@@ -92,6 +92,7 @@ model Transactions {
 
   Bank Bank @relation(fields: [bankId], references: [id])
 }
+
 model form1mathematics {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -103,34 +104,35 @@ model form1mathematics {
 }
 
 model generatedPdfScheme {
-    id                 String   @id @default(cuid()) @map("_id")
-    userId             String
-    schoolName         String
-    schoolLevel        String
-    subject            String
-    term               String
-    class              String
-    year               String
-    selectedTopics     String[]
-    lessonsPerWeek     Int
-    startWeek          Int
-    startLesson        Int
-    endWeek            Int
-    endLesson          Int
-    addBreaks          Boolean
-    breaks             Break[]
-    doubleLesson       Int[]
-    User               User   @relation(fields: [userId],references: [id],onDelete:Cascade)
-
+  id             String   @id @default(cuid()) @map("_id")
+  userId         String
+  schoolName     String?
+  schoolLevel    String?
+  subject        String?
+  term           String?
+  class          String?
+  year           String?
+  selectedTopics String[]
+  lessonsPerWeek Int?
+  startWeek      Int?
+  startLesson    Int?
+  endWeek        Int?
+  endLesson      Int?
+  addBreaks      Boolean?
+  breaks         Break[]
+  doubleLesson   Int[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  User           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
 model Break {
-  id          String  @id @default(cuid()) @map("_id")
+  id          String             @id @default(cuid()) @map("_id")
   schemeId    String
   startWeek   Int
   startLesson Int
   endWeek     Int
   endLesson   Int
   title       String
-  Scheme      generatedPdfScheme   @relation(fields: [schemeId],references: [id],onDelete:Cascade)
-
+  Scheme      generatedPdfScheme @relation(fields: [schemeId], references: [id], onDelete: Cascade)
 }

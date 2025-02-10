@@ -2,6 +2,8 @@
 import prisma from "@/lib/prisma"
 import { auth } from "@/auth"
 import { headers } from "next/headers"
+import { GeneratedPdfTypes } from "@/lib/types"
+import { add } from "date-fns"
 export const BankInformation = async()=>{
     try {
         const session = await auth.api.getSession({
@@ -36,3 +38,63 @@ export const DeductFromBank = async(BankId:string,amount:number)=>{
         console.log(error)
     }
 }
+
+
+export const SaveGeneratedPdfData = async({
+    userId,
+    schoolName,
+    schoolLevel,
+    subject,
+    term,
+    year,
+    selectedTopics,
+    lessonsPerWeek,
+    startWeek,
+    startLesson,
+    endWeek,
+    endLesson,
+    addBreaks,
+    breaks,
+    doubleLesson,
+    className
+}: GeneratedPdfTypes) => {
+    try {
+        if (!userId) {
+            throw new Error("userId is required");
+        }
+
+        const savePdf = await prisma.generatedPdfScheme.create({
+            data: {
+                userId,
+                schoolName,
+                schoolLevel,
+                subject,
+                term,
+                year,
+                selectedTopics,
+                lessonsPerWeek,
+                startWeek,
+                startLesson,
+                endWeek,
+                endLesson,
+                addBreaks,
+                breaks:{
+                    create: breaks?.map((breakItem) => ({
+                        startWeek: breakItem.startWeek,
+                        startLesson: breakItem.startLesson,
+                        endWeek: breakItem.endWeek,
+                        endLesson: breakItem.endLesson,
+                        title: breakItem.title
+                    })) || []
+                },
+                doubleLesson,
+                class:className
+            }
+        });
+
+        return savePdf;
+    } catch (error) {
+        console.error("Error saving PDF data:", error);
+        throw new Error("Failed to save PDF data");
+    }
+};
