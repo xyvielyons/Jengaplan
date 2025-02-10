@@ -86,5 +86,7 @@ export const getTotalLessons = (
   return totalLessons > 0 ? totalLessons : 0; // Ensure non-negative result
 
 }
-
+export function formatDateTime(isoString:any) {
+  return new Date(isoString).toLocaleString();
+}
 

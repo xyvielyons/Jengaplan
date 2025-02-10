@@ -18,6 +18,7 @@ import reset from './reset.svg'
 import logo from './logo.svg'
 import ErrorLottie from './ServerError.json'
 import ConfirmedLottie from './CardPayment.json'
+import pdflogo from './pdflogo.png'
 export {
     logodark,
     logolight,
@@ -38,5 +39,6 @@ export {
     reset,
     logo,
     ErrorLottie,
-    ConfirmedLottie
+    ConfirmedLottie,
+    pdflogo
 }
