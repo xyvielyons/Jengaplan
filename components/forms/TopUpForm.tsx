@@ -26,6 +26,7 @@ import { useRouter } from "next/navigation";
 interface Props {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
+  onOpen:any;
 }
 
 const formSchema = z.object({

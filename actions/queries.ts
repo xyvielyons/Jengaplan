@@ -98,3 +98,17 @@ export const SaveGeneratedPdfData = async({
         throw new Error("Failed to save PDF data");
     }
 };
+
+export const getGeneratedPdfData = async({userId}:{userId:any})=>{
+    try {
+        const getGeneratedPdfs = await prisma.generatedPdfScheme.findMany({
+            where:{
+                userId:userId
+            }
+        })
+        return getGeneratedPdfs
+    } catch (error) {
+        console.error("Error getting PDF data:", error);
+        throw new Error("Failed to get pdf data");
+    }
+}

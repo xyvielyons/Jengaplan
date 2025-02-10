@@ -1,8 +1,9 @@
 import { Prisma } from "@prisma/client";
-import { BankInformation, SaveGeneratedPdfData } from "@/actions/queries";
+import { BankInformation, SaveGeneratedPdfData, getGeneratedPdfData } from "@/actions/queries";
 
 export type getBankInformationTypes = Prisma.PromiseReturnType<typeof BankInformation>
 //export type saveGeneratedPdfTypes = Prisma.PromiseReturnType<typeof SaveGeneratedPdfData>
+export type getPdfsTypes= Prisma.PromiseReturnType<typeof getGeneratedPdfData>
 
 export interface SelectTypes {
     name:string;
