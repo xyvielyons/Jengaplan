@@ -93,15 +93,6 @@ model Transactions {
   Bank Bank @relation(fields: [bankId], references: [id])
 }
 
-model form1mathematics {
-  id         String @id @default(auto()) @map("_id") @db.ObjectId
-  ACTIVITIES String
-  AIDS       String
-  OBJECTIVES String
-  REFERENCE  String
-  SUBTOPIC   String
-  TOPIC      String
-}
 
 model generatedPdfScheme {
   id             String   @id @default(cuid()) @map("_id")
@@ -135,6 +126,15 @@ model Break {
   endLesson   Int
   title       String
   Scheme      generatedPdfScheme @relation(fields: [schemeId], references: [id], onDelete: Cascade)
+}
+model form1mathematics {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
 }
 
 model form1englishes {
@@ -246,6 +246,387 @@ model form1computers {
   TOPIC      String
 }
 model form1ires {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form2mathematics {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+
+model form2englishes {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form2kiswahilis {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form2chemistries {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form2biologies {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form2physics {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form2histories {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form2geographies {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form2cres {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form2businesses {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form2agricultures {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form2homesciences {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form2computers {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form2ires {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form3mathematics {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+
+model form3englishes {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form3kiswahilis {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form3chemistries {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form3biologies {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form3physics {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form3histories {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form3geographies {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form3cres {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form3businesses {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form3agricultures {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form3homesciences {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form3computers {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form3ires {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form4mathematics {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+
+model form4englishes {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form4kiswahilis {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form4chemistries {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form4biologies {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form4physics {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form4histories {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form4geographies {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form4cres {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form4businesses {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form4agricultures {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form4homesciences {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form4computers {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form4ires {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
   AIDS       String
