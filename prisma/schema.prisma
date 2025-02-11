@@ -146,3 +146,111 @@ model form1englishes {
   SUBTOPIC   String
   TOPIC      String
 }
+model form1kiswahilis {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form1chemistries {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form1biologies {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form1physics {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form1histories {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form1geographies {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form1cres {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form1businesses {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form1agricultures {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form1homesciences {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form1computers {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+model form1ires {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}

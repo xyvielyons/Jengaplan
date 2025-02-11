@@ -15,7 +15,7 @@ import { setCurrentStep, updateFormData } from "@/store/slices/SchemeSlice";
 
 // Zod validation schema
 const formSchema = z.object({
-  topics: z.array(z.string()).min(3, "Select at least three topics."),
+  topics: z.array(z.string()).min(1, "Select at least one topic."),
 });
 
 export default function TopicSelectorForm() {

@@ -169,15 +169,15 @@ export const secondarySubjects:SelectTypes[] = [
   },
   {
     name:"Kiswahili",
-    serverName:'kiswahili'
+    serverName:'kiswahilis'
   },
   {
     name:"Chemistry",
-    serverName:'chemistry'
+    serverName:'chemistries'
   },
   {
     name:"Biology",
-    serverName:'biology'
+    serverName:'biologies'
   },
   {
     name:"Physics",
@@ -185,31 +185,35 @@ export const secondarySubjects:SelectTypes[] = [
   },
   {
     name:"History",
-    serverName:'history'
+    serverName:'histories'
   },
   {
     name:"Geography",
-    serverName:'geograpghy'
+    serverName:'geographies'
   },
   {
     name:"CRE",
-    serverName:'cre'
+    serverName:'cres'
   },
   {
     name:"Business",
-    serverName:'business'
+    serverName:'businesses'
   },
   {
     name:"Home Science",
-    serverName:'homescience'
+    serverName:'homesciences'
   },
   {
     name:"Computer",
-    serverName:'computer'
+    serverName:'computers'
   },
   {
     name:"IRE",
-    serverName:'ire'
+    serverName:'ires'
+  },
+  {
+    name:"Agriculture",
+    serverName:'agricultures'
   }
 ]
 
