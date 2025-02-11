@@ -165,7 +165,7 @@ export const secondarySubjects:SelectTypes[] = [
   },
   {
     name:"English",
-    serverName:'english'
+    serverName:'englishes'
   },
   {
     name:"Kiswahili",

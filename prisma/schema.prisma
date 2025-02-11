@@ -136,3 +136,13 @@ model Break {
   title       String
   Scheme      generatedPdfScheme @relation(fields: [schemeId], references: [id], onDelete: Cascade)
 }
+
+model form1englishes {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
