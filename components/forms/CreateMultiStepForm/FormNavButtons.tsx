@@ -1,13 +1,19 @@
 import { ChevronLast, ChevronLeft, ChevronRight } from "lucide-react";
 import React from "react";
 import { useAppSelector,useAppDispatch } from "@/hooks/hooks";
-import { setCurrentStep } from "@/store/slices/SchemeSlice";
+import { setCurrentStep, updateFormData } from "@/store/slices/SchemeSlice";
 import { Button } from "@heroui/react";
 export default function NavButtons() {
   const currentStep = useAppSelector((store) => store.schemes.currentStep);
   const dispatch = useAppDispatch();
   function handlePrevious() {
-    dispatch(setCurrentStep(currentStep - 1));
+    if(currentStep == 2){
+      dispatch(updateFormData({selectedTopics:[],selectedSubtopics:[]}))
+      dispatch(setCurrentStep(currentStep - 1));
+    }else{
+      dispatch(setCurrentStep(currentStep - 1));
+
+    }
   }
   
   return (

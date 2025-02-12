@@ -116,7 +116,7 @@ export default function TopicSubtopicSelectorForm() {
   };
 
   return (
-    <Card className="max-w-lg mx-auto p-6 shadow-md">
+    <Card className=" mx-auto p-6 shadow-md">
       <h2 className="text-lg font-bold mb-4">Select Topics and Subtopics</h2>
 
       {topics.length === 0 ? (
