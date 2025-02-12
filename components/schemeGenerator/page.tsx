@@ -21,15 +21,33 @@ if(!formdata){
   return <div>loading....</div>
 }
 // Specify the topics you want to include
-const includeTopics = formdata?.selectedTopics
 
-if(!includeTopics){
+
+// Assume formdata contains selectedTopics and selectedSubtopics
+const includeTopics = formdata?.selectedTopics;
+const includeSubtopics = formdata?.selectedSubtopics;
+if(!includeTopics || !includeSubtopics){
   return <div>loading....</div>
 }
 
-// Filter and sort the topics based on includeTopics
-const filteredTopics = mathsform1data.filter((topic: any) => includeTopics.includes(topic.TOPIC));
-const orderedTopics = filteredTopics.sort(
+// First, filter data based on the topic and subtopic selection.
+const filteredData = mathsform1data.filter((item: any) => {
+  // Check that the topic is selected.
+  const topicMatch = includeTopics.includes(item.TOPIC);
+
+  // If there are subtopics selected for this topic, check that the current subtopic is among them.
+  const subtopicMatch =
+    includeSubtopics &&
+    includeSubtopics[item.TOPIC] &&
+    includeSubtopics[item.TOPIC].length > 0
+      ? includeSubtopics[item.TOPIC].includes(item.SUBTOPIC)
+      : true;
+
+  return topicMatch && subtopicMatch;
+});
+
+// Now, to preserve the original topic order, sort the data based on the order in includeTopics.
+const orderedData = filteredData.sort(
   (a: any, b: any) => includeTopics.indexOf(a.TOPIC) - includeTopics.indexOf(b.TOPIC)
 );
 
@@ -37,7 +55,7 @@ const orderedTopics = filteredTopics.sort(
 
 return (
   <div className="p-4">
-    <PdfGen data={orderedTopics} />
+    <PdfGen data={orderedData} />
   </div>
 );
 }

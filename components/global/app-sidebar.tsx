@@ -39,7 +39,7 @@ export function AppSidebar() {
                 <SidebarMenu>
                 {DashboardItems.map((item) => (
                     <SidebarMenuItem key={item.title} className="relative flex items-center justify-center">
-                    <div className={`absolute left-[-4] top-0 h-full bg-[#007AFF] w-[4px]  ${mypathname == item.url ? "block" : "hidden"}`}></div>
+                    <div className={`absolute left-[-4px] top-0 h-full bg-[#007AFF] w-[4px]  ${mypathname == item.url ? "block" : "hidden"}`}></div>
                     <SidebarMenuButton asChild size="lg">
                       <Link href={item.url} className=" flex items-center gap-2">
                         <div className={` text-gray-600 ${mypathname == item.url ? "dark:text-slate-50 text-gray-800" : ""}`}>

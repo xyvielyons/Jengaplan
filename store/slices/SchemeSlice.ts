@@ -20,6 +20,7 @@ interface SchemeStateTypes {
     year?:string,
     selectedTopics?:string[],
     lessonsPerWeek?:number,
+    selectedSubtopics?:string[],
     startWeek?:number,
     startLesson?:number,
     endWeek?:number,
