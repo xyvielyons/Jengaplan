@@ -2,6 +2,7 @@
 import prisma from "@/lib/prisma"
 
 export const getData = async (collectionName: string) => {
+    console.log(collectionName)
     const data = await (prisma as any)[collectionName]?.findMany();
     if (!data) {
         console.error(`Collection ${collectionName} not found`);

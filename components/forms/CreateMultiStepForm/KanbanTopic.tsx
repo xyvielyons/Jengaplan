@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useState } from 'react';
 import {
@@ -22,7 +22,7 @@ import { Button } from '@heroui/react';
 import { ArrowRight } from 'lucide-react';
 import { setCurrentStep, updateFormData } from '@/store/slices/SchemeSlice';
 
-// A sortable item component for each topic, now with an index to display its number.
+// A sortable item component for each list item, displaying its index.
 const SortableItem = ({
   id,
   index,
@@ -30,14 +30,7 @@ const SortableItem = ({
   id: string;
   index: number;
 }) => {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-  } = useSortable({ id });
-
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -57,24 +50,30 @@ const SortableItem = ({
   );
 };
 
-// The main component that renders a sortable list of topics
-const KanbanTopic = () => {
-  const topicsInitialData =
-    useAppSelector((state: any) => state.schemes.formData?.selectedTopics) ||
-    [];
-  const [topics, setTopics] = useState<string[]>(topicsInitialData);
+// Main component that renders a sortable list of items.
+// It uses selectedStrands if the school level is primary,
+// otherwise it uses selectedTopics.
+const KanbanList = () => {
+  const formData = useAppSelector((state: any) => state.schemes.formData);
+  const isPrimary = formData?.schoolLevel === 'primary';
 
-  // Configure sensors (mouse and touch)
+  const initialList: string[] = isPrimary
+    ? formData?.selectedStrands || []
+    : formData?.selectedTopics || [];
+
+  const [list, setList] = useState<string[]>(initialList);
+
+  // Configure sensors (for mouse and touch)
   const sensors = useSensors(
     useSensor(MouseSensor, { activationConstraint: { distance: 5 } }),
     useSensor(TouchSensor, { activationConstraint: { delay: 250, tolerance: 5 } })
   );
 
-  // Handle the end of a drag operation
+  // Handle drag end to reorder the list
   const handleDragEnd = (event: any) => {
     const { active, over } = event;
     if (active.id !== over?.id) {
-      setTopics((items) => {
+      setList((items) => {
         const oldIndex = items.indexOf(active.id);
         const newIndex = items.indexOf(over.id);
         return arrayMove(items, oldIndex, newIndex);
@@ -83,19 +82,25 @@ const KanbanTopic = () => {
   };
 
   const dispatch = useAppDispatch();
-  const currentStep = useAppSelector((state)=>state.schemes.currentStep)
-  const updateTopicOrder = () => {
-    dispatch(updateFormData({ selectedTopics: topics }));
-    dispatch(setCurrentStep(currentStep + 1))
-    console.log(topics);
+  const currentStep = useAppSelector((state: any) => state.schemes.currentStep);
+
+  // Dispatch the updated order based on the school level
+  const updateOrder = () => {
+    if (isPrimary) {
+      dispatch(updateFormData({ selectedStrands: list }));
+    } else {
+      dispatch(updateFormData({ selectedTopics: list }));
+    }
+    dispatch(setCurrentStep(currentStep + 1));
+    console.log(list);
   };
 
   return (
     <div className="">
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-        <SortableContext items={topics} strategy={verticalListSortingStrategy}>
-          {topics.map((topic, index) => (
-            <SortableItem key={topic} id={topic} index={index} />
+        <SortableContext items={list} strategy={verticalListSortingStrategy}>
+          {list.map((item, index) => (
+            <SortableItem key={item} id={item} index={index} />
           ))}
         </SortableContext>
       </DndContext>
@@ -105,7 +110,7 @@ const KanbanTopic = () => {
           radius="sm"
           className="bg-blue-600 text-white mt-2"
           endContent={<ArrowRight />}
-          onPress={updateTopicOrder}
+          onPress={updateOrder}
         >
           Next
         </Button>
@@ -114,4 +119,4 @@ const KanbanTopic = () => {
   );
 };
 
-export default KanbanTopic;
+export default KanbanList;

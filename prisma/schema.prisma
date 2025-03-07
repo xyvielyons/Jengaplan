@@ -93,7 +93,6 @@ model Transactions {
   Bank Bank @relation(fields: [bankId], references: [id])
 }
 
-
 model generatedPdfScheme {
   id             String   @id @default(cuid()) @map("_id")
   userId         String
@@ -127,6 +126,7 @@ model Break {
   title       String
   Scheme      generatedPdfScheme @relation(fields: [schemeId], references: [id], onDelete: Cascade)
 }
+
 model form1mathematics {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -146,6 +146,7 @@ model form1englishes {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form1kiswahilis {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -155,6 +156,7 @@ model form1kiswahilis {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form1chemistries {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -164,6 +166,7 @@ model form1chemistries {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form1biologies {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -173,6 +176,7 @@ model form1biologies {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form1physics {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -182,6 +186,7 @@ model form1physics {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form1histories {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -191,6 +196,7 @@ model form1histories {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form1geographies {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -200,6 +206,7 @@ model form1geographies {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form1cres {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -209,6 +216,7 @@ model form1cres {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form1businesses {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -218,6 +226,7 @@ model form1businesses {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form1agricultures {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -227,6 +236,7 @@ model form1agricultures {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form1homesciences {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -236,6 +246,7 @@ model form1homesciences {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form1computers {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -245,6 +256,7 @@ model form1computers {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form1ires {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -254,6 +266,7 @@ model form1ires {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form2mathematics {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -273,6 +286,7 @@ model form2englishes {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form2kiswahilis {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -282,6 +296,7 @@ model form2kiswahilis {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form2chemistries {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -291,6 +306,7 @@ model form2chemistries {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form2biologies {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -300,6 +316,7 @@ model form2biologies {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form2physics {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -309,6 +326,7 @@ model form2physics {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form2histories {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -318,6 +336,7 @@ model form2histories {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form2geographies {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -327,6 +346,7 @@ model form2geographies {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form2cres {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -336,6 +356,7 @@ model form2cres {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form2businesses {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -345,6 +366,7 @@ model form2businesses {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form2agricultures {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -354,6 +376,7 @@ model form2agricultures {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form2homesciences {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -363,6 +386,7 @@ model form2homesciences {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form2computers {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -372,6 +396,7 @@ model form2computers {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form2ires {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -381,6 +406,7 @@ model form2ires {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form3mathematics {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -400,6 +426,7 @@ model form3englishes {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form3kiswahilis {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -409,6 +436,7 @@ model form3kiswahilis {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form3chemistries {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -418,6 +446,7 @@ model form3chemistries {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form3biologies {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -427,6 +456,7 @@ model form3biologies {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form3physics {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -436,6 +466,7 @@ model form3physics {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form3histories {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -445,6 +476,7 @@ model form3histories {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form3geographies {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -454,6 +486,7 @@ model form3geographies {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form3cres {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -463,6 +496,7 @@ model form3cres {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form3businesses {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -472,6 +506,7 @@ model form3businesses {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form3agricultures {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -481,6 +516,7 @@ model form3agricultures {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form3homesciences {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -490,6 +526,7 @@ model form3homesciences {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form3computers {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -499,6 +536,7 @@ model form3computers {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form3ires {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -508,6 +546,7 @@ model form3ires {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form4mathematics {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -527,6 +566,7 @@ model form4englishes {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form4kiswahilis {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -536,6 +576,7 @@ model form4kiswahilis {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form4chemistries {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -545,6 +586,7 @@ model form4chemistries {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form4biologies {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -554,6 +596,7 @@ model form4biologies {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form4physics {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -563,6 +606,7 @@ model form4physics {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form4histories {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -572,6 +616,7 @@ model form4histories {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form4geographies {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -581,6 +626,7 @@ model form4geographies {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form4cres {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -590,6 +636,7 @@ model form4cres {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form4businesses {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -599,6 +646,7 @@ model form4businesses {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form4agricultures {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -608,6 +656,7 @@ model form4agricultures {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form4homesciences {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -617,6 +666,7 @@ model form4homesciences {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form4computers {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -626,6 +676,7 @@ model form4computers {
   SUBTOPIC   String
   TOPIC      String
 }
+
 model form4ires {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   ACTIVITIES String
@@ -634,4 +685,1461 @@ model form4ires {
   REFERENCE  String
   SUBTOPIC   String
   TOPIC      String
+}
+
+model form1frenches {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+
+model form2frenches {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+
+model form3frenches {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+
+model form4frenches {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  ACTIVITIES String
+  AIDS       String
+  OBJECTIVES String
+  REFERENCE  String
+  SUBTOPIC   String
+  TOPIC      String
+}
+
+model pp1mathematics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model pp1englishes {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model pp1cres {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model pp1artsandcrafts {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model pp1musics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model pp1environments {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model pp1psychomotors {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model pp2mathematics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model pp2englishes {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model pp2cres {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model pp2artsandcrafts {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model pp2musics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model pp2environments {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model pp2psychomotors {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade1englishes {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade1kiswahilis {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade1mathematics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade1cres {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade1artsandcrafts {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade1musics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade1hygineandnutritions {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade1literacies {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade1movements {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade2englishes {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade2kiswahilis {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade2mathematics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade2cres {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade2artsandcrafts {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade2musics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade2hygineandnutritions {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade2literacies {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade2movements {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade2environments {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade2creativeartsandsports {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade3englishes {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade3kiswahilis {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade3mathematics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade3cres {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade3artsandcrafts {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade3musics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade3hygineandnutritions {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade3literacies {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade3movements {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade3environments {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade3creativeartsandsports {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade3ires {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade4englishes {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade4kiswahilis {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade4mathematics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade4cres {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade4agricultureandnutritions {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade4agricultures {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade4socialstudies {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade4scienceandtechnologies {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade4creativeartsandsports {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade4artsandcrafts {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade4musics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade4homesciences {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade4ires {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade4physicalhealths {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5englishes {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5kiswahilis {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5mathematics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5cres {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5agricultureandnutritions {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5agricultures {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5socialstudies {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5scienceandtechnologies {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5creativeartsandsports {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5artsandcrafts {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5musics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5homesciences {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5ires {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5physicalhealths {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade5lifeskills {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade6englishes {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade6kiswahilis {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade6mathematics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade6cres {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade6agricultureandnutritions {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade6agricultures {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade6socialstudies {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade6scienceandtechnologies {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade6creativeartsandsports {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade6artsandcrafts {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade6musics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade6homesciences {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade6ires {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade6physicalhealths {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade7englishes {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade7kiswahilis {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade7mathematics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade7cres {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade7agricultureandnutritions {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade7socialstudies {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade7integratedsciences {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade7creativeartsandsports {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade7ires{
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade7pretechstudies{
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade8englishes {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade8kiswahilis {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade8mathematics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade8cres {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade8agricultureandnutritions {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade8socialstudies {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade8integratedsciences {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade8creativeartsandsports {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade8ires{
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade8pretechstudies{
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade9englishes {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade9kiswahilis {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade9mathematics {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade9cres {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade9agricultureandnutritions {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade9socialstudies {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade9integratedsciences {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade9creativeartsandsports {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
+}
+model grade9pretechstudies{
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  STRANDS        String?
+  SUBSTRANDS     String?
+  LLOUTCOMES     String?
+  CORECOMPETENCE String?
+  VALUES         String?
+  LEXPERIENCES   String?
+  LRESOURCES     String?
+  ASSESSMENT     String?
+  KEYQUESTIONS   String?
 }

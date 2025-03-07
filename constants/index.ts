@@ -228,28 +228,28 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
         },
         {
           name:"English",
-          serverName:"english"
+          serverName:"englishes"
         },
         {
           name:"CRE",
-          serverName:"cre"
+          serverName:"cres"
         },
         {
           name:"ART & CRAFT",
-          serverName:"artsandcraft"
+          serverName:"artsandcrafts"
         },
         {
           name:"MUSIC",
-          serverName:"music"
+          serverName:"musics"
         },
         {
           name:"Environment",
-          serverName:"environment"
+          serverName:"environments"
         },
         {
-          name:"Movement",
-          serverName:"movement"
-        },
+          name:"Psychomotor",
+          serverName:"psychomotors"
+        }
       ]
     case "pp2":
       return [
@@ -259,28 +259,28 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
         },
         {
           name:"English",
-          serverName:"english"
+          serverName:"englishes"
         },
         {
           name:"CRE",
-          serverName:"cre"
+          serverName:"cres"
         },
         {
           name:"ART & CRAFT",
-          serverName:"artsandcraft"
+          serverName:"artsandcrafts"
         },
         {
           name:"MUSIC",
-          serverName:"music"
+          serverName:"musics"
         },
         {
           name:"Environment",
-          serverName:"environment"
+          serverName:"environments"
         },
         {
           name:"Psychomotor",
-          serverName:"psychomotor"
-        },
+          serverName:"psychomotors"
+        }
       ]
     case "grade1":
       return [
@@ -290,39 +290,39 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
         },
         {
           name:"English",
-          serverName:"english"
+          serverName:"englishes"
         },
         {
           name:"Kiswahili",
-          serverName:"kiswahili"
+          serverName:"kiswahilis"
         },
         {
           name:"CRE",
-          serverName:"cre"
+          serverName:"cres"
         },
         {
           name:"ART & CRAFT",
-          serverName:"artsandcraft"
+          serverName:"artsandcrafts"
         },
         {
           name:"MUSIC",
-          serverName:"music"
+          serverName:"musics"
         },
         {
           name:"Environment",
-          serverName:"environment"
+          serverName:"environments"
         },
         {
           name:"Hygine & Nutrition",
-          serverName:"hygineandnutrition"
+          serverName:"hygineandnutritions"
         },
         {
           name:"Literacy",
-          serverName:"literacy"
+          serverName:"literacies"
         },
         {
           name:"Movement",
-          serverName:"movement"
+          serverName:"movements"
         },
         
       ]
@@ -334,39 +334,39 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
         },
         {
           name:"English",
-          serverName:"english"
+          serverName:"englishes"
         },
         {
           name:"Kiswahili",
-          serverName:"kiswahili"
+          serverName:"kiswahilis"
         },
         {
           name:"CRE",
-          serverName:"cre"
+          serverName:"cres"
         },
         {
           name:"ART & CRAFT",
-          serverName:"artsandcraft"
+          serverName:"artsandcrafts"
         },
         {
           name:"MUSIC",
-          serverName:"music"
+          serverName:"musics"
         },
         {
           name:"Environment",
-          serverName:"environment"
+          serverName:"environments"
         },
         {
           name:"Hygine & Nutrition",
-          serverName:"hygineandnutrition"
+          serverName:"hygineandnutritions"
         },
         {
           name:"Literacy",
-          serverName:"literacy"
+          serverName:"literacies"
         },
         {
           name:"Movement",
-          serverName:"movement"
+          serverName:"movements"
         },
         {
           name:"Creative Arts and sports",
@@ -382,39 +382,39 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
         },
         {
           name:"English",
-          serverName:"english"
+          serverName:"englishes"
         },
         {
           name:"Kiswahili",
-          serverName:"kiswahili"
+          serverName:"kiswahilis"
         },
         {
           name:"CRE",
-          serverName:"cre"
+          serverName:"cres"
         },
         {
           name:"ART & CRAFT",
-          serverName:"artsandcraft"
+          serverName:"artsandcrafts"
         },
         {
           name:"MUSIC",
-          serverName:"music"
+          serverName:"musics"
         },
         {
           name:"Environment",
-          serverName:"environment"
+          serverName:"environments"
         },
         {
           name:"Hygine & Nutrition",
-          serverName:"hygineandnutrition"
+          serverName:"hygineandnutritions"
         },
         {
           name:"Literacy",
-          serverName:"literacy"
+          serverName:"literacies"
         },
         {
           name:"Movement",
-          serverName:"movement"
+          serverName:"movements"
         },
         {
           name:"Creative Arts and sports",
@@ -422,7 +422,7 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
         },
         {
           name:"IRE",
-          serverName:"ire"
+          serverName:"ires"
         },
         
       ]
@@ -434,51 +434,51 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
         },
         {
           name:"English",
-          serverName:"english"
+          serverName:"englishes"
         },
         {
           name:"Kiswahili",
-          serverName:"kiswahili"
+          serverName:"kiswahilis"
         },
         {
           name:"CRE",
-          serverName:"cre"
+          serverName:"cres"
         },
         {
           name:"ART & CRAFT",
-          serverName:"artsandcraft"
+          serverName:"artsandcrafts"
         },
         {
           name:"MUSIC",
-          serverName:"music"
+          serverName:"musics"
         },
         {
           name:"IRE",
-          serverName:"ire"
+          serverName:"ires"
         },
         {
           name:"Agriculture & Nutrition",
-          serverName:"agricultureandnutrition"
+          serverName:"agricultureandnutritions"
         },
         {
           name:"Agriculture",
-          serverName:"agriculture"
+          serverName:"agricultures"
         },
         {
           name:"Social Studies",
           serverName:"socialstudies"
         },
         {
-          name:"Science",
-          serverName:"science"
+          name:"Science & Technology",
+          serverName:"scienceandtechnologies"
         },
         {
           name:"Home Science",
-          serverName:"homescienece"
+          serverName:"homesciences"
         },
         {
           name:"Physical Health",
-          serverName:"physicalhealth"
+          serverName:"physicalhealths"
         },
         {
           name:"Creative Arts and sports",
@@ -493,51 +493,55 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
         },
         {
           name:"English",
-          serverName:"english"
+          serverName:"englishes"
         },
         {
           name:"Kiswahili",
-          serverName:"kiswahili"
+          serverName:"kiswahilis"
         },
         {
           name:"CRE",
-          serverName:"cre"
+          serverName:"cres"
         },
         {
           name:"ART & CRAFT",
-          serverName:"artsandcraft"
+          serverName:"artsandcrafts"
         },
         {
           name:"MUSIC",
-          serverName:"music"
+          serverName:"musics"
         },
         {
           name:"IRE",
-          serverName:"ire"
+          serverName:"ires"
         },
         {
           name:"Agriculture & Nutrition",
-          serverName:"agricultureandnutrition"
+          serverName:"agricultureandnutritions"
         },
         {
           name:"Agriculture",
-          serverName:"agriculture"
+          serverName:"agricultures"
         },
         {
           name:"Social Studies",
           serverName:"socialstudies"
         },
         {
-          name:"Science",
-          serverName:"science"
+          name:"Science & Technology",
+          serverName:"scienceandtechnologies"
         },
         {
           name:"Home Science",
-          serverName:"homescienece"
+          serverName:"homesciences"
         },
         {
           name:"Physical Health",
-          serverName:"physicalhealth"
+          serverName:"physicalhealths"
+        },
+        {
+          name:"Creative Arts and sports",
+          serverName:"creativeartsandsports"
         },
         {
           name:"Lifeskills",
@@ -552,52 +556,56 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
         },
         {
           name:"English",
-          serverName:"english"
+          serverName:"englishes"
         },
         {
           name:"Kiswahili",
-          serverName:"kiswahili"
+          serverName:"kiswahilis"
         },
         {
           name:"CRE",
-          serverName:"cre"
+          serverName:"cres"
         },
         {
           name:"ART & CRAFT",
-          serverName:"artsandcraft"
+          serverName:"artsandcrafts"
         },
         {
           name:"MUSIC",
-          serverName:"music"
+          serverName:"musics"
         },
         {
           name:"IRE",
-          serverName:"ire"
+          serverName:"ires"
         },
         {
           name:"Agriculture & Nutrition",
-          serverName:"agricultureandnutrition"
+          serverName:"agricultureandnutritions"
         },
         {
           name:"Agriculture",
-          serverName:"agriculture"
+          serverName:"agricultures"
         },
         {
           name:"Social Studies",
           serverName:"socialstudies"
         },
         {
-          name:"Science",
-          serverName:"science"
+          name:"Science & Technology",
+          serverName:"scienceandtechnologies"
         },
         {
           name:"Home Science",
-          serverName:"homescienece"
+          serverName:"homesciences"
         },
         {
           name:"Physical Health",
-          serverName:"physicalhealth"
-        }
+          serverName:"physicalhealths"
+        },
+        {
+          name:"Creative Arts and sports",
+          serverName:"creativeartsandsports"
+        },
       ]
       case "grade7":
         return [
@@ -607,19 +615,19 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
           },
           {
             name:"English",
-            serverName:"english"
+            serverName:"englishes"
           },
           {
             name:"Kiswahili",
-            serverName:"kiswahili"
+            serverName:"kiswahilis"
           },
           {
             name:"CRE",
-            serverName:"cre"
+            serverName:"cres"
           },
           {
             name:"Agriculture & Nutrition",
-            serverName:"agricultureandnutrition"
+            serverName:"agricultureandnutritions"
           },
           {
             name:"Social Studies",
@@ -627,7 +635,7 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
           },
           {
             name:"Integrated Science",
-            serverName:"integratedscience"
+            serverName:"integratedsciences"
           },
           {
             name:"Creative Arts & Sports",
@@ -639,7 +647,7 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
           },
           {
             name:"IRE",
-            serverName:"ire"
+            serverName:"ires"
           },
         ]
       case "grade8":
@@ -650,19 +658,19 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
           },
           {
             name:"English",
-            serverName:"english"
+            serverName:"englishes"
           },
           {
             name:"Kiswahili",
-            serverName:"kiswahili"
+            serverName:"kiswahilis"
           },
           {
             name:"CRE",
-            serverName:"cre"
+            serverName:"cres"
           },
           {
             name:"Agriculture & Nutrition",
-            serverName:"agricultureandnutrition"
+            serverName:"agricultureandnutritions"
           },
           {
             name:"Social Studies",
@@ -670,11 +678,7 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
           },
           {
             name:"Integrated Science",
-            serverName:"integratedscience"
-          },
-          {
-            name:"Hindu Religious Education",
-            serverName:"hindu"
+            serverName:"integratedsciences"
           },
           {
             name:"Creative Arts & Sports",
@@ -686,7 +690,7 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
           },
           {
             name:"IRE",
-            serverName:"ire"
+            serverName:"ires"
           },
         ]
       case "grade9":
@@ -697,19 +701,19 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
           },
           {
             name:"English",
-            serverName:"english"
+            serverName:"englishes"
           },
           {
             name:"Kiswahili",
-            serverName:"kiswahili"
+            serverName:"kiswahilis"
           },
           {
             name:"CRE",
-            serverName:"cre"
+            serverName:"cres"
           },
           {
             name:"Agriculture & Nutrition",
-            serverName:"agricultureandnutrition"
+            serverName:"agricultureandnutritions"
           },
           {
             name:"Social Studies",
@@ -717,7 +721,7 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
           },
           {
             name:"Integrated Science",
-            serverName:"integratedscience"
+            serverName:"integratedsciences"
           },
           {
             name:"Creative Arts & Sports",
@@ -726,11 +730,7 @@ export const primarySubjects = (grade:string | any):SelectTypes[]=>{
           {
             name:"Pre Tech Studies",
             serverName:"pretechstudies"
-          },
-          {
-            name:"IRE",
-            serverName:"ire"
-          },
+          }
         ]
     
   

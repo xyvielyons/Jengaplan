@@ -3,59 +3,88 @@ import { useEffect, useState } from "react";
 import PdfGen from "./PdfGen";
 import { getData } from "@/actions/schemes";
 import { useAppSelector } from "@/hooks/hooks";
+
 export default function SchemeGenerator() {
-  const [mathsform1data, setmathsform1data] = useState([])
-  const formdata:any = useAppSelector((state)=>state.schemes.formData)
+  const [data, setData] = useState<any[]>([]);
+  const formdata: any = useAppSelector((state) => state.schemes.formData);
 
-  useEffect(()=>{
-    const fetchdata = async()=>{
-      const mathsform1data: any = await getData(formdata?.class + formdata?.subject)
-      setmathsform1data(mathsform1data)
+  // Fetch data when the class and subject are available.
+  useEffect(() => {
+    const fetchData = async () => {
+      if (formdata?.class && formdata?.subject) {
+        const fetchedData: any = await getData(formdata.class + formdata.subject);
+        setData(fetchedData);
+      }
+    };
+    fetchData();
+  }, [formdata?.class, formdata?.subject]);
+
+  // Wait until formdata is loaded.
+  if (!formdata) {
+    return <div>Loading...</div>;
+  }
+
+  // Determine if we are using the primary scheme (strands/substrands)
+  // or the secondary scheme (topics/subtopics)
+  const isPrimary = formdata?.schoolLevel === "primary";
+
+  let filteredData: any[] = [];
+
+  if (isPrimary) {
+    // Use strands/substrands
+    const includeStrands = formdata?.selectedStrands;
+    const includeSubstrands = formdata?.selectedSubstrands;
+    if (!includeStrands || !includeSubstrands) {
+      return <div>Loading strands...</div>;
     }
-    fetchdata()
-  },[])
-  // Fetch the maths form 1 data
-//console.log(mathsform1data[0]);
 
-if(!formdata){
-  return <div>loading....</div>
-}
-// Specify the topics you want to include
+    // Filter the data based on the selected strands and substrands.
+    filteredData = data.filter((item: any) => {
+      const strandMatch = includeStrands.includes(item.STRANDS);
+      const substrandMatch =
+        includeSubstrands &&
+        includeSubstrands[item.STRANDS] &&
+        includeSubstrands[item.STRANDS].length > 0
+          ? includeSubstrands[item.STRANDS].includes(item.SUBSTRANDS)
+          : true;
+      return strandMatch && substrandMatch;
+    });
 
+    // Order the data based on the order in includeStrands.
+    filteredData.sort(
+      (a: any, b: any) =>
+        includeStrands.indexOf(a.STRANDS) - includeStrands.indexOf(b.STRANDS)
+    );
+  } else {
+    // Use topics/subtopics for secondary.
+    const includeTopics = formdata?.selectedTopics;
+    const includeSubtopics = formdata?.selectedSubtopics;
+    if (!includeTopics || !includeSubtopics) {
+      return <div>Loading topics...</div>;
+    }
 
-// Assume formdata contains selectedTopics and selectedSubtopics
-const includeTopics = formdata?.selectedTopics;
-const includeSubtopics = formdata?.selectedSubtopics;
-if(!includeTopics || !includeSubtopics){
-  return <div>loading....</div>
-}
+    // Filter the data based on the selected topics and subtopics.
+    filteredData = data.filter((item: any) => {
+      const topicMatch = includeTopics.includes(item.TOPIC);
+      const subtopicMatch =
+        includeSubtopics &&
+        includeSubtopics[item.TOPIC] &&
+        includeSubtopics[item.TOPIC].length > 0
+          ? includeSubtopics[item.TOPIC].includes(item.SUBTOPIC)
+          : true;
+      return topicMatch && subtopicMatch;
+    });
 
-// First, filter data based on the topic and subtopic selection.
-const filteredData = mathsform1data.filter((item: any) => {
-  // Check that the topic is selected.
-  const topicMatch = includeTopics.includes(item.TOPIC);
+    // Order the data based on the order in includeTopics.
+    filteredData.sort(
+      (a: any, b: any) =>
+        includeTopics.indexOf(a.TOPIC) - includeTopics.indexOf(b.TOPIC)
+    );
+  }
 
-  // If there are subtopics selected for this topic, check that the current subtopic is among them.
-  const subtopicMatch =
-    includeSubtopics &&
-    includeSubtopics[item.TOPIC] &&
-    includeSubtopics[item.TOPIC].length > 0
-      ? includeSubtopics[item.TOPIC].includes(item.SUBTOPIC)
-      : true;
-
-  return topicMatch && subtopicMatch;
-});
-
-// Now, to preserve the original topic order, sort the data based on the order in includeTopics.
-const orderedData = filteredData.sort(
-  (a: any, b: any) => includeTopics.indexOf(a.TOPIC) - includeTopics.indexOf(b.TOPIC)
-);
-
-//console.log(orderedTopics); // Log the ordered topics for debugging
-
-return (
-  <div className="p-4">
-    <PdfGen data={orderedData} />
-  </div>
-);
+  return (
+    <div className="p-4">
+      <PdfGen data={filteredData} />
+    </div>
+  );
 }

@@ -14,12 +14,13 @@ import { useRouter } from 'next/navigation';
 
 const PdfGen = ({ data }: { data: any }) => {
   const formdata = useAppSelector((state) => state.schemes.formData);
+  const [schemeType, setSchemeType] = useState<'primary' | 'secondary' | any>(formdata?.schoolLevel);
   const { data: session } = authClient.useSession();
   const [loading, setLoading] = useState(false);
   const [pdfDataUrl, setPdfDataUrl] = useState<string | null>(null);
-  const [tableData, setTableData] = useState<any[]>([]); // State for table data preview
+  const [tableData, setTableData] = useState<any[]>([]);
 
-  // Provide default values to avoid undefined errors
+  // Default form values (avoid undefined errors)
   const [lessonsPerWeek] = useState(formdata?.lessonsPerWeek || 1);
   const [startWeek] = useState(formdata?.startWeek || 1);
   const [startLesson] = useState(formdata?.startLesson || 1);
@@ -41,25 +42,141 @@ const PdfGen = ({ data }: { data: any }) => {
   );
   console.log('Total Teachable Lessons:', totalLessons);
 
-  // Make sure data is defined
+  // Use the passed data (or empty array if undefined)
   const myAdjustedData: any[] = [...(data || [])];
 
-  // Calculate how many additional topics need to be added
+  // Add extra topics if needed
   const topicsToAdd = totalLessons - myAdjustedData.length;
   if (topicsToAdd > 0) {
     while (myAdjustedData.length < totalLessons) {
       const randomIndex = Math.floor(Math.random() * myAdjustedData.length);
       const randomTopic = myAdjustedData[randomIndex];
       myAdjustedData.splice(randomIndex + 1, 0, randomTopic);
-      // Uncomment if you need debugging info:
-      // console.log(`Duplicated topic from index ${randomIndex} and inserted at ${randomIndex + 1}`);
     }
   }
 
-  // Wrap createPDF in useCallback so that its reference stays stable
+  // Define headers for secondary and primary schemes
+  const secondaryHeaders = [
+    ['Week', 'Lesson', 'Topic(s)', 'Sub-Topic(s)', 'Objectives', 'T/L Activities', 'T/L Aids', 'Reference', 'Remarks'],
+  ];
+  const primaryHeaders = [
+    ['Week', 'Lesson', 'Strands', 'Substrands', 'Lesson-Learning-Outcomes', 'Core-Competence', 'Values', 'L_Experiences', 'L_Resources', 'Assessment', 'Remarks'],
+  ];
+
+  // Pick the header based on the scheme type
+  const headers = schemeType === 'primary' ? primaryHeaders : secondaryHeaders;
+
+  // Generate lessons rows based on the selected scheme type.
+  const generateLessons = () => {
+    const lessons: any[] = [];
+    const totalTopics = myAdjustedData.length;
+    const topicsPerLesson = Math.floor(totalTopics / totalLessons);
+    let extraTopics = totalTopics % totalLessons;
+    let topicIndex = 0;
+
+    // Loop through weeks and lessons
+    for (let week = startWeek; week <= endWeek; week++) {
+      for (let lesson = 1; lesson <= lessonsPerWeek; lesson++) {
+        if (week === startWeek && lesson < startLesson) continue;
+        if (week === endWeek && lesson > endLesson) break;
+
+        // Check for breaks
+        const breakInfo = addBreaks
+          ? breaks.find(
+              (b) =>
+                (week > b.startWeek || (week === b.startWeek && lesson >= b.startLesson)) &&
+                (week < b.endWeek || (week === b.endWeek && lesson <= b.endLesson))
+            )
+          : null;
+        if (breakInfo) {
+          // Avoid duplicate break rows
+          const isBreakAlreadyAdded = lessons.some(
+            (row) =>
+              typeof row[0] === 'object' &&
+              row[0].content.includes(
+                `${breakInfo.title}: Week ${breakInfo.startWeek} lesson ${breakInfo.startLesson} to Week ${breakInfo.endWeek} lesson ${breakInfo.endLesson}`
+              )
+          );
+          if (!isBreakAlreadyAdded) {
+            lessons.push([
+              {
+                content: `${breakInfo.title}: Week ${breakInfo.startWeek} lesson ${breakInfo.startLesson} to Week ${breakInfo.endWeek} lesson ${breakInfo.endLesson}`,
+                colSpan: headers[0].length,
+                styles: { halign: 'center', fontStyle: 'bold', textColor: [255, 0, 0] },
+              },
+            ]);
+          }
+          // Skip lessons that fall under the break period
+          while (
+            (week < breakInfo.endWeek || (week === breakInfo.endWeek && lesson < breakInfo.endLesson)) &&
+            lesson <= lessonsPerWeek
+          ) {
+            lesson++;
+          }
+          if (lesson > lessonsPerWeek) break;
+          continue;
+        }
+
+        // Calculate topics for this lesson
+        const currentTopicsCount = topicsPerLesson + (extraTopics > 0 ? 1 : 0);
+        const assignedTopics = myAdjustedData.slice(topicIndex, topicIndex + currentTopicsCount);
+        topicIndex += currentTopicsCount;
+        if (extraTopics > 0) extraTopics--;
+
+        if (schemeType === 'primary') {
+          // Updated variable names to match the pp1mathematics model:
+          const combinedStrands = assignedTopics.map((t) => t.STRANDS || '').join(', ');
+          const combinedSubstrands = assignedTopics.map((t) => t.SUBSTRANDS || '').join(', ');
+          const combinedOutcome = assignedTopics.map((t) => t.LLOUTCOMES || '').join(', ');
+          const combinedCompetence = assignedTopics.map((t) => t.CORECOMPETENCE || '').join(', ');
+          const combinedValues = assignedTopics.map((t) => t.VALUES || '').join(', ');
+          const combinedExperiences = assignedTopics.map((t) => t.LEXPERIENCES || '').join(', ');
+          const combinedResources = assignedTopics.map((t) => t.LRESOURCES || '').join(', ');
+          const combinedAssessment = assignedTopics.map((t) => t.ASSESSMENT || '').join(', ');
+
+          lessons.push([
+            week,
+            lesson,
+            combinedStrands,
+            combinedSubstrands,
+            combinedOutcome,
+            combinedCompetence,
+            combinedValues,
+            combinedExperiences,
+            combinedResources,
+            combinedAssessment,
+            '', // Remarks can be added here if needed
+          ]);
+        } else {
+          // For secondary scheme, using the fields already provided
+          const combinedTopic = assignedTopics.map((t) => t.TOPIC || '').join(', ');
+          const combinedSubTopic = assignedTopics.map((t) => t.SUBTOPIC || '').join(', ');
+          const combinedObjectives = assignedTopics.map((t) => t.OBJECTIVES || '').join('; ');
+          const combinedActivities = assignedTopics.map((t) => t.ACTIVITIES || '').join('; ');
+          const combinedAids = assignedTopics.map((t) => t.AIDS || '').join(', ');
+          const combinedReference = assignedTopics.map((t) => t.REFERENCE || '').join('; ');
+
+          lessons.push([
+            week,
+            lesson,
+            combinedTopic,
+            combinedSubTopic,
+            combinedObjectives,
+            combinedActivities,
+            combinedAids,
+            combinedReference,
+            '', // Remarks column
+          ]);
+        }
+      }
+    }
+    return lessons;
+  };
+
+  // Wrap createPDF in useCallback so its reference stays stable
   const createPDF = useCallback(async (): Promise<any[]> => {
     setLoading(true);
-    // Increase delay to ensure the loading indicator is rendered before heavy processing
+    // Ensure the loading indicator renders before heavy processing
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     const doc = new jsPDF({
@@ -71,7 +188,7 @@ const PdfGen = ({ data }: { data: any }) => {
     const pageWidth = doc.internal.pageSize.getWidth();
     const centerX = pageWidth / 2;
 
-    // Header content
+    // First page header content (common for both types)
     doc.setFontSize(24);
     doc.text('Name..........................', centerX - 8, 35, { align: 'right' });
     doc.text('TSC No..........................', centerX, 50, { align: 'right' });
@@ -86,118 +203,32 @@ const PdfGen = ({ data }: { data: any }) => {
     doc.text(`Year: ${formdata?.year || 'N/A'}`, centerX, 120, { align: 'center' });
     doc.addPage();
 
-    const headers = [
-      ['Week', 'Lesson', 'Topic(s)', 'Sub-Topic(s)', 'Objectives', 'T/L Activities', 'T/L Aids', 'Reference','Remarks'],
-    ];
-
-    const lessons: any[] = [];
-    const totalTopics = myAdjustedData.length;
-    const topicsPerLesson = Math.floor(totalTopics / totalLessons);
-    let extraTopics = totalTopics % totalLessons;
-    let topicIndex = 0;
-
-    for (let week = startWeek; week <= endWeek; week++) {
-      for (let lesson = 1; lesson <= lessonsPerWeek; lesson++) {
-        if (week === startWeek && lesson < startLesson) continue;
-        if (week === endWeek && lesson > endLesson) break;
-
-        const breakInfo = addBreaks ? breaks.find(
-          (b) =>
-            (week > b.startWeek || (week === b.startWeek && lesson >= b.startLesson)) &&
-            (week < b.endWeek || (week === b.endWeek && lesson <= b.endLesson))
-        ) : null;
-
-          if (breakInfo) {
-            const isBreakAlreadyAdded = lessons.some(
-              (row) =>
-                typeof row[0] === 'object' &&
-                row[0].content.includes(`${breakInfo.title}: Week ${breakInfo.startWeek} lesson ${breakInfo.startLesson} to Week ${breakInfo.endWeek} lesson ${breakInfo.endLesson}`)
-            );
-          
-            if (!isBreakAlreadyAdded) {
-              lessons.push([
-                {
-                  content: `${breakInfo.title}: Week ${breakInfo.startWeek} lesson ${breakInfo.startLesson} to Week ${breakInfo.endWeek} lesson ${breakInfo.endLesson}`,
-                  colSpan: headers[0].length,
-                  styles: { halign: 'center', fontStyle: 'bold', textColor: [255, 0, 0] },
-                },
-              ]);
-            }
-          
-            while (
-              (week < breakInfo.endWeek || (week === breakInfo.endWeek && lesson < breakInfo.endLesson)) &&
-              lesson <= lessonsPerWeek
-            ) {
-              lesson++;
-            }
-            if (lesson > lessonsPerWeek) break;
-            continue;
-          }
-
-        // Handle double lessons safely by ensuring doubleLesson is an array
-        if (Array.isArray(doubleLesson) && doubleLesson.includes(lesson) && topicIndex < myAdjustedData.length) {
-          const currentTopicsCount = topicsPerLesson + (extraTopics > 0 ? 1 : 0);
-          const assignedTopics = myAdjustedData.slice(topicIndex, topicIndex + currentTopicsCount);
-
-          const combinedTopic = assignedTopics.map((t) => t.TOPIC).join(', ');
-          const combinedSubTopic = assignedTopics.map((t) => t.SUBTOPIC).join(', ');
-          const combinedObjectives = assignedTopics.map((t) => t.OBJECTIVES).join('; ');
-          const combinedActivities = assignedTopics.map((t) => t.ACTIVITIES).join('; ');
-          const combinedAids = assignedTopics.map((t) => t.AIDS).join(', ');
-          const combinedReference = assignedTopics.map((t) => t.REFERENCE).join('; ');
-
-          lessons.push([
-            week,
-            `${lesson} and ${lesson + 1}`,
-            combinedTopic,
-            combinedSubTopic,
-            combinedObjectives,
-            combinedActivities,
-            combinedAids,
-            combinedReference,
-          ]);
-
-          topicIndex += currentTopicsCount;
-          if (extraTopics > 0) extraTopics--;
-          lesson++; // skip the next lesson because of the double lesson
-        } else if (topicIndex < myAdjustedData.length) {
-          const currentTopicsCount = topicsPerLesson + (extraTopics > 0 ? 1 : 0);
-          const assignedTopics = myAdjustedData.slice(topicIndex, topicIndex + currentTopicsCount);
-
-          const combinedTopic = assignedTopics.map((t) => t.TOPIC).join(', ');
-          const combinedSubTopic = assignedTopics.map((t) => t.SUBTOPIC).join(', ');
-          const combinedObjectives = assignedTopics.map((t) => t.OBJECTIVES).join('; ');
-          const combinedActivities = assignedTopics.map((t) => t.ACTIVITIES).join('; ');
-          const combinedAids = assignedTopics.map((t) => t.AIDS).join(', ');
-          const combinedReference = assignedTopics.map((t) => t.REFERENCE).join('; ');
-
-          lessons.push([
-            week,
-            lesson,
-            combinedTopic,
-            combinedSubTopic,
-            combinedObjectives,
-            combinedActivities,
-            combinedAids,
-            combinedReference,
-          ]);
-
-          topicIndex += currentTopicsCount;
-          if (extraTopics > 0) extraTopics--;
-        } else {
-          lessons.push([week, lesson, 'No Topic Assigned', '', '', '', '', '']);
-        }
-      }
-    }
-
+    // Generate the lessons rows based on the selected scheme type.
+    const lessons = generateLessons();
     setTableData(lessons);
+
+    const leftMargin = 10; // mm, adjust as needed
+    const rightMargin = 10; // mm, adjust as needed
+    const tableWidth = pageWidth - leftMargin - rightMargin;
+    const numColumns = headers[0].length;
+    const equalWidth = tableWidth / numColumns;
+    // Use the chosen headers when calling autoTable
+
+    const columnStyles:any = {
+      0: { cellWidth: 10 }, // Week column (smallest)
+      1: { cellWidth: 10 }, // Lesson column (slightly bigger)
+      7:{cellWidth:40}
+    };
+
     autoTable(doc, {
+      margin: { left: leftMargin, right: rightMargin },
       head: headers,
       body: lessons,
       startY: 20,
       styles: { fontSize: 10, cellPadding: 3 },
       headStyles: { fillColor: [229, 228, 226], textColor: [0, 0, 0] },
       theme: 'grid',
+      columnStyles, // Apply equal width to each column
     });
 
     const pdfDataUri = doc.output('datauristring');
@@ -211,12 +242,13 @@ const PdfGen = ({ data }: { data: any }) => {
     endLesson,
     endWeek,
     formdata,
+    headers,
     lessonsPerWeek,
     myAdjustedData,
-    session,
     startLesson,
     startWeek,
     totalLessons,
+    schemeType,
   ]);
 
   const dispatch = useAppDispatch();
@@ -229,13 +261,9 @@ const PdfGen = ({ data }: { data: any }) => {
   };
 
   const openTablePreviewInNewTab = async () => {
-    // Await the PDF creation and get the lessons data directly
     const lessons = await createPDF();
-
-    // If lessons data is empty, exit early
     if (!lessons || lessons.length === 0) return;
 
-    // Open a new tab (note: we remove the third parameter so that it opens as a tab)
     const newTab = window.open('', '_blank');
     if (newTab) {
       newTab.document.write(`
@@ -269,10 +297,6 @@ const PdfGen = ({ data }: { data: any }) => {
               }
               .header-section {
                 margin-bottom: 20px;
-              }
-              .header-section .name-tsc {
-                display: flex;
-                justify-content: space-between;
               }
               .header-section .school-name {
                 text-align: center;
@@ -315,15 +339,7 @@ const PdfGen = ({ data }: { data: any }) => {
               <table>
                 <thead>
                   <tr>
-                    <th>Week</th>
-                    <th>Lesson</th>
-                    <th>Topic(s)</th>
-                    <th>Sub-Topic(s)</th>
-                    <th>Objectives</th>
-                    <th>T/L Activities</th>
-                    <th>T/L Aids</th>
-                    <th>Reference</th>
-                    <th>Remarks</th>
+                    ${headers[0].map((headerTitle) => `<th>${headerTitle}</th>`).join('')}
                   </tr>
                 </thead>
                 <tbody>
@@ -367,11 +383,7 @@ const PdfGen = ({ data }: { data: any }) => {
     }
   };
 
-  // A function to handle payment (if needed) and then trigger PDF download
   const payAndDownloadFunction = async () => {
-    // (Optionally add payment processing logic here)
-
-    // If PDF is not generated, call createPDF first
     if (!pdfDataUrl) {
       await createPDF();
     }
@@ -403,7 +415,6 @@ const PdfGen = ({ data }: { data: any }) => {
       });
     }
 
-    // Trigger download using an anchor element
     if (pdfDataUrl) {
       toast({
         title: "Please wait.........",
@@ -417,23 +428,23 @@ const PdfGen = ({ data }: { data: any }) => {
       document.body.removeChild(link);
 
       await SaveGeneratedPdfData({
-        userId:session?.user.id,
-        schoolName:formdata?.schoolName,
-        schoolLevel:formdata?.schoolLevel,
-        subject:formdata?.subject,
-        term:formdata?.term,
-        year:formdata?.year,
-        selectedTopics:formdata?.selectedTopics,
+        userId: session?.user.id,
+        schoolName: formdata?.schoolName,
+        schoolLevel: formdata?.schoolLevel,
+        subject: formdata?.subject,
+        term: formdata?.term,
+        year: formdata?.year,
+        selectedTopics: formdata?.selectedTopics,
         lessonsPerWeek,
         startWeek,
         startLesson,
         endWeek,
         endLesson,
         addBreaks,
-        breaks:formdata?.breaks,
-        doubleLesson:formdata?.doubleLesson,
-        className:formdata?.class
-      })
+        breaks: formdata?.breaks,
+        doubleLesson: formdata?.doubleLesson,
+        className: formdata?.class
+      });
       
       createAnotherScheme();
     }
@@ -446,6 +457,8 @@ const PdfGen = ({ data }: { data: any }) => {
 
   return (
     <div className="space-y-10">
+      {/* Optionally, add UI controls to let the user choose between primary and secondary */}
+
       {pdfDataUrl ? (
         <div>
           <Chip className={`${loading ? 'bg-emerald-600' : 'bg-red-500'} text-white`}>
@@ -460,7 +473,7 @@ const PdfGen = ({ data }: { data: any }) => {
             </Button>
           </div>
           <div className="mt-4 flex items-center md:justify-between md:flex-row gap-2 flex-col">
-            <Button onPress={handlePrevious} className="w-full md:w-fit" radius="sm" startContent={<ArrowLeft></ArrowLeft>}>
+            <Button onPress={handlePrevious} className="w-full md:w-fit" radius="sm" startContent={<ArrowLeft />}>
               Back
             </Button>
             <Button radius="sm" variant='bordered' onPress={openTablePreviewInNewTab} className="w-full" endContent={<EyeIcon />}>
@@ -477,17 +490,12 @@ const PdfGen = ({ data }: { data: any }) => {
             <Button className="bg-blue-600 text-white w-full" onPress={createPDF} endContent={<ArrowRight />} radius="sm">
               Generate PDF
             </Button>
-            <Button onPress={handlePrevious} className="w-full md:w-fit" radius="sm" startContent={<ArrowLeft></ArrowLeft>}>
+            <Button onPress={handlePrevious} className="w-full md:w-fit" radius="sm" startContent={<ArrowLeft />}>
               Back
             </Button>
           </div>
         )
       )}
-      {/* {pdfDataUrl && (
-        <div style={{ marginTop: '20px', border: '1px solid #ccc' }}>
-          <iframe src={pdfDataUrl} style={{ width: '100%', height: '500px', border: 'none' }} title="PDF Preview" />
-        </div>
-      )} */}
     </div>
   );
 };
